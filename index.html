@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="原神圣遗物强化模拟_demo">
+    <meta name="author" content="DioMao">
+    <meta name="renderer" content="webkit">
+    <title>Genshin Relics Upgrade Simulator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-dRYOpy/KcUgZUv3UgAdBrl5jPEmH+fTv2Vu1Bq4Wsr2/779iKnon9o5hZZVSM76I" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3.2.4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-KIT91OlDmsIXvQaqzxNONuO4ve97S3yDh9A0nea67fEK+03Wdyc/3oGgd0+DPaf7" crossorigin="anonymous"></script>
+    <script src="js/relicsUpradeSim.js"></script>
+    <style>
+        #vueApp{
+            width: 100%;
+        }
+        #loading{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            background-color: #fff;
+        }
+        #loading .loading-box{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -12px;
+            margin-left: -12px;
+        }
+        .hide{
+            display: none;
+        }
+        .navbar{
+            width: 100%;
+            position: fixed;
+            z-index: 10;
+        }
+        .alertBox{
+            user-select: none;
+            position: fixed;
+            z-index: 1056;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.2s ease-in;
+        }
+        .demo-container{
+            user-select: none;
+            padding-top: 50px;
+            overflow-y: scroll;
+            height: 90vh;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        /* .demo-container::-webkit-scrollbar{
+            display: none;
+        } */
+        .relicsBox{
+            margin: 20px 10px;
+            width: 10rem;
+            height: 323px;
+            font-size: 0.9rem;
+            transition: ease 0.2s all;
+        }
+        @media screen and (max-width:480px) {
+            .relicsBox{
+                width: calc(50% - 20px);
+            }
+        }
+        @media screen and (max-width:979px){
+            .relicShowBox{
+                display: none;
+            }
+        }
+        @media screen and (min-width:980px){
+            .relicShowBox{
+                position: fixed;
+                margin-top: 20px;
+                right: 0;
+                width: 320px;
+                height: 100%;
+            }
+            .demo-container{
+                position: absolute;
+                left: 0;
+                width: calc(100% - 320px);
+            }
+        }
+        .upgradeCheat{
+            display: inline-block;
+            position: absolute;
+            right: 5px;
+        }
+        footer{
+            position: fixed;
+            width: 100%;
+            height: 10vh;
+            bottom: 0;
+        }
+        .buttonBox{
+            display: flex;
+            margin-top: 20px;
+            margin-right: 10px;
+            justify-content: flex-end;
+        }
+        .selectBox{
+            width: 160px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="vueApp">
+        <!-- loading -->
+        <div id="loading" :class="isLoad?'hide':''">
+            <div class="spinner-border loading-box" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- /loading -->
+        <!-- alert -->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+        </svg>
+        <div class="alertBox">
+            <div class="alert alert-success d-flex align-items-center" role="alert" v-if="alertFunc.alertShow">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                    {{ alertFunc.alertMsg }}
+                </div>
+            </div>
+        </div>
+        <!-- /alert -->
+        <!-- nav -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">圣遗物强化模拟</a>
+                <div class="selectBox d-flex">
+                    <select class="form-select" aria-label="Default select example" v-model="selected">
+                        <option selected value="default">显示全部</option>
+                        <option :value="part" v-for="part in parts">{{ toChinese(part,"parts") }}</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+        <!-- /nav -->
+        <!-- Relics -->
+        <div>
+            <div class="container-fluid demo-container">
+                <div v-for="(relics,index) in relicsList" :class="'relicsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == relics.part" @click="showIndex=index">
+                    <div class="card-body">
+                        <div class="card-text fs-6 fw-bolder">{{ toChinese(relics.part,"parts") }}</div>
+                        <div class="card-text fw-bold lh-lg">主属性:{{ toChinese(relics.mainEntry,"mainEntry") }}</div>
+                        <span class="badge bg-dark">+{{ relics.level }}</span>
+                    </div>
+                    <ul v-for="(entry,index2) in relics.entry" class="list-group list-group-flush">
+                        <li class="list-group-item" @click="relicUpgrade(index,entry[0])">{{ toChinese(entry[0],"entry") }} : {{ Number(entry[1].toFixed(2)) }}
+                            <span class="badge bg-primary upgradeCheat" v-show="relics.level<20">+</span>
+                        </li>
+                        <li class="list-group-item" v-if="relics.entry.length == 3 && index2 == 2">——</li>
+                    </ul>
+                    <div class="card-body" style="text-align:center;">
+                        <button id="upgrade" @click="relicUpgrade(index)" class="btn btn-primary btn-sm float-start" :disabled="relics.level >= 20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                            </svg>
+                        </button>
+                        <button id="initRelic" @click="initRelic(index)" class="btn btn-success btn-sm" :disabled="relics.level==0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                            </svg>
+                        </button>
+                        <button id="deleteRelic" @click="deleteRelic(index)" class="btn btn-danger btn-sm float-end">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="relicShowBox">
+                    <p>这里准备放个圣遗物展示界面</p>
+                    <div v-for="(value,key) in relicsList[showIndex]">
+                        <div>{{ key }} : {{ value }}</div>
+                    </div>
+                    <div v-if="showIndex!=-1"> {{ relicScore(showIndex) }} </div>
+                </div>
+            </div>
+            <footer>
+                <div class="gap-2 d-md-flex justify-content-md-end buttonBox">
+                    <div class="btn-group">
+                        <button id="start" @click="start" class="btn btn-primary">新增数据</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cusRelic">自选属性</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">敬请期待</a></li>
+                        </ul>
+                    </div>
+                    <button id="clear" @click="relicClear" class="btn btn-danger">清除数据</button>
+                    <div class="dropdown" style="display:inline-block;">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          更多
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <li><a class="dropdown-item" href="#" @click="undoDel">撤销删除</a></li>
+                          <li><a class="dropdown-item" href="#" @click="resetAll">全部重置</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#userSet">设置</a></li>
+                        </ul>
+                    </div>
+                    <!-- <button id="undoDel" @click="undoDel" class="btn btn-success">撤销删除</button> -->
+                </div>
+            </footer>
+        </div>
+        <!-- /Relics -->
+        <!-- cusModal -->
+        <div class="modal fade" id="cusRelic" tabindex="-1" data-bs-backdrop="static" aria-labelledby="cusRelicLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cusRelicLabel">自选圣遗物</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 自选位置 -->
+                        <label for="cutRelicPart" class="form-label fw-bold">位置</label>
+                        <select id="cutRelicPart" class="form-select form-select-sm mb-3" v-model="cusPart" @change="cusEntry.length=0">
+                            <option v-for="part in parts" :value="part">{{ toChinese(part,"parts") }}</option>
+                        </select>
+                        <!-- 自选主属性 -->
+                        <label class="form-label fw-bold" v-show="cusPart!='default'&&cusPart!=''">主属性</label>
+                        <select class="form-select form-select-sm mb-3" v-if="cusPart!='default'&&cusPart!=''" v-model="cusMainEntry" @change="cusEntry.length=0">
+                            <option v-for="partModal in cusEntryList[cusPart]" :value="partModal">{{ toChinese(partModal,"mainEntry") }}</option>
+                        </select>
+                        <!-- 自选副词条 -->
+                        <label class="form-label fw-bold" v-show="cusPart!='default'&&cusMainEntry!=''">副词条选择（选择3-4项时生效）</label>
+                        <div class="form-check" v-for="entry in entryList" v-show="cusPart!='default'&&cusMainEntry!=''&&cusMainEntry!=entry">
+                            <input class="form-check-input" v-model="cusEntry" type="checkbox" :value="entry" :id="entry+'Check'" :disabled="cusEntry.length==4&&cusEntry.indexOf(entry)==-1">
+                            <label class="form-check-label" :for="entry+'Check'">
+                              {{ toChinese(entry,"entry") }}
+                            </label>
+                            <select class="form-select form-select-sm mt-1 mb-1 col-md-6 ms-auto" v-model="cusEntryRate[entry]" :disabled="cusEntry.length==4&&cusEntry.indexOf(entry)==-1">
+                                <option v-for="entryValueModal in entryValue[entry]" :value="entryValueModal">{{ entryValueModal }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="cusCloseSwitch" v-model="cusCloseSwitch" checked>
+                            <label class="form-check-label" for="cusCloseSwitch">生成后关闭此窗口</label>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" @click="cusCreatRelic" :data-bs-dismiss="cusCloseSwitch?'modal':null">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /cusModal -->
+        <!-- userSetting -->
+        <div class="modal fade" id="userSet" tabindex="-1" data-bs-backdrop="static" aria-labelledby="cusRelicLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cusRelicLabel">设置</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="testSwitch" v-model="userSetting['test']" @change="changeSetting">
+                            <label class="form-check-label" for="testSwitch">test</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="testSwitch2" v-model="userSetting['test2']" @change="changeSetting">
+                            <label class="form-check-label" for="testSwitch2">test</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /userSetting -->
+    </div>
+
+    <!-- <script type="module">
+        import {relicsSim,parts,partsCh,entryList,entryListCh,mainEntryList,mainEntryListCh} from "./js/relicUpgradeSim.js"
+    </script> -->
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isLoad: false,              // 加载界面显示（isLoad表示页面加载是否完成）
+                    showIndex: -1,              // 右侧圣遗物展示序号
+                    relicsList: [],             // 圣遗物列表
+                    parts: [],                  // 圣遗物位置*自选
+                    entryList: [],              // 副词条列表
+                    selected: "default",        // 根据位置筛选结果
+                    cusCloseSwitch: true,       // 自选圣遗物-生成后是否关闭modal窗
+                    cusPart: "",                // 自选圣遗物位置
+                    cusMainEntry: "",           // 自选圣遗物主词条
+                    cusEntry: [],               // 自选圣遗物副词条
+                    cusEntryRate: {},           // 自选圣遗物副词条数值
+                    cusEntryList: {},           // 自选圣遗物副词对照表
+                    entryValue: {},             // 自选圣遗物副词数值对照表
+                    userSetting:{               // 用户设置-测试
+                        "test": true,
+                        "test2": false
+                    },
+                    alertFunc: {
+                        alertShow: false,        // 是否显示提示框
+                        alertMsg: '',            // 提示框内容
+                        alertClose: Function     // 定时关闭提示框
+                    }
+                }
+            },
+            created(){
+                if(!window.localStorage){
+                    alert("浏览器不支持localstorage");
+                    return false;
+                }else{
+                    if(localStorage.localRecord == undefined){
+                        localStorage.localRecord = [];
+                    }else if(localStorage.localRecord != '' || localStorage.localRecord != []){
+                        relicsSim.result = JSON.parse(localStorage.getItem("localRecord"));
+                        this.relicsList = JSON.parse(localStorage.getItem("localRecord"));
+                    };
+                    if(localStorage.userSetting == undefined){
+                        localStorage.userSetting = '';
+                    }else if(localStorage.userSetting != '' || localStorage.userSetting != {}){
+                        this.userSetting = JSON.parse(localStorage.getItem("userSetting"));
+                    };
+                }
+                this.parts = parts;
+                this.entryList = entryList;
+                this.cusEntryList = cusEntryList;
+                this.entryValue = entryValue;
+                // 初始化自选副词条为最大值
+                for(let i in entryValue){
+                    this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
+                }
+                console.log("Vue is runnning.");
+            },
+            mounted(){
+                this.$nextTick(function(){
+                    this.isLoad = true;
+                })
+            },
+            methods:{
+                start(){
+                    relicsSim.creatRelic();
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                    this.alertControl("随机圣遗物已生成！",1500);
+                },
+                // 自选圣遗物
+                cusCreatRelic(){
+                    let cusEntryValue = [],
+                    cusEntry = [];
+                    for(let i= 0; i < this.cusEntry.length; i++){
+                        cusEntry.push(this.cusEntry[i]);
+                        cusEntryValue.push(this.cusEntryRate[cusEntry[i]]);
+                    }
+                    relicsSim.creatRelic(this.cusPart,this.cusMainEntry,cusEntry,cusEntryValue);
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                    this.alertControl("自选圣遗物已生成！",1500);
+                },
+                // 圣遗物升级
+                relicUpgrade(index,entry=""){
+                    relicsSim.upgrade(index,entry);
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                },
+                //
+                relicScore(index,rule="default"){
+                    return relicsSim.relicScore(index);
+                },
+                // 初始化圣遗物
+                initRelic(index){
+                    relicsSim.reset(index);
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                },
+                // 清除结果列表
+                relicClear(){
+                    this.showIndex = -1;
+                    relicsSim.clearAll();
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                },
+                // 删除圣遗物
+                deleteRelic(index){
+                    this.showIndex = -1;
+                    relicsSim.deleteOne(index);
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                    this.alertControl("删除圣遗物成功！",1500);
+                },
+                // 撤销删除
+                undoDel(){
+                    relicsSim.undoDel();
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                    this.alertControl("撤销删除成功！",1500);
+                },
+                // 初始化全部圣遗物
+                resetAll(){
+                    relicsSim.resetAll();
+                    this.relicsList = [...relicsSim.result];
+                    this.localRecord(this.relicsList);
+                },
+                // 结果保存到localstorage
+                localRecord(record){
+                    if(!window.localStorage){
+                        alert("浏览器不支持localstorage");
+                        return false;
+                    }else{
+                        localStorage.localRecord = JSON.stringify(record);
+                    }
+                },
+                // 保存设置
+                changeSetting(){
+                    if(!window.localStorage){
+                        alert("浏览器不支持localstorage");
+                        return false;
+                    }else{
+                        localStorage.userSetting = JSON.stringify(this.userSetting);
+                    }
+                },
+                // 操作提示-提示框
+                alertControl(msg,time = 2000){
+                    this.alertFunc.alertMsg = msg;
+                    this.alertFunc.alertShow = true;
+                    clearTimeout(this.alertFunc.alertClose);
+                    this.alertFunc.alertClose = setTimeout(() => {
+                        this.alertFunc.alertShow = false;
+                    },time)
+                },
+                // 转换为中文
+                toChinese(word,type){
+                    if(type == "entry"){
+                        return entryListCh[entryList.indexOf(word)]
+                    }else if(type == "parts"){
+                        return partsCh[parts.indexOf(word)];
+                    }else if(type == "mainEntry"){
+                        return mainEntryListCh[mainEntryList.indexOf(word)];
+                    }
+                }
+            }
+        }).mount('#vueApp');
+    </script>
+</body>
+
+</html>
