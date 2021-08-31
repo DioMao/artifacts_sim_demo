@@ -353,8 +353,8 @@
                         this.relicsList = JSON.parse(localStorage.getItem("localRecord"));
                     };
                     if(localStorage.userSetting == undefined){
-                        localStorage.userSetting = ' ';
-                    }else if(localStorage.userSetting != ' ' || localStorage.userSetting != {}){
+                        localStorage.userSetting = JSON.stringify(userSetting);
+                    }else if(localStorage.userSetting != '' || localStorage.userSetting != {}){
                         this.userSetting = JSON.parse(localStorage.getItem("userSetting"));
                     };
                 }
