@@ -195,7 +195,7 @@
                     <div v-for="(value,key) in relicsList[showIndex]">
                         <div>{{ key }} : {{ value }}</div>
                     </div>
-                    <div v-if="showIndex!=-1"> {{ relicScore(showIndex) }} </div>
+                    <div v-if="showIndex!=-1"> 圣遗物评分：{{ relicScore(showIndex) }} </div>
                 </div>
             </div>
             <footer>
@@ -221,6 +221,8 @@
                           <li><a class="dropdown-item" href="#" @click="resetAll">全部重置</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#userSet">设置</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#about">关于</a></li>
                         </ul>
                     </div>
                     <!-- <button id="undoDel" @click="undoDel" class="btn btn-success">撤销删除</button> -->
@@ -272,11 +274,11 @@
         </div>
         <!-- /cusModal -->
         <!-- userSetting -->
-        <div class="modal fade" id="userSet" tabindex="-1" data-bs-backdrop="static" aria-labelledby="cusRelicLabel" aria-hidden="true">
+        <div class="modal fade" id="userSet" tabindex="-1" data-bs-backdrop="static" aria-labelledby="userSetting" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="cusRelicLabel">设置</h5>
+                        <h5 class="modal-title" id="userSetting">设置</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -297,6 +299,25 @@
             </div>
         </div>
         <!-- /userSetting -->
+        <!-- about -->
+        <div class="modal fade" id="about" tabindex="-1" aria-labelledby="about" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="about">关于模拟器</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>Version: {{version}} </div>
+                        <div>Author: <a href="https://github.com/DioMao" target="_blank">DioMao</a></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /about -->
     </div>
 
     <!-- <script type="module">
@@ -327,7 +348,8 @@
                         alertShow: false,        // 是否显示提示框
                         alertMsg: '',            // 提示框内容
                         alertClose: Function     // 定时关闭提示框
-                    }
+                    },
+                    version: ''                  //版本信息
                 }
             },
             created(){
@@ -335,6 +357,7 @@
                 this.entryList = entryList;
                 this.cusEntryList = cusEntryList;
                 this.entryValue = entryValue;
+                this.version = relicsSimVersion;
                 // 初始化自选副词条为最大值
                 for(let i in entryValue){
                     this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
@@ -348,13 +371,13 @@
                 }else{
                     if(localStorage.localRecord == undefined){
                         localStorage.localRecord = [];
-                    }else if(localStorage.localRecord != '' || localStorage.localRecord != []){
+                    }else if(localStorage.localRecord != '' || localStorage.localRecord != "[]"){
                         relicsSim.result = JSON.parse(localStorage.getItem("localRecord"));
                         this.relicsList = JSON.parse(localStorage.getItem("localRecord"));
                     };
                     if(localStorage.userSetting == undefined){
                         localStorage.userSetting = JSON.stringify(this.userSetting);
-                    }else if(localStorage.userSetting != '' || localStorage.userSetting != {}){
+                    }else if(localStorage.userSetting != ''){
                         this.userSetting = JSON.parse(localStorage.getItem("userSetting"));
                     };
                 }
@@ -407,7 +430,6 @@
                 },
                 // 删除圣遗物
                 deleteRelic(index){
-                    this.showIndex = -1;
                     relicsSim.deleteOne(index);
                     this.relicsList = [...relicsSim.result];
                     this.localRecord(this.relicsList);
