@@ -331,6 +331,17 @@
                 }
             },
             created(){
+                this.parts = parts;
+                this.entryList = entryList;
+                this.cusEntryList = cusEntryList;
+                this.entryValue = entryValue;
+                // 初始化自选副词条为最大值
+                for(let i in entryValue){
+                    this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
+                }
+                console.log("Vue is runnning.");
+            },
+            mounted(){
                 if(!window.localStorage){
                     alert("浏览器不支持localstorage");
                     return false;
@@ -347,17 +358,6 @@
                         this.userSetting = JSON.parse(localStorage.getItem("userSetting"));
                     };
                 }
-                this.parts = parts;
-                this.entryList = entryList;
-                this.cusEntryList = cusEntryList;
-                this.entryValue = entryValue;
-                // 初始化自选副词条为最大值
-                for(let i in entryValue){
-                    this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
-                }
-                console.log("Vue is runnning.");
-            },
-            mounted(){
                 this.$nextTick(function(){
                     this.isLoad = true;
                 })
