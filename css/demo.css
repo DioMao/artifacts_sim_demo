@@ -1,0 +1,107 @@
+#vueApp{
+    width: 100%;
+}
+#loading{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: #fff;
+}
+#loading .loading-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -12px;
+    margin-left: -12px;
+}
+.hide{
+    display: none;
+}
+.navbar{
+    width: 100%;
+    position: fixed !important;
+    z-index: 10;
+}
+.alertBox{
+    user-select: none;
+    position: fixed;
+    z-index: 1056;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.2s ease-in;
+}
+.demo-container{
+    top: 56px;
+    user-select: none;
+    overflow-y: scroll;
+    display: flex;
+    height: calc(100vh - 126px);
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}
+/* .demo-container::-webkit-scrollbar{
+    display: none;
+} */
+.ArtifactsBox{
+    margin: 15px 10px;
+    width: 10rem;
+    height: 323px;
+    font-size: 0.9rem;
+    transition: ease 0.2s all;
+}
+#radarChartBox{
+    margin: 0 auto;
+    width: 280px;
+    height: 280px;
+}
+@media screen and (max-width:480px) {
+    .ArtifactsBox{
+        width: calc(50% - 20px);
+    }
+}
+@media screen and (max-width:979px){
+    .ArtifactShowBox{
+        display: none;
+    }
+}
+@media screen and (min-width:980px){
+    .ArtifactShowBox{
+        position: fixed;
+        padding-top: 20px;
+        right: 0;
+        width: 320px;
+        height: calc(100% - 126px);
+    }
+    .demo-container{
+        position: absolute;
+        left: 0;
+        width: calc(100% - 320px) !important;
+    }
+}
+.upgradeCheat{
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+}
+footer{
+    position: fixed !important;
+    background-color: #fff;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+}
+.buttonBox{
+    display: flex;
+    margin-top: 15px;
+    margin-right: 10px;
+    justify-content: flex-end;
+}
+.selectBox{
+    width: 160px;
+    position: relative;
+}

@@ -8,114 +8,14 @@
     <meta name="description" content="原神圣遗物强化模拟_demo">
     <meta name="author" content="DioMao">
     <meta name="renderer" content="webkit">
-    <title>Genshin Relics Upgrade Simulator</title>
+    <title>Genshin Artifacts Upgrade Simulator</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha256-KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js" integrity="sha256-TI0rIaxop+pDlHNVI6kDCFvmpxNYUnVH/SMjknZ/W0Y=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3.2.4"></script>
-    <script src="js/relicsUpradeSim.js"></script>
-    <style>
-        #vueApp{
-            width: 100%;
-        }
-        #loading{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 2000;
-            background-color: #fff;
-        }
-        #loading .loading-box{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-top: -12px;
-            margin-left: -12px;
-        }
-        .hide{
-            display: none;
-        }
-        .navbar{
-            width: 100%;
-            position: fixed;
-            z-index: 10;
-        }
-        .alertBox{
-            user-select: none;
-            position: fixed;
-            z-index: 1056;
-            top: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-            transition: all 0.2s ease-in;
-        }
-        .demo-container{
-            user-select: none;
-            padding-top: 50px;
-            overflow-y: scroll;
-            height: 90vh;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        /* .demo-container::-webkit-scrollbar{
-            display: none;
-        } */
-        .relicsBox{
-            margin: 20px 10px;
-            width: 10rem;
-            height: 323px;
-            font-size: 0.9rem;
-            transition: ease 0.2s all;
-        }
-        @media screen and (max-width:480px) {
-            .relicsBox{
-                width: calc(50% - 20px);
-            }
-        }
-        @media screen and (max-width:979px){
-            .relicShowBox{
-                display: none;
-            }
-        }
-        @media screen and (min-width:980px){
-            .relicShowBox{
-                position: fixed;
-                margin-top: 20px;
-                right: 0;
-                width: 320px;
-                height: 100%;
-            }
-            .demo-container{
-                position: absolute;
-                left: 0;
-                width: calc(100% - 320px);
-            }
-        }
-        .upgradeCheat{
-            display: inline-block;
-            position: absolute;
-            right: 5px;
-        }
-        footer{
-            position: fixed;
-            width: 100%;
-            height: 10vh;
-            bottom: 0;
-        }
-        .buttonBox{
-            display: flex;
-            margin-top: 20px;
-            margin-right: 10px;
-            justify-content: flex-end;
-        }
-        .selectBox{
-            width: 160px;
-            position: relative;
-        }
-    </style>
+    <script src="js/ArtifactsUpradeSim.js"></script>
 </head>
 
 <body>
@@ -132,10 +32,20 @@
             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
             </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
         </svg>
         <div class="alertBox">
-            <div class="alert alert-success d-flex align-items-center" role="alert" v-if="alertFunc.alertShow">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div :class="'alert d-flex align-items-center alert-'+ alertFunc.alertState" role="alert" v-if="alertFunc.alertShow">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img">
+                    <use v-if="alertFunc.alertState=='success'" xlink:href="#check-circle-fill"/>
+                    <use v-if="alertFunc.alertState=='primary'" xlink:href="#info-fill"/>
+                    <use v-if="alertFunc.alertState=='warning' || alertFunc.alertState=='danger'" xlink:href="#exclamation-triangle-fill"/>
+                </svg>
                 <div>
                     {{ alertFunc.alertMsg }}
                 </div>
@@ -155,34 +65,34 @@
             </div>
         </nav>
         <!-- /nav -->
-        <!-- Relics -->
+        <!-- Artifacts -->
         <div>
             <div class="container-fluid demo-container">
-                <div v-for="(relics,index) in relicsList" :class="'relicsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == relics.part" @click="showIndex=index">
+                <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == Artifacts.part" @click="showIndex=index">
                     <div class="card-body">
-                        <div class="card-text fs-6 fw-bolder">{{ toChinese(relics.part,"parts") }}</div>
-                        <div class="card-text fw-bold lh-lg">主属性:{{ toChinese(relics.mainEntry,"mainEntry") }}</div>
-                        <span class="badge bg-dark">+{{ relics.level }}</span>
+                        <div class="card-text fs-6 fw-bolder">{{ toChinese(Artifacts.part,"parts") }}</div>
+                        <div class="card-text fw-bold lh-lg">主属性:{{ toChinese(Artifacts.mainEntry,"mainEntry") }}</div>
+                        <span class="badge bg-dark">+{{ Artifacts.level }}</span>
                     </div>
-                    <ul v-for="(entry,index2) in relics.entry" class="list-group list-group-flush">
-                        <li class="list-group-item" @click="relicUpgrade(index,entry[0])">{{ toChinese(entry[0],"entry") }} : {{ Number(entry[1].toFixed(2)) }}
-                            <span class="badge bg-primary upgradeCheat" v-show="relics.level<20">+</span>
+                    <ul v-for="(entry,index2) in Artifacts.entry" class="list-group list-group-flush">
+                        <li class="list-group-item" @click="ArtifactUpgrade(index,entry[0])">{{ toChinese(entry[0],"entry") }} : {{ Number(entry[1].toFixed(2)) }}
+                            <span class="badge bg-primary upgradeCheat" v-show="Artifacts.level<20">+</span>
                         </li>
-                        <li class="list-group-item" v-if="relics.entry.length == 3 && index2 == 2">——</li>
+                        <li class="list-group-item" v-if="Artifacts.entry.length == 3 && index2 == 2">——</li>
                     </ul>
                     <div class="card-body" style="text-align:center;">
-                        <button id="upgrade" @click="relicUpgrade(index)" class="btn btn-primary btn-sm float-start" :disabled="relics.level >= 20">
+                        <button id="upgrade" @click="ArtifactUpgrade(index)" class="btn btn-primary btn-sm float-start" :disabled="Artifacts.level >= 20">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                             </svg>
                         </button>
-                        <button id="initRelic" @click="initRelic(index)" class="btn btn-success btn-sm" :disabled="relics.level==0">
+                        <button id="initArtifact" @click="initArtifact(index)" class="btn btn-success btn-sm" :disabled="Artifacts.level==0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                 <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
                                 <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
                             </svg>
                         </button>
-                        <button id="deleteRelic" @click="deleteRelic(index)" class="btn btn-danger btn-sm float-end">
+                        <button id="deleteArtifact" @click.stop="deleteArtifact(index)" class="btn btn-danger btn-sm float-end">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -190,12 +100,15 @@
                         </button>
                     </div>
                 </div>
-                <div class="relicShowBox">
+                <div class="ArtifactShowBox" v-show="showIndex>=0">
                     <p>这里准备放个圣遗物展示界面</p>
-                    <div v-for="(value,key) in relicsList[showIndex]">
+                    <div v-for="(value,key) in ArtifactsList[showIndex]">
                         <div>{{ key }} : {{ value }}</div>
                     </div>
-                    <div v-if="showIndex!=-1"> 圣遗物评分：{{ relicScore(showIndex) }} </div>
+                    <div> 
+                        <div id="radarChartBox" ref="radarChartBox"></div>
+                    </div>
+                    <div>圣遗物评分：{{ ArtifactScore(showIndex) }} </div>
                 </div>
             </div>
             <footer>
@@ -206,12 +119,12 @@
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cusRelic">自选属性</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cusArtifact">自选属性</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">敬请期待</a></li>
+                            <li><a class="dropdown-item disabled" href="#">敬请期待</a></li>
                         </ul>
                     </div>
-                    <button id="clear" @click="relicClear" class="btn btn-danger">清除数据</button>
+                    <button id="clear" @click="ArtifactClear" class="btn btn-danger">清除数据</button>
                     <div class="dropdown" style="display:inline-block;">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                           更多
@@ -225,23 +138,22 @@
                           <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#about">关于</a></li>
                         </ul>
                     </div>
-                    <!-- <button id="undoDel" @click="undoDel" class="btn btn-success">撤销删除</button> -->
                 </div>
             </footer>
         </div>
-        <!-- /Relics -->
+        <!-- /Artifacts -->
         <!-- cusModal -->
-        <div class="modal fade" id="cusRelic" tabindex="-1" data-bs-backdrop="static" aria-labelledby="cusRelicLabel" aria-hidden="true">
+        <div class="modal fade" id="cusArtifact" tabindex="-1" data-bs-backdrop="static" aria-labelledby="cusArtifactLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="cusRelicLabel">自选圣遗物</h5>
+                        <h5 class="modal-title" id="cusArtifactLabel">自选圣遗物</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <!-- 自选位置 -->
-                        <label for="cutRelicPart" class="form-label fw-bold">位置</label>
-                        <select id="cutRelicPart" class="form-select form-select-sm mb-3" v-model="cusPart" @change="cusEntry.length=0">
+                        <label for="cutArtifactPart" class="form-label fw-bold">位置</label>
+                        <select id="cutArtifactPart" class="form-select form-select-sm mb-3" v-model="cusPart" @change="cusEntry.length=0;cusMainEntry=''">
                             <option v-for="part in parts" :value="part">{{ toChinese(part,"parts") }}</option>
                         </select>
                         <!-- 自选主属性 -->
@@ -267,7 +179,7 @@
                             <label class="form-check-label" for="cusCloseSwitch">生成后关闭此窗口</label>
                         </div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" @click="cusCreatRelic" :data-bs-dismiss="cusCloseSwitch?'modal':null">确认</button>
+                        <button type="button" class="btn btn-primary" @click="cusCreatArtifact" :data-bs-dismiss="cusCloseSwitch?'modal':null">确认</button>
                     </div>
                 </div>
             </div>
@@ -282,6 +194,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <button type="button" class="btn btn-primary btn-sm" @click="clearStorge">清除本地数据</button>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="testSwitch" v-model="userSetting['test']" @change="changeSetting">
                             <label class="form-check-label" for="testSwitch">test</label>
@@ -318,38 +231,53 @@
             </div>
         </div>
         <!-- /about -->
+        <!-- Confirmation box -->
+        <div class="modal fade" id="confirmation" aria-labelledby="confirmation" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-header">确认操作</div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal" @click="confirmation()">确认</button>
+            </div>
+        </div>
+        <!-- /Confirmation box -->
     </div>
 
     <!-- <script type="module">
-        import {relicsSim,parts,partsCh,entryList,entryListCh,mainEntryList,mainEntryListCh} from "./js/relicUpgradeSim.js"
+        import {ArtifactsSim,parts,partsCh,entryList,entryListCh,mainEntryList,mainEntryListCh} from "./js/ArtifactUpgradeSim.js"
     </script> -->
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    isLoad: false,              // 加载界面显示（isLoad表示页面加载是否完成）
-                    showIndex: -1,              // 右侧圣遗物展示序号
-                    relicsList: [],             // 圣遗物列表
-                    parts: [],                  // 圣遗物位置*自选
-                    entryList: [],              // 副词条列表
-                    selected: "default",        // 根据位置筛选结果
-                    cusCloseSwitch: true,       // 自选圣遗物-生成后是否关闭modal窗
-                    cusPart: "",                // 自选圣遗物位置
-                    cusMainEntry: "",           // 自选圣遗物主词条
-                    cusEntry: [],               // 自选圣遗物副词条
-                    cusEntryRate: {},           // 自选圣遗物副词条数值
-                    cusEntryList: {},           // 自选圣遗物副词对照表
-                    entryValue: {},             // 自选圣遗物副词数值对照表
-                    userSetting:{               // 用户设置-测试
+                    isLoad: false,                  // 加载界面显示（isLoad表示页面加载是否完成）
+                    showIndex: -1,                  // 右侧圣遗物展示序号
+                    ArtifactsList: Array,              // 圣遗物列表
+                    parts: Array,                   // 圣遗物位置*自选
+                    entryList: Array,               // 副词条列表
+                    selected: "default",            // 根据位置筛选结果
+                    cusCloseSwitch: true,           // 自选圣遗物-生成后是否关闭modal窗
+                    cusPart: "",                    // 自选圣遗物位置
+                    cusMainEntry: "",               // 自选圣遗物主词条
+                    cusEntry: [],                   // 自选圣遗物副词条
+                    cusEntryRate: Object,           // 自选圣遗物副词条数值
+                    cusEntryList: Object,           // 自选圣遗物副词对照表
+                    entryValue: Object,             // 自选圣遗物副词数值对照表
+                    userSetting:{                   // 用户设置-测试
                         "test": true,
                         "test2": false
                     },
                     alertFunc: {
-                        alertShow: false,        // 是否显示提示框
-                        alertMsg: '',            // 提示框内容
-                        alertClose: Function     // 定时关闭提示框
+                        alertShow: false,           // 是否显示提示框
+                        alertMsg: String,           // 提示框内容
+                        alertClose: Function,       // 定时关闭提示框
+                        alertState: "success"       // 提示框类型
                     },
-                    version: ''                  //版本信息
+                    radarChart: null,               // 雷达图
+                    radarChartOption: Object,       // 雷达图配置
+                    version: String                 // 版本信息
                 }
             },
             created(){
@@ -357,7 +285,7 @@
                 this.entryList = entryList;
                 this.cusEntryList = cusEntryList;
                 this.entryValue = entryValue;
-                this.version = relicsSimVersion;
+                this.version = ArtifactsSimVersion;
                 // 初始化自选副词条为最大值
                 for(let i in entryValue){
                     this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
@@ -372,8 +300,8 @@
                     if(localStorage.localRecord == undefined){
                         localStorage.localRecord = [];
                     }else if(localStorage.localRecord != '' || localStorage.localRecord != "[]"){
-                        relicsSim.result = JSON.parse(localStorage.getItem("localRecord"));
-                        this.relicsList = JSON.parse(localStorage.getItem("localRecord"));
+                        ArtifactsSim.result = JSON.parse(localStorage.getItem("localRecord"));
+                        this.ArtifactsList = JSON.parse(localStorage.getItem("localRecord"));
                     };
                     if(localStorage.userSetting == undefined){
                         localStorage.userSetting = JSON.stringify(this.userSetting);
@@ -385,68 +313,88 @@
                     this.isLoad = true;
                 })
             },
+            watch:{
+                showIndex(val){
+                    this.setRadarChart();
+                },
+                ArtifactsList(val){
+                    this.setRadarChart();
+                }
+            },
             methods:{
                 start(){
-                    relicsSim.creatRelic();
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                    ArtifactsSim.creatArtifact();
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
                     this.alertControl("随机圣遗物已生成！",1500);
                 },
                 // 自选圣遗物
-                cusCreatRelic(){
+                cusCreatArtifact(){
                     let cusEntryValue = [],
                     cusEntry = [];
                     for(let i= 0; i < this.cusEntry.length; i++){
                         cusEntry.push(this.cusEntry[i]);
                         cusEntryValue.push(this.cusEntryRate[cusEntry[i]]);
                     }
-                    relicsSim.creatRelic(this.cusPart,this.cusMainEntry,cusEntry,cusEntryValue);
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                    ArtifactsSim.creatArtifact(this.cusPart,this.cusMainEntry,cusEntry,cusEntryValue);
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
                     this.alertControl("自选圣遗物已生成！",1500);
                 },
                 // 圣遗物升级
-                relicUpgrade(index,entry=""){
-                    relicsSim.upgrade(index,entry);
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                ArtifactUpgrade(index,entry=""){
+                    let res = ArtifactsSim.upgrade(index,entry);
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
+                    if(res == true){
+                        this.alertControl("升级成功！",1500);
+                    }else{
+                        this.alertControl("当前圣遗物已满级~",1500,"warning");
+                    }
                 },
-                //
-                relicScore(index,rule="default"){
-                    return relicsSim.relicScore(index);
+                // 圣遗物评分-demo
+                ArtifactScore(index,rule="default"){
+                    return ArtifactsSim.ArtifactScore(index);
                 },
                 // 初始化圣遗物
-                initRelic(index){
-                    relicsSim.reset(index);
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                initArtifact(index){
+                    ArtifactsSim.reset(index);
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
+                    this.alertControl("重置圣遗物成功~再试试手气吧",1500);
                 },
                 // 清除结果列表
-                relicClear(){
+                ArtifactClear(){
                     this.showIndex = -1;
-                    relicsSim.clearAll();
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                    ArtifactsSim.clearAll();
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
                 },
                 // 删除圣遗物
-                deleteRelic(index){
-                    relicsSim.deleteOne(index);
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                deleteArtifact(index){
+                    this.showIndex = -1;
+                    ArtifactsSim.deleteOne(index);
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
                     this.alertControl("删除圣遗物成功！",1500);
                 },
                 // 撤销删除
                 undoDel(){
-                    relicsSim.undoDel();
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
-                    this.alertControl("撤销删除成功！",1500);
+                    let res = ArtifactsSim.undoDel();
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
+                    if(res == true){
+                        this.alertControl("撤销删除成功！",1500);
+                    }else{
+                        this.alertControl("没有可以撤销的数据！",1500,"primary");
+                    }
                 },
                 // 初始化全部圣遗物
                 resetAll(){
-                    relicsSim.resetAll();
-                    this.relicsList = [...relicsSim.result];
-                    this.localRecord(this.relicsList);
+                    ArtifactsSim.resetAll();
+                    this.ArtifactsList = [...ArtifactsSim.result];
+                    this.localRecord(this.ArtifactsList);
+                    this.alertControl("已重置全部圣遗物~",1500);
                 },
                 // 结果保存到localstorage
                 localRecord(record){
@@ -466,9 +414,48 @@
                         localStorage.userSetting = JSON.stringify(this.userSetting);
                     }
                 },
+                clearStorge(){
+                    localStorage.clear();
+                    this.ArtifactsList.length = 0;
+                    ArtifactsSim.result.length = 0;
+                },
+                // 雷达图设置
+                setRadarChart(){
+                    if(this.showIndex < 0) return false;
+                    let opArr = this.ArtifactsList[this.showIndex].entry,
+                    opObj = {};
+                    for(let i = 0; i < opArr.length; i++){
+                        opObj[opArr[i][0]] = opArr[i][1];
+                    }
+                    this.radarChart = echarts.init(this.$refs.radarChartBox);
+                    this.radarChartOption = {
+                        radar: {
+                            indicator: [
+                                { name: '攻击力', max: entryValue['ATKPer'][entryValue['ATKPer'].length-1]*6, min: -5.8},
+                                { name: '暴击', max: entryValue['critRate'][entryValue['critRate'].length-1]*6, min: -3.9},
+                                { name: '暴伤' , max: entryValue['critDMG'][entryValue['critDMG'].length-1]*6, min: -7.8},
+                                { name: '生命值', max: entryValue['HPPer'][entryValue['HPPer'].length-1]*6, min: -5.8},
+                                { name: '防御力', max: entryValue['defPer'][entryValue['defPer'].length-1]*6, min: -7.3},
+                                { name: '充能效率', max: entryValue['energyRecharge'][entryValue['energyRecharge'].length-1]*6, min: -6.5},
+                                { name: '元素精通', max: entryValue['elementMastery'][entryValue['elementMastery'].length-1]*6, min: -23}
+                            ]
+                        },
+                        series: [{
+                            name: "ArtifactRadar",
+                            type: "radar",
+                            areaStyle: {},
+                            data: [{
+                                value: [opObj["ATKPer"] || 0, opObj["critRate"] || 0, opObj["critDMG"] || 0, opObj["HPPer"] || 0, opObj["defPer"] || 0, opObj["energyRecharge"] || 0,  opObj["elementMastery"] || 0],
+                            }]
+                        }]
+                    }
+                    this.radarChartOption && this.radarChart.setOption(this.radarChartOption);
+                },
                 // 操作提示-提示框
-                alertControl(msg,time = 2000){
+                // state值： success/primary/warning/danger
+                alertControl(msg,time = 2000,state = "success"){
                     this.alertFunc.alertMsg = msg;
+                    this.alertFunc.alertState = state;
                     this.alertFunc.alertShow = true;
                     clearTimeout(this.alertFunc.alertClose);
                     this.alertFunc.alertClose = setTimeout(() => {
@@ -488,7 +475,13 @@
             }
         }).mount('#vueApp');
     </script>
-    <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1280266394&web_id=1280266394"></script>
+    <div style="display: none;">
+        <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1280266394&web_id=1280266394"></script>
+    </div>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha256-KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js" integrity="sha256-TI0rIaxop+pDlHNVI6kDCFvmpxNYUnVH/SMjknZ/W0Y=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3.2.4"></script> -->
 </body>
 
 </html>
