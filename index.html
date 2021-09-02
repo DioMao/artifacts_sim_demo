@@ -82,6 +82,7 @@
                 <div class="ArtifactShowBox" v-show="showIndex>=0">
                     <div class="ArtifactShow">
                         <div class="aTitle"> There is title. </div>
+                        <div class="titleLine"></div>
                         <div class="aHead">
                             {{ toChinese(showDetail.part,"parts") }}
                             <div class="levelStar">
@@ -92,6 +93,7 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="blurLine"></div>
                         <div class="aContent">
                             <span class="badge bg-dark">+{{ showDetail.level }}</span>
                             <ul>

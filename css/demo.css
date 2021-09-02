@@ -108,6 +108,7 @@ footer{
 
 /* ArtifactShow */
 .ArtifactShow{
+    position: relative;
     margin: 0 auto;
     width: 300px;
     height: 315px;
@@ -119,6 +120,17 @@ footer{
     padding-left: 18px;
     background-color: #BC6832;
 }
+.ArtifactShow .titleLine{
+    position: absolute;
+    z-index: 2;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 296px;
+    height: 26px;
+    border: solid 2px rgba(144,82,41,0.7);
+}
 .ArtifactShow .aHead{
     position: relative;
     color: #fff;
@@ -126,18 +138,30 @@ footer{
     font-weight: bold;
     height: 135px;
     padding: 9px 18px;
-    background-color: #ca9744;
+    background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
 }
 .ArtifactShow .aHead .levelStar{
     position: absolute;
     left: 18px;
     bottom: 9px;
 }
+.ArtifactShow .blurLine{
+    position: absolute;
+    top: 161px;
+    height: 4px;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.2;
+}
 .ArtifactShow .aContent{
     height: 150px;
     font-size: 0.9rem;
     padding: 15px 18px;
     background-color: #ECE5D8;
+}
+.ArtifactShow .aContent .badge{
+    font-size: 0.9rem;
+    padding: 3px 6px;
 }
 .ArtifactShow .aContent ul{
     margin-top: 15px;
