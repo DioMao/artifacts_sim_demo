@@ -312,6 +312,7 @@
             },
             watch:{
                 selected(val){
+                    if(this.showIndex < 0) return false;
                     if(val != "default" && this.ArtifactsList[this.showIndex].part != val){
                         this.showIndex = -1;
                     }
