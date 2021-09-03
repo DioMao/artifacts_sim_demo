@@ -19,6 +19,7 @@
     display: none;
 }
 .navbar{
+    background-color: #d2cab0;
     width: 100%;
     position: fixed !important;
     z-index: 10;
@@ -34,8 +35,15 @@
     overflow: hidden;
     transition: all 0.2s ease-in;
 }
-.demo-container{
+.main-container{
+    position: absolute;
+    background-color: #eae2c9;
     top: 56px;
+    width: 100%;
+    height: calc(100vh - 126px);
+}
+.demo-container{
+    background-color: #ffffff70;
     user-select: none;
     overflow-y: scroll;
     display: flex;
@@ -43,17 +51,46 @@
     flex-direction: row;
     flex-wrap: wrap;
     position: relative;
+    align-content: flex-start;
 }
-/* .demo-container::-webkit-scrollbar{
-    display: none;
-} */
+.demo-container::-webkit-scrollbar{
+    width : 10px;
+    height: 1px;
+}
+.demo-container::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background   : #b67015;
+}
+.demo-container::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background   : #ededed;
+}
+
+/* ArtifactsBox */
 .ArtifactsBox{
     margin: 15px 10px;
     width: 10rem;
     height: 323px;
     font-size: 0.9rem;
     transition: ease 0.2s all;
+    overflow: hidden;
+    border: none !important;
 }
+.ArtifactsBox .card-body:first-child{
+    background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
+    color: #fff;
+}
+.ArtifactsBox .card-body:last-child{
+    background-color: rgb(255, 231, 187);
+}
+.ArtifactsBox ul li{
+    background-color: #ECE5D8;
+}
+
 #radarChartBox{
     margin: 10px auto;
     width: 280px;
@@ -63,23 +100,32 @@
     .ArtifactsBox{
         width: calc(50% - 20px);
     }
+    ::-webkit-scrollbar{
+        display: none;
+    }
 }
-@media screen and (max-width:979px){
+@media screen and (max-width:819px){
     .ArtifactShowBox{
         display: none;
     }
 }
-@media screen and (min-width:980px){
+@media screen and (min-width:820px){
+    .main-container{
+        padding: 0 50px;
+    }
     .ArtifactShowBox{
         position: fixed;
         padding-top: 20px;
-        right: 0;
+        top: 56px;
+        right: 50px;
         width: 320px;
         height: calc(100% - 126px);
+        background-color: #ffffff70;
     }
     .demo-container{
-        position: absolute;
+        /* position: absolute; */
         left: 0;
+        margin-left: 0 !important;
         width: calc(100% - 320px) !important;
     }
 }
@@ -90,7 +136,7 @@
 }
 footer{
     position: fixed !important;
-    background-color: #fff;
+    background-color: #d2cab0;
     width: 100%;
     height: 70px;
     bottom: 0;
@@ -100,6 +146,22 @@ footer{
     margin-top: 15px;
     margin-right: 10px;
     justify-content: flex-end;
+}
+#start{
+    border-radius: 25px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#start-drop{
+    border-radius: 25px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#clear{
+    border-radius: 25px;
+}
+#dropdownMenuLink{
+    border-radius: 25px;
 }
 .selectBox{
     width: 160px;

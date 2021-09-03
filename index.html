@@ -31,7 +31,7 @@
         <demo-alert :state="alertFunc.alertState" :show="alertFunc.alertShow">{{ alertFunc.alertMsg }}</demo-alert>
         <!-- /alert -->
         <!-- nav -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">圣遗物强化模拟</a>
                 <div class="selectBox d-flex">
@@ -44,19 +44,19 @@
         </nav>
         <!-- /nav -->
         <!-- Artifacts -->
-        <div>
+        <div class="main-container">
             <div class="container-fluid demo-container">
                 <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == Artifacts.part" @click="showIndex=index">
                     <div class="card-body">
                         <div class="card-text fs-6 fw-bolder">{{ toChinese(Artifacts.part,"parts") }}</div>
-                        <div class="card-text fw-bold lh-lg">主属性:{{ toChinese(Artifacts.mainEntry,"mainEntry") }}</div>
+                        <div class="card-text fw-bold lh-lg">主属性: {{ toChinese(Artifacts.mainEntry,"mainEntry") }}</div>
                         <span class="badge bg-dark">+{{ Artifacts.level }}</span>
                     </div>
-                    <ul v-for="(entry,index2) in Artifacts.entry" class="list-group list-group-flush">
-                        <li class="list-group-item" @click="ArtifactUpgrade(index,entry[0])">{{ showEntryList(entry[0],entry[1]) }}
+                    <ul class="list-group list-group-flush">
+                        <li v-for="(entry,index2) in Artifacts.entry" class="list-group-item" @click="ArtifactUpgrade(index,entry[0])">{{ showEntryList(entry[0],entry[1]) }}
                             <span class="badge bg-primary upgradeCheat" v-show="Artifacts.level<20">+</span>
                         </li>
-                        <li class="list-group-item" v-if="Artifacts.entry.length == 3 && index2 == 2">——</li>
+                        <li class="list-group-item" v-if="Artifacts.entry.length == 3">——</li>
                     </ul>
                     <div class="card-body" style="text-align:center;">
                         <button id="upgrade" @click="ArtifactUpgrade(index)" class="btn btn-primary btn-sm float-start" :disabled="Artifacts.level >= 20">
@@ -78,66 +78,66 @@
                         </button>
                     </div>
                 </div>
-                <!-- ArtifactShowBox -->
-                <div class="ArtifactShowBox" v-show="showIndex>=0">
-                    <div class="ArtifactShow">
-                        <div class="aTitle"> There is title. </div>
-                        <div class="titleLine"></div>
-                        <div class="aHead">
-                            {{ toChinese(showDetail.part,"parts") }}
-                            <div class="levelStar">
-                                <span  v-for="i in 5" style="margin-right: 3px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="blurLine"></div>
-                        <div class="aContent">
-                            <span class="badge bg-dark">+{{ showDetail.level }}</span>
-                            <ul>
-                                <li v-for="entry in showDetail.entry">· {{ showEntryList(entry[0],entry[1]) }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <div id="radarChartBox" ref="radarChartBox"></div>
-                    </div>
-                    <div>圣遗物评分：{{ ArtifactScore(showIndex) }} </div>
-                </div>
-                <!-- /ArtifactShowBox -->
             </div>
-            <footer>
-                <div class="gap-2 d-md-flex justify-content-md-end buttonBox">
-                    <div class="btn-group">
-                        <button id="start" @click="start" class="btn btn-primary">新增数据</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cusArtifact">自选属性</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item disabled" href="#">敬请期待</a></li>
-                        </ul>
+            <!-- ArtifactShowBox -->
+            <div class="ArtifactShowBox">
+                <div class="ArtifactShow" v-show="showIndex>=0">
+                    <div class="aTitle"> There is title. </div>
+                    <div class="titleLine"></div>
+                    <div class="aHead">
+                        {{ toChinese(showDetail.part,"parts") }}
+                        <div class="levelStar">
+                            <span  v-for="i in 5" style="margin-right: 3px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
-                    <button id="clear" @click="ArtifactClear" class="btn btn-danger">清除数据</button>
-                    <div class="dropdown" style="display:inline-block;">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                          更多
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <li><a class="dropdown-item" href="#" @click="undoDel">撤销删除</a></li>
-                          <li><a class="dropdown-item" href="#" @click="resetAll">全部重置</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#userSet">设置</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#about">关于</a></li>
+                    <div class="blurLine"></div>
+                    <div class="aContent">
+                        <span class="badge bg-dark">+{{ showDetail.level }}</span>
+                        <ul>
+                            <li v-for="entry in showDetail.entry">· {{ showEntryList(entry[0],entry[1]) }}</li>
                         </ul>
                     </div>
                 </div>
-            </footer>
+                <div v-show="showIndex>=0">
+                    <div id="radarChartBox" ref="radarChartBox"></div>
+                </div>
+                <div style="margin: 0 15px;font-weight: bold;" v-show="showIndex>=0">圣遗物评分(beta)：{{ Number(ArtifactScore(showIndex).toFixed(2)) }} </div>
+            </div>
+            <!-- /ArtifactShowBox -->
         </div>
+        <footer>
+            <div class="gap-2 d-md-flex justify-content-md-end buttonBox">
+                <div class="btn-group">
+                    <button id="start" @click="start" class="btn btn-primary">新增数据</button>
+                    <button id="start-drop" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cusArtifact">自选属性</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item disabled" href="#">敬请期待</a></li>
+                    </ul>
+                </div>
+                <button id="clear" @click="ArtifactClear" class="btn btn-danger">清除数据</button>
+                <div class="dropdown" style="display:inline-block;">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      更多
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="#" @click="undoDel">撤销删除</a></li>
+                      <li><a class="dropdown-item" href="#" @click="resetAll">全部重置</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#userSet">设置</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#about">关于</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
         <!-- /Artifacts -->
         <!-- cusModal -->
         <div class="modal fade" id="cusArtifact" tabindex="-1" data-bs-backdrop="static" aria-labelledby="cusArtifactLabel" aria-hidden="true">
@@ -436,14 +436,15 @@
                     this.radarChart = echarts.init(this.$refs.radarChartBox);
                     this.radarChartOption = {
                         radar: {
+                            splitNumber: 7,
                             indicator: [
-                                { name: '攻击力', max: entryValue['ATKPer'][entryValue['ATKPer'].length-1]*6, min: -5.8},
-                                { name: '暴击', max: entryValue['critRate'][entryValue['critRate'].length-1]*6, min: -3.9},
-                                { name: '暴伤' , max: entryValue['critDMG'][entryValue['critDMG'].length-1]*6, min: -7.8},
-                                { name: '生命值', max: entryValue['HPPer'][entryValue['HPPer'].length-1]*6, min: -5.8},
-                                { name: '防御力', max: entryValue['defPer'][entryValue['defPer'].length-1]*6, min: -7.3},
-                                { name: '充能效率', max: entryValue['energyRecharge'][entryValue['energyRecharge'].length-1]*6, min: -6.5},
-                                { name: '元素精通', max: entryValue['elementMastery'][entryValue['elementMastery'].length-1]*6, min: -23}
+                                { name: '攻击力', max: entryValue['ATKPer'][entryValue['ATKPer'].length-1]*6, min: -5.8, color: "#262626"},
+                                { name: '暴击', max: entryValue['critRate'][entryValue['critRate'].length-1]*6, min: -3.9, color: "#262626"},
+                                { name: '暴伤' , max: entryValue['critDMG'][entryValue['critDMG'].length-1]*6, min: -7.8, color: "#262626"},
+                                { name: '生命值', max: entryValue['HPPer'][entryValue['HPPer'].length-1]*6, min: -5.8, color: "#262626"},
+                                { name: '防御力', max: entryValue['defPer'][entryValue['defPer'].length-1]*6, min: -7.3, color: "#262626"},
+                                { name: '充能效率', max: entryValue['energyRecharge'][entryValue['energyRecharge'].length-1]*6, min: -6.5, color: "#262626"},
+                                { name: '元素精通', max: entryValue['elementMastery'][entryValue['elementMastery'].length-1]*6, min: -23, color: "#262626"}
                             ]
                         },
                         series: [{
