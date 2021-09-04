@@ -33,7 +33,10 @@
         <!-- nav -->
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">圣遗物强化模拟</a>
+                <div class="siteTitle fw-bold position-relative">
+                    <a data-bs-toggle="offcanvas" href="#offcanMenu" aria-controls="offcanMenu">圣遗物强化模拟器</a>
+                </div>
+                <!-- <a class="navbar-brand" href="#">圣遗物强化模拟</a> -->
                 <div class="selectBox d-flex">
                     <select class="form-select" aria-label="Default select example" v-model="selected">
                         <option selected value="default">显示全部</option>
@@ -50,7 +53,7 @@
                     <div class="card-body">
                         <div class="card-text fs-6 fw-bolder">{{ toChinese(Artifacts.part,"parts") }}</div>
                         <div class="card-text fw-bold lh-lg">主属性: {{ toChinese(Artifacts.mainEntry,"mainEntry") }}</div>
-                        <span class="badge bg-dark">+{{ Artifacts.level }}</span>
+                        <span class="badge">+{{ Artifacts.level }}</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li v-for="(entry,index2) in Artifacts.entry" class="list-group-item" @click="ArtifactUpgrade(index,entry[0])">{{ showEntryList(entry[0],entry[1]) }}
@@ -59,19 +62,19 @@
                         <li class="list-group-item" v-if="Artifacts.entry.length == 3">——</li>
                     </ul>
                     <div class="card-body" style="text-align:center;">
-                        <button id="upgrade" @click="ArtifactUpgrade(index)" class="btn btn-primary btn-sm float-start" :disabled="Artifacts.level >= 20">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                        <button id="upgrade" @click="ArtifactUpgrade(index)" class="btn btn-sm float-start" :disabled="Artifacts.level >= 20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
                             </svg>
                         </button>
-                        <button id="initArtifact" @click="initArtifact(index)" class="btn btn-success btn-sm" :disabled="Artifacts.level==0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                        <button id="initArtifact" @click="initArtifact(index)" class="btn btn-sm" :disabled="Artifacts.level==0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#037728" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                 <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
                                 <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
                             </svg>
                         </button>
-                        <button id="deleteArtifact" @click.stop="deleteArtifact(index)" class="btn btn-danger btn-sm float-end">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <button id="deleteArtifact" @click.stop="deleteArtifact(index)" class="btn btn-sm float-end">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                             </svg>
@@ -96,7 +99,7 @@
                     </div>
                     <div class="blurLine"></div>
                     <div class="aContent">
-                        <span class="badge bg-dark">+{{ showDetail.level }}</span>
+                        <span class="badge">+{{ showDetail.level }}</span>
                         <ul>
                             <li v-for="entry in showDetail.entry">· {{ showEntryList(entry[0],entry[1]) }}</li>
                         </ul>
@@ -105,7 +108,9 @@
                 <div v-show="showIndex>=0">
                     <div id="radarChartBox" ref="radarChartBox"></div>
                 </div>
-                <div style="margin: 0 15px;font-weight: bold;" v-show="showIndex>=0">圣遗物评分(beta)：{{ Number(ArtifactScore(showIndex).toFixed(2)) }} </div>
+                <div style="margin: 0 15px;font-weight: bold;" v-show="showIndex>=0">副词条评分(beta)：{{ ArtifactScore }} 
+                    <button id="score" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#scoreSet">评分标准</button>
+                </div>
             </div>
             <!-- /ArtifactShowBox -->
         </div>
@@ -159,7 +164,7 @@
                             <option v-for="partModal in cusEntryList[cusPart]" :value="partModal">{{ toChinese(partModal,"mainEntry") }}</option>
                         </select>
                         <!-- 自选副词条 -->
-                        <label class="form-label fw-bold" v-show="cusPart!='default'&&cusMainEntry!=''">副词条选择（选择3-4项时生效）</label>
+                        <label class="form-label fw-bold" v-show="cusPart!='default'&&cusMainEntry!=''">副词条选择</label>
                         <div class="form-check" v-for="entry in entryList" v-show="cusPart!='default'&&cusMainEntry!=''&&cusMainEntry!=entry">
                             <input class="form-check-input" v-model="cusEntry" type="checkbox" :value="entry" :id="entry+'Check'" :disabled="cusEntry.length==4&&cusEntry.indexOf(entry)==-1">
                             <label class="form-check-label" :for="entry+'Check'">
@@ -182,6 +187,44 @@
             </div>
         </div>
         <!-- /cusModal -->
+        <!-- scoreSetting -->
+        <div class="modal fade" id="scoreSet" tabindex="-1" aria-labelledby="scoreSetting" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="scoreSetting">评分标准选择</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <input class="form-check-input" type="radio" name="scoreMode" id="scoreMode1" value="string" v-model="userSetting.scoreConfig.mode">
+                            <label class="form-check-label me-5" for="scoreMode1">
+                                预设模式
+                            </label>
+                            <input class="form-check-input" type="radio" name="scoreMode" id="scoreMode2" value="array" v-model="userSetting.scoreConfig.mode">
+                            <label class="form-check-label" for="scoreMode2">
+                                自选模式
+                            </label>
+                        </div>
+                        <div v-show="userSetting.scoreConfig.mode=='string'">
+                            <select class="form-select form-select-sm" name="scoreString" id="scoreString" v-model="userSetting.scoreConfig.strRule">
+                                <option value="default">默认</option>
+                                <option v-for="config in scoreList" :value="config">{{ toChinese(config,"score") }}</option>
+                            </select>
+                        </div>
+                        <div v-show="userSetting.scoreConfig.mode=='array'">
+                            <div class="form-check" v-for="config in scoreList">
+                                <input class="form-check-input" type="checkbox" :value="config" :id="'score-'+config" v-model="userSetting.scoreConfig.arrRule">
+                                <label class="form-check-label" :for="'score-'+config">
+                                    {{ toChinese(config,"score") }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /scoreSetting -->
         <!-- userSetting -->
         <div class="modal fade" id="userSet" tabindex="-1" data-bs-backdrop="static" aria-labelledby="userSetting" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -193,11 +236,11 @@
                     <div class="modal-body">
                         <button type="button" class="btn btn-primary btn-sm" @click="clearStorge">清除本地数据</button>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="testSwitch" v-model="userSetting['test']" @change="changeSetting">
+                            <input class="form-check-input" type="checkbox" id="testSwitch" v-model="userSetting['test']">
                             <label class="form-check-label" for="testSwitch">test</label>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="testSwitch2" v-model="userSetting['test2']" @change="changeSetting">
+                            <input class="form-check-input" type="checkbox" id="testSwitch2" v-model="userSetting['test2']">
                             <label class="form-check-label" for="testSwitch2">test</label>
                         </div>
                     </div>
@@ -240,6 +283,22 @@
             </div>
         </div>
         <!-- /Confirmation box -->
+        <!-- offcanMenu -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanMenu" aria-labelledby="offcanvasMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">模拟器说明</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <p style="color: red;"><b>——仅供娱乐，请勿作为实际游戏参考——</b></p>
+                    <p><b>本模拟器采用本地存储，脱机可用，不上传任何数据。</b></p>
+                    <p><b>1. 自选圣遗物说明</b></p>
+                    <p>自选圣遗物时，不足3条的情况会<b>随机选择</b>符合条件的副词条补至3条，且<b>不会</b>生成第四副词条。</p>
+                </div>
+            </div>
+        </div>
+        <!-- /offcanMenu -->
     </div>
 
     <!-- <script type="module">
@@ -263,7 +322,13 @@
                     cusEntryRate: Object,           // 自选圣遗物副词条数值
                     cusEntryList: Object,           // 自选圣遗物副词对照表
                     entryValue: Object,             // 自选圣遗物副词数值对照表
+                    scoreList: Array,               // 圣遗物得分选项表
                     userSetting:{                   // 用户设置-测试
+                        scoreConfig:{               // 圣遗物得分设置
+                            mode: "string",
+                            strRule: "default",
+                            arrRule: []
+                        },
                         "test": true,
                         "test2": false
                     },
@@ -283,6 +348,7 @@
                 this.entryList = entryList;
                 this.cusEntryList = cusEntryList;
                 this.entryValue = entryValue;
+                this.scoreList = scoreList;
                 this.version = ArtifactsSimVersion;
                 // 初始化自选副词条为最大值
                 for(let i in entryValue){
@@ -305,12 +371,28 @@
                     if(localStorage.userSetting == undefined){
                         localStorage.userSetting = JSON.stringify(this.userSetting);
                     }else if(localStorage.userSetting != ''){
-                        this.userSetting = JSON.parse(localStorage.getItem("userSetting"));
+                        let settingObj = JSON.parse(localStorage.getItem("userSetting"));
+                        for(let key in settingObj){
+                            this.userSetting[key] = settingObj[key];
+                        }
                     };
                 }
                 this.$nextTick(function(){
                     this.isLoad = true;
                 })
+            },
+            computed:{
+                ArtifactScore(){
+                    let mode = this.userSetting.scoreConfig.mode,
+                    index = this.showIndex;
+                    if(mode == "string"){
+                        return ArtifactsSim.ArtifactScore(index,this.userSetting.scoreConfig.strRule).toFixed(2);
+                    }else if(mode == "array"){
+                        return ArtifactsSim.ArtifactScore(index,this.userSetting.scoreConfig.arrRule).toFixed(2);
+                    }else{
+                        return "error!";
+                    } 
+                }
             },
             watch:{
                 selected(val){
@@ -324,6 +406,12 @@
                 },
                 ArtifactsList(val){
                     this.setRadarChart();
+                },
+                userSetting: {
+                    handler(val){
+                        this.changeSetting()
+                    },
+                    deep: true
                 }
             },
             methods:{
@@ -356,10 +444,6 @@
                     }else{
                         this.alertControl("当前圣遗物已满级~",1500,"warning");
                     }
-                },
-                // 圣遗物评分-demo
-                ArtifactScore(index,rule="default"){
-                    return ArtifactsSim.ArtifactScore(index);
                 },
                 // 初始化圣遗物
                 initArtifact(index){
@@ -477,7 +561,10 @@
                         return partsCh[parts.indexOf(word)];
                     }else if(type == "mainEntry"){
                         return mainEntryListCh[mainEntryList.indexOf(word)];
+                    }else if(type == "score"){
+                        return scoreListCH[scoreList.indexOf(word)];
                     }
+                    return "";
                 },
                 // 展示界面词条文字处理
                 showEntryList(entry,value){

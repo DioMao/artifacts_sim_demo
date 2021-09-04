@@ -1,5 +1,9 @@
 #vueApp{
     width: 100%;
+    user-select: none;
+}
+.btn:focus{
+    box-shadow: none !important;
 }
 #loading{
     position: absolute;
@@ -24,6 +28,15 @@
     position: fixed !important;
     z-index: 10;
 }
+.navbar .siteTitle{
+    font-size: 1.2rem;
+    color: rgb(76,86,104);
+}
+.navbar .siteTitle a{
+    color: #262626;
+    text-decoration-line: none;
+    box-shadow: #70575c -11px 1px 0px 0px;
+}
 .alertBox{
     user-select: none;
     position: fixed;
@@ -41,6 +54,7 @@
     top: 56px;
     width: 100%;
     height: calc(100vh - 126px);
+    user-select: none;
 }
 .demo-container{
     background-color: #ffffff70;
@@ -52,6 +66,7 @@
     flex-wrap: wrap;
     position: relative;
     align-content: flex-start;
+    align-items: flex-start;
 }
 .demo-container::-webkit-scrollbar{
     width : 10px;
@@ -74,21 +89,30 @@
 .ArtifactsBox{
     margin: 15px 10px;
     width: 10rem;
-    height: 323px;
-    font-size: 0.9rem;
+    /* height: 323px; */
+    font-size: 0.8rem;
     transition: ease 0.2s all;
     overflow: hidden;
     border: none !important;
+    background-color: rgb(233,229,220) !important;
 }
 .ArtifactsBox .card-body:first-child{
     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
+    border-bottom-right-radius: 25px;
     color: #fff;
+    padding: 10px 15px;
+}
+.ArtifactsBox .card-body:first-child .badge{
+    background-color: rgb(57,68,79);
 }
 .ArtifactsBox .card-body:last-child{
     background-color: rgb(255, 231, 187);
+    padding: 5px 15px;
 }
 .ArtifactsBox ul li{
-    background-color: #ECE5D8;
+    font-weight: bold;
+    color: rgb(76,86,104);
+    background-color: rgb(233,229,220);
 }
 
 #radarChartBox{
@@ -110,10 +134,14 @@
     }
 }
 @media screen and (min-width:820px){
+    .navbar .siteTitle{
+        margin-left: 50px;
+    }
     .main-container{
         padding: 0 50px;
     }
     .ArtifactShowBox{
+        overflow-y: scroll;
         position: fixed;
         padding-top: 20px;
         top: 56px;
@@ -121,6 +149,9 @@
         width: 320px;
         height: calc(100% - 126px);
         background-color: #ffffff70;
+    }
+    .ArtifactShowBox::-webkit-scrollbar{
+        display: none;
     }
     .demo-container{
         /* position: absolute; */
@@ -162,6 +193,11 @@ footer{
 }
 #dropdownMenuLink{
     border-radius: 25px;
+}
+#score{
+    background-color: #fff;
+    float: right;
+    margin-top: -4px;
 }
 .selectBox{
     width: 160px;
@@ -224,6 +260,7 @@ footer{
 .ArtifactShow .aContent .badge{
     font-size: 0.9rem;
     padding: 3px 6px;
+    background-color: rgb(57,68,79) !important;
 }
 .ArtifactShow .aContent ul{
     margin-top: 15px;
@@ -233,4 +270,5 @@ footer{
 .ArtifactShow .aContent ul li{
     font-weight: bold;
     margin-bottom: 1px;
+    color: rgb(76,86,104);
 }
