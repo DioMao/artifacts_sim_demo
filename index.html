@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="原神圣遗物强化模拟_demo">
-    <meta name="author" content="DioMao">
+    <meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="description" content="原神圣遗物强化模拟器,Genshin Artifacts Upgrade Simulator">
+    <meta name="author" content="DioMao,https://github.com/DioMao">
+    <meta name="copyright" content="DioMao">
     <meta name="renderer" content="webkit">
-    <title>Genshin Artifacts Upgrade Simulator</title>
+    <meta name="keywords" content="genshin,artifact,simulator,原神,圣遗物,模拟器">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>原神圣遗物强化模拟器 | Genshin Artifacts Upgrade Simulator</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=" crossorigin="anonymous">
@@ -36,7 +42,6 @@
                 <div class="siteTitle fw-bold position-relative">
                     <a data-bs-toggle="offcanvas" href="#offcanMenu" aria-controls="offcanMenu">圣遗物强化模拟器</a>
                 </div>
-                <!-- <a class="navbar-brand" href="#">圣遗物强化模拟</a> -->
                 <div class="selectBox d-flex">
                     <select class="form-select" aria-label="Default select example" v-model="selected">
                         <option selected value="default">显示全部</option>
@@ -54,6 +59,11 @@
                         <div class="card-text fs-6 fw-bolder">{{ toChinese(Artifacts.part,"parts") }}</div>
                         <div class="card-text fw-bold lh-lg">主属性: {{ toChinese(Artifacts.mainEntry,"mainEntry") }}</div>
                         <span class="badge">+{{ Artifacts.level }}</span>
+                        <a id="mobileShow" data-bs-toggle="offcanvas" href="#offcanArtifactShow" aria-controls="offcanArtifactShow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                            </svg>
+                        </a>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li v-for="(entry,index2) in Artifacts.entry" class="list-group-item" @click="ArtifactUpgrade(index,entry[0])">{{ showEntryList(entry[0],entry[1]) }}
@@ -84,27 +94,7 @@
             </div>
             <!-- ArtifactShowBox -->
             <div class="ArtifactShowBox">
-                <div class="ArtifactShow" v-show="showIndex>=0">
-                    <div class="aTitle"> There is title. </div>
-                    <div class="titleLine"></div>
-                    <div class="aHead">
-                        {{ toChinese(showDetail.part,"parts") }}
-                        <div class="levelStar">
-                            <span  v-for="i in 5" style="margin-right: 3px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="blurLine"></div>
-                    <div class="aContent">
-                        <span class="badge">+{{ showDetail.level }}</span>
-                        <ul>
-                            <li v-for="entry in showDetail.entry">· {{ showEntryList(entry[0],entry[1]) }}</li>
-                        </ul>
-                    </div>
-                </div>
+                <artifact-show :showdetail="showDetail" v-if="showIndex>=0"></artifact-show>
                 <div v-show="showIndex>=0">
                     <div id="radarChartBox" ref="radarChartBox"></div>
                 </div>
@@ -286,7 +276,7 @@
         <!-- offcanMenu -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanMenu" aria-labelledby="offcanvasMenu">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">模拟器说明</h5>
+                <h5 class="offcanvas-title">模拟器说明</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -299,6 +289,26 @@
             </div>
         </div>
         <!-- /offcanMenu -->
+        <!-- offcanArtifactShow-->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanArtifactShow" aria-labelledby="offcanArtifactShow">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">圣遗物详情</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <artifact-show :showdetail="showDetail" v-if="showIndex>=0"></artifact-show>
+                </div>
+                <div class="fw-bold mt-3" v-show="showIndex>=0">副词条评分(beta)：{{ ArtifactScore }} 
+                    <button id="score-2" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#scoreSet">评分标准</button>
+                </div>
+                <div v-show="showIndex>=0" class="mt-3">
+                    <div id="radarChartBox2" ref="radarChartBox2"></div>
+                </div>
+                <button type="button" class="btn btn-danger mt-3" data-bs-dismiss="offcanvas" aria-label="Close" style="float: right;">关闭详情</button>
+            </div>
+        </div>
+        <!-- /offcanArtifactShow -->        
     </div>
 
     <!-- <script type="module">
@@ -338,7 +348,7 @@
                         alertClose: Function,       // 定时关闭提示框
                         alertState: "success"       // 提示框类型
                     },
-                    radarChart: null,               // 雷达图
+                    // radarChart: null,               // 雷达图
                     radarChartOption: Object,       // 雷达图配置
                     version: String                 // 版本信息
                 }
@@ -517,7 +527,8 @@
                     for(let i = 0; i < opArr.length; i++){
                         opObj[opArr[i][0]] = opArr[i][1];
                     }
-                    this.radarChart = echarts.init(this.$refs.radarChartBox);
+                    let radarChart = echarts.init(this.$refs.radarChartBox);
+                    let radarChart2 = echarts.init(this.$refs.radarChartBox2);
                     this.radarChartOption = {
                         radar: {
                             splitNumber: 7,
@@ -540,7 +551,8 @@
                             }]
                         }]
                     }
-                    this.radarChartOption && this.radarChart.setOption(this.radarChartOption);
+                    this.radarChartOption && radarChart.setOption(this.radarChartOption);
+                    this.radarChartOption && radarChart2.setOption(this.radarChartOption);
                 },
                 // 操作提示-提示框
                 // state值： success/primary/warning/danger
@@ -581,6 +593,7 @@
         })
     </script>
     <script src="components/demo-alert.js"></script>
+    <script src="components/artifact-show.js"></script>
     <script>
         app.mount('#vueApp');
     </script>

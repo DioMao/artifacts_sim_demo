@@ -115,10 +115,15 @@
     background-color: rgb(233,229,220);
 }
 
-#radarChartBox{
+#radarChartBox,#radarChartBox2{
     margin: 10px auto;
     width: 280px;
     height: 280px;
+}
+#mobileShow{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 @media screen and (max-width:480px) {
     .ArtifactsBox{
@@ -134,6 +139,9 @@
     }
 }
 @media screen and (min-width:820px){
+    #mobileShow{
+        display: none;
+    }
     .navbar .siteTitle{
         margin-left: 50px;
     }
@@ -194,8 +202,9 @@ footer{
 #dropdownMenuLink{
     border-radius: 25px;
 }
-#score{
-    background-color: #fff;
+
+#score,#score-2{
+    background-color: #fed323;
     float: right;
     margin-top: -4px;
 }
@@ -271,4 +280,8 @@ footer{
     font-weight: bold;
     margin-bottom: 1px;
     color: rgb(76,86,104);
+}
+
+#offcanArtifactShow{
+    background-color: rgb(243, 239, 225);
 }
