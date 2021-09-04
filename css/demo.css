@@ -89,7 +89,6 @@
 .ArtifactsBox{
     margin: 15px 10px;
     width: 10rem;
-    /* height: 323px; */
     font-size: 0.8rem;
     transition: ease 0.2s all;
     overflow: hidden;
@@ -162,8 +161,6 @@
         display: none;
     }
     .demo-container{
-        /* position: absolute; */
-        left: 0;
         margin-left: 0 !important;
         width: calc(100% - 320px) !important;
     }
@@ -246,6 +243,12 @@ footer{
     height: 135px;
     padding: 9px 18px;
     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
+}
+.ArtifactShow .aHead .mainEntry{
+    position: absolute;
+    top: 57px;
+    left: 18px;
+    color: rgb(191,173,166);
 }
 .ArtifactShow .aHead .levelStar{
     position: absolute;

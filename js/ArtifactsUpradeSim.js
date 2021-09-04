@@ -11,7 +11,7 @@ const ArtifactsSimVersion = "0.1.5";
 
 // 词缀条目
 const entryList = ["critRate", "critDMG", "ATK", "ATKPer", "def", "defPer", "HP", "HPPer", "energyRecharge", "elementMastery"],
-    entryListCh = ["暴击率%", "暴击伤害%", "攻击", "攻击%", "防御", "防御%", "生命", "生命%", "充能效率%", "元素精通"],
+    entryListCh = ["暴击率%", "暴击伤害%", "攻击力", "攻击力%", "防御力", "防御力%", "生命值", "生命值%", "充能效率%", "元素精通"],
     entryProbability = [0.3, 0.3, 0.75, 0.5, 0.75, 0.5, 0.75, 0.5, 0.3, 0.3],
     entryValue = {
         critRate: [2.7, 3.1, 3.5, 3.9],
@@ -71,7 +71,7 @@ function ArtifactsFunction() {
  * 生成初始数据
  * @param {string} __part 指定位置，可为空
  * @param {string} __main 指定主词条，可为空
- * @param {Array} __entryArr 指定词条（3-4条），可为空
+ * @param {Array} __entryArr 指定词条（至多四条），可为空
  * @param {Array} __entryRate 副词条数值（对应自选副词条），可为空
  * @returns {object} 对象newArtifacts
  */
@@ -478,4 +478,42 @@ function entryVerify(__mainEntry, __entryArr) {
  */
 function randomEntryValue(__entry) {
     return entryValue[__entry][Math.floor(Math.random() * entryValue[__entry].length)];
+}
+
+/**
+ * 词条汉化
+ * @param {String} word 需要翻译成中文的词条
+ * @param {*} type 词条的类型
+ * @returns 翻译结果
+ */
+function toChinese(word,type){
+    if(type == "entry"){
+        return entryListCh[entryList.indexOf(word)]
+    }else if(type == "parts"){
+        return partsCh[parts.indexOf(word)];
+    }else if(type == "mainEntry"){
+        return mainEntryListCh[mainEntryList.indexOf(word)];
+    }else if(type == "score"){
+        return scoreListCH[scoreList.indexOf(word)];
+    }
+    return "";
+}
+
+/**
+ * 副词条展示优化
+ * 将词条展示为 攻击力+5.8% 这样的形式
+ * @param {string} entry 副词条名称
+ * @param {number} value 副词条数值
+ * @returns 结果（字符串）
+ */
+function formatEntry(entry,value){
+    // 带百分号的词条
+    let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
+    resEntry = toChinese(entry,"entry"),
+    resValue = Number(value.toFixed(2));
+    if(percentEntry.indexOf(entry) != -1){
+        resEntry = resEntry.replace("%","");
+        resValue += "%";
+    }
+    return resEntry + "+" + resValue;
 }

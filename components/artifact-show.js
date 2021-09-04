@@ -1,7 +1,7 @@
 app.component("artifact-show",{
     data(){
         return {
-
+            mainEntryShow: ["攻击力", "生命值", "暴击率", "元素充能效率", "治疗加成", "暴击伤害", "攻击力", "防御力", "生命值", "元素精通", "水元素伤害加成", "火元素伤害加成", "雷元素伤害加成", "岩元素伤害加成", "风元素伤害加成", "冰元素伤害加成", "物理伤害加成"]
         }
     },
     props:{
@@ -24,8 +24,9 @@ app.component("artifact-show",{
         <div class="titleLine"></div>
         <div class="aHead">
             {{ toChinese(showdetail.part,"parts") }}
+            <div class="mainEntry"> {{ toChinese(showdetail.mainEntry,"mainEntry") }} </div>
             <div class="levelStar">
-                <span  v-for="i in 5" style="margin-right: 3px;">
+                <span v-for="i in 5" style="margin-right: 3px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                     </svg>
@@ -48,7 +49,7 @@ app.component("artifact-show",{
             }else if(type == "parts"){
                 return partsCh[parts.indexOf(word)];
             }else if(type == "mainEntry"){
-                return mainEntryListCh[mainEntryList.indexOf(word)];
+                return this.mainEntryShow[mainEntryList.indexOf(word)];
             }else if(type == "score"){
                 return scoreListCH[scoreList.indexOf(word)];
             }
@@ -100,6 +101,12 @@ app.component("artifact-show",{
 //     height: 135px;
 //     padding: 9px 18px;
 //     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
+// }
+// .ArtifactShow .aHead .mainEntry{
+//     position: absolute;
+//     top: 57px;
+//     left: 18px;
+//     color: rgb(191,173,166);
 // }
 // .ArtifactShow .aHead .levelStar{
 //     position: absolute;
