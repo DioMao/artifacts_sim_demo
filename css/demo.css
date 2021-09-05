@@ -62,7 +62,7 @@
     user-select: none;
     overflow-y: scroll;
     display: flex;
-    height: calc(100vh - 116px);
+    height: inherit;
     flex-direction: row;
     flex-wrap: wrap;
     position: relative;
@@ -160,7 +160,7 @@
         top: 56px;
         right: 50px;
         width: 320px;
-        height: calc(100% - 116px);
+        height: inherit;
         background-color: #ffffff70;
     }
     .ArtifactShowBox::-webkit-scrollbar{

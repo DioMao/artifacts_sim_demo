@@ -86,12 +86,8 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
         upgradeHistory: [],
         creationDate: Date.now()
     },
-    // 临时词条库（排除已有词条）
     ArtifactEntry = [],
     ArtifactEntryRate = [];
-    for (let i = 0; i < entryList.length; i++) {
-        entryList[i] == newArtifacts.mainEntry ? null : (ArtifactEntry.push(entryList[i]), ArtifactEntryRate.push(entryProbability[i]));
-    }
     // 自选或随机位置
     if (typeof (__part) == "string" && parts.indexOf(__part) != -1) {
         newArtifacts.part = __part;
@@ -103,6 +99,10 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
         newArtifacts.mainEntry = __main;
     } else {
         newArtifacts.mainEntry = randomMainEntry(newArtifacts.part);
+    }
+    // 临时词条库（排除已有词条）
+    for (let i = 0; i < entryList.length; i++) {
+        entryList[i] == newArtifacts.mainEntry ? null : (ArtifactEntry.push(entryList[i]), ArtifactEntryRate.push(entryProbability[i]));
     }
     // 自选副词条
     if (__entry.length <= 4 && entryVerify(newArtifacts.mainEntry, __entry)) {
