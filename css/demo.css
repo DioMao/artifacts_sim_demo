@@ -62,7 +62,7 @@
     user-select: none;
     overflow-y: scroll;
     display: flex;
-    height: inherit;
+    height: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     position: relative;
