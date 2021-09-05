@@ -24,7 +24,8 @@ const entryList = ["critRate", "critDMG", "ATK", "ATKPer", "def", "defPer", "HP"
         HPPer: [4.1, 4.7, 5.3, 5.8],
         energyRecharge: [4.5, 5.2, 5.8, 6.5],
         elementMastery: [16, 19, 21, 23]
-    }
+    },
+    extraEnrtyRate = 0.3;
 
 // 部件列表
 const parts = ["feather", "flower", "hourglass", "hat", "cup"],
@@ -131,7 +132,7 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
         newArtifacts.entry.push([newEntry,newEntryRate]);
     }
     // 是否拥有初始四词条
-    if (__entry.length == 0 && Math.random() < 0.25) {
+    if (__entry.length == 0 && Math.random() < extraEnrtyRate) {
         let newEntry = randomRate(ArtifactEntry, ArtifactEntryRate);
         newArtifacts.entry[3] = [newEntry, randomEntryValue(newEntry)];
     }

@@ -1,7 +1,14 @@
 app.component("artifact-show",{
     data(){
         return {
-            mainEntryShow: ["攻击力", "生命值", "暴击率", "元素充能效率", "治疗加成", "暴击伤害", "攻击力", "防御力", "生命值", "元素精通", "水元素伤害加成", "火元素伤害加成", "雷元素伤害加成", "岩元素伤害加成", "风元素伤害加成", "冰元素伤害加成", "物理伤害加成"]
+            mainEntryShow: ["攻击力", "生命值", "暴击率", "元素充能效率", "治疗加成", "暴击伤害", "攻击力", "防御力", "生命值", "元素精通", "水元素伤害加成", "火元素伤害加成", "雷元素伤害加成", "岩元素伤害加成", "风元素伤害加成", "冰元素伤害加成", "物理伤害加成"],
+            name: {
+                feather: "角斗士的归宿",
+                flower: "角斗士的留恋",
+                cup: "角斗士的酣醉",
+                hourglass: "角斗士的希冀",
+                hat: "角斗士的凯旋"
+            }
         }
     },
     props:{
@@ -16,15 +23,22 @@ app.component("artifact-show",{
                 upgradeHistory: [],
                 creationDate: Date.now()
             }
+        },
+        index: {
+            type: Number,
+            default: -1
         }
     },
     template:`
     <div class="ArtifactShow">
-        <div class="aTitle"> There is title. </div>
+        <div class="aTitle"> {{ artifactName }} </div>
         <div class="titleLine"></div>
         <div class="aHead">
             {{ toChinese(showdetail.part,"parts") }}
             <div class="mainEntry"> {{ toChinese(showdetail.mainEntry,"mainEntry") }} </div>
+            <div class="aImg">
+                <img :src="'img/A-'+showdetail.part+'.png'" :alt="showdetail.part">
+            </div>
             <div class="levelStar">
                 <span v-for="i in 5" style="margin-right: 3px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -40,9 +54,28 @@ app.component("artifact-show",{
                 <li v-for="entry in showdetail.entry">· {{ showEntryList(entry[0],entry[1]) }}</li>
             </ul>
         </div>
+        <div class="aButtonBox">
+            <button class="btn btn-sm float-start fw-bold" @click="upgrade" :disable="showdetail.level>=20"> 强化 </button>
+            <button class="btn btn-sm fw-bold" @click="init" v-show="showdetail.level>0"> 重置 </button>
+            <button class="btn btn-sm float-end fw-bold del" @click="del"> 删除 </button>
+        </div>
     </div>
     `,
+    computed:{
+        artifactName(){
+            return this.name[this.showdetail.part];
+        }
+    },
     methods:{
+        upgrade(){
+            this.$emit("upgrade",this.index);
+        },
+        init(){
+            this.$emit("init",this.index);
+        },
+        del(){
+            this.$emit("del",this.index);
+        },
         toChinese(word,type){
             if(type == "entry"){
                 return entryListCh[entryList.indexOf(word)]
@@ -73,12 +106,13 @@ app.component("artifact-show",{
 //     position: relative;
 //     margin: 0 auto;
 //     width: 300px;
-//     height: 315px;
+//     height: 345px;
 // }
 // .ArtifactShow .aTitle{
 //     height: 30px;
 //     color: #fff;
-//     line-height: 30px;
+//     font-weight: bold;
+//     line-height: 27px;
 //     padding-left: 18px;
 //     background-color: #BC6832;
 // }
@@ -107,6 +141,17 @@ app.component("artifact-show",{
 //     top: 57px;
 //     left: 18px;
 //     color: rgb(191,173,166);
+// }
+// .ArtifactShow .aHead .aImg{
+//     position: absolute;
+//     right: 18px;
+//     top: 5px;
+//     width: 125px;
+//     height: 125px;
+// }
+// .ArtifactShow .aHead .aImg img{
+//     width: inherit;
+//     height: inherit;
 // }
 // .ArtifactShow .aHead .levelStar{
 //     position: absolute;
@@ -141,4 +186,18 @@ app.component("artifact-show",{
 //     font-weight: bold;
 //     margin-bottom: 1px;
 //     color: rgb(76,86,104);
+// }
+// .ArtifactShow .aButtonBox{
+//     height: 30px;
+//     background-color: #a87940;
+//     text-align: center;
+//     padding: 0 30px;
+//     overflow: hidden;
+// }
+// .ArtifactShow .aButtonBox button{
+//     background-color: #dea752;
+//     color: #303030;
+//     width: 70px;
+//     border-left: solid 1px rgb(243, 239, 225);
+//     border-right: solid 1px rgb(243, 239, 225);
 // }
