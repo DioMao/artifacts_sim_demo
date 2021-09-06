@@ -124,7 +124,7 @@
     padding: 5px 15px;
 }
 .ArtifactsBox ul li{
-    font-weight: bold;
+    /* font-weight: bold; */
     color: rgb(76,86,104);
     background-color: rgb(233,229,220);
 }
@@ -260,7 +260,7 @@ footer{
 .ArtifactShow .aTitle{
     height: 30px;
     color: #fff;
-    font-weight: bold;
+    /* font-weight: bold; */
     line-height: 30px;
     padding-left: 18px;
     background-color: #BC6832;
@@ -280,7 +280,7 @@ footer{
     position: relative;
     color: #fff;
     font-size: 13px;
-    font-weight: bold;
+    /* font-weight: bold; */
     height: 135px;
     padding: 9px 18px;
     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
@@ -338,7 +338,7 @@ footer{
     padding: 0;
 }
 .ArtifactShow .aContent ul li{
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 1px;
     color: rgb(76,86,104);
 }

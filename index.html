@@ -40,7 +40,7 @@
         <!-- nav -->
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
             <div class="container-fluid">
-                <div class="siteTitle fw-bold position-relative">
+                <div class="siteTitle position-relative">
                     <a data-bs-toggle="offcanvas" href="#offcanMenu" aria-controls="offcanMenu">圣遗物强化模拟器</a>
                 </div>
                 <div class="selectBox d-flex">
@@ -57,11 +57,11 @@
             <div class="container-fluid demo-container">
                 <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == Artifacts.part" @click="showIndex=index">
                     <div class="card-body">
-                        <div :class="'card-text fs-6 fw-bolder '+(ArtifactRate(index)>=35?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}
+                        <div :class="'card-text fs-6 '+(ArtifactRate(index)>=35?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}
                             <span class="highScoreAward" v-show="ArtifactRate(index)>=35">
                             </span>
                         </div>
-                        <div class="card-text fw-bold lh-lg">{{ toChinese(Artifacts.mainEntry,"mainEntry") }}+{{ mainEntryValue(Artifacts.mainEntry,Artifacts.mainEntryValue) }}</div>
+                        <div class="card-text lh-lg">{{ toChinese(Artifacts.mainEntry,"mainEntry") }}<br>+{{ mainEntryValue(Artifacts.mainEntry,Artifacts.mainEntryValue) }}</div>
                         <span class="badge">+{{ Artifacts.level }}</span>
                         <a id="mobileShow" data-bs-toggle="offcanvas" href="#offcanArtifactShow" aria-controls="offcanArtifactShow">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
@@ -102,7 +102,7 @@
                 <div v-show="showIndex>=0">
                     <div id="radarChartBox" ref="radarChartBox"></div>
                 </div>
-                <div style="margin: 0 15px;font-weight: bold;" v-show="showIndex>=0">副词条评分(beta)：{{ ArtifactScore }} 
+                <div style="margin: 0 15px;" v-show="showIndex>=0">副词条评分(beta)：{{ ArtifactScore }} 
                     <button id="score" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#scoreSet">评分标准</button>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         <footer>
             <div class="gap-2 d-md-flex justify-content-md-end buttonBox">
                 <div class="btn-group">
-                    <button id="start" @click="start" class="btn fw-bold"><span class="circleinbox"></span>随机生成</button>
+                    <button id="start" @click="start" class="btn"><span class="circleinbox"></span>随机生成</button>
                     <button id="start-drop" type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
@@ -122,7 +122,7 @@
                     </ul>
                 </div>
                 <div class="dropdown" style="display:inline-block;">
-                    <a class="btn dropdown-toggle fw-bold" href="#" role="button" id="dropdownMenuLink" style="background-color: #ece5d8;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" style="background-color: #ece5d8;" data-bs-toggle="dropdown" aria-expanded="false">
                       更多
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -184,17 +184,17 @@
                     </div>
                     <div class="modal-body">
                         <!-- 自选位置 -->
-                        <label for="cutArtifactPart" class="form-label fw-bold">位置</label>
+                        <label for="cutArtifactPart" class="form-label">位置</label>
                         <select id="cutArtifactPart" class="form-select form-select-sm mb-3" v-model="cusPart" @change="cusEntry.length=0;cusMainEntry=''">
                             <option v-for="part in parts" :value="part">{{ toChinese(part,"parts") }}</option>
                         </select>
                         <!-- 自选主属性 -->
-                        <label class="form-label fw-bold" v-show="cusPart!='default'&&cusPart!=''">主属性</label>
+                        <label class="form-label" v-show="cusPart!='default'&&cusPart!=''">主属性</label>
                         <select class="form-select form-select-sm mb-3" v-if="cusPart!='default'&&cusPart!=''" v-model="cusMainEntry" @change="cusEntry.length=0">
                             <option v-for="partModal in cusEntryList[cusPart]" :value="partModal">{{ toChinese(partModal,"mainEntry") }}</option>
                         </select>
                         <!-- 自选副词条 -->
-                        <label class="form-label fw-bold" v-show="cusPart!='default'&&cusMainEntry!=''">副词条选择</label>
+                        <label class="form-label" v-show="cusPart!='default'&&cusMainEntry!=''">副词条选择</label>
                         <div class="form-check" v-for="entry in entryList" v-show="cusPart!='default'&&cusMainEntry!=''&&cusMainEntry!=entry">
                             <input class="form-check-input" v-model="cusEntry" type="checkbox" :value="entry" :id="entry+'Check'" :disabled="cusEntry.length==4&&cusEntry.indexOf(entry)==-1">
                             <label class="form-check-label" :for="entry+'Check'">
@@ -336,7 +336,7 @@
                 <div>
                     <artifact-show @upgrade="ArtifactUpgrade" @init="initArtifact" @del="deleteArtifact" :showdetail="showDetail" :index="showIndex" v-if="showIndex>=0"></artifact-show>
                 </div>
-                <div class="fw-bold mt-3" v-show="showIndex>=0">副词条评分(beta)：{{ ArtifactScore }} 
+                <div class="mt-3" v-show="showIndex>=0">副词条评分(beta)：{{ ArtifactScore }} 
                     <button id="score-2" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#scoreSet">评分标准</button>
                 </div>
                 <div v-show="showIndex>=0" class="mt-3">
