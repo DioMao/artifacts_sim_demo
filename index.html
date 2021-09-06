@@ -115,7 +115,7 @@
                 </button>
                 <ul class="dropdown-menu filterList" aria-labelledby="filter">
                     <li><a class="dropdown-item" href="#" @click="mainEntryfilter('default')" :style="{background:(userSetting.filterMain=='default'?'rgb(89, 99, 121)':'inherit')}">默认</a></li>
-                    <li v-for="mainEntryF in mainEntryList"><a class="dropdown-item" href="#" @click="mainEntryfilter(mainEntryF)" :style="{background:(userSetting.filterMain==mainEntryF?'#596379':'inherit')}">{{ toChinese(mainEntryF,"mainEntry") }}</a></li>
+                    <li v-for="mainEntryF in mainEntryList"><a class="dropdown-item" href="#" @click="mainEntryfilter(mainEntryF)" :style="{background:(userSetting.filterMain==mainEntryF?'#596379':'inherit')}">{{ (mainEntryF=="ATK" || mainEntryF == "HP")?"固定":"" }}{{ toChinese(mainEntryF,"mainEntry") }}</a></li>
                 </ul>
                 <!-- start -->
                 <div class="btn-group">
