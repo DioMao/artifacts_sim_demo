@@ -1,7 +1,6 @@
 app.component("artifact-show",{
     data(){
         return {
-            mainEntryShow: ["攻击力", "生命值", "暴击率", "元素充能效率", "治疗加成", "暴击伤害", "攻击力", "防御力", "生命值", "元素精通", "水元素伤害加成", "火元素伤害加成", "雷元素伤害加成", "岩元素伤害加成", "风元素伤害加成", "冰元素伤害加成", "物理伤害加成"],
             name: {
                 feather: "角斗士的归宿",
                 flower: "角斗士的留恋",
@@ -18,6 +17,7 @@ app.component("artifact-show",{
                 level: 0,
                 part: "none",
                 mainEntry: "none",
+                mainEntryValue: 0,
                 entry: [],
                 initEntry: '',
                 upgradeHistory: [],
@@ -36,6 +36,7 @@ app.component("artifact-show",{
         <div class="aHead">
             {{ toChinese(showdetail.part,"parts") }}
             <div class="mainEntry"> {{ toChinese(showdetail.mainEntry,"mainEntry") }} </div>
+            <div class="mainEntryValue">{{ mainEntryValue }}</div>
             <div class="aImg">
                 <img :src="'img/A-'+showdetail.part+'.png'" :alt="showdetail.part">
             </div>
@@ -64,6 +65,9 @@ app.component("artifact-show",{
     computed:{
         artifactName(){
             return this.name[this.showdetail.part];
+        },
+        mainEntryValue(){
+            return fomatMainEntryValue(this.showdetail.mainEntry, this.showdetail.mainEntryValue);
         }
     },
     methods:{
@@ -82,7 +86,7 @@ app.component("artifact-show",{
             }else if(type == "parts"){
                 return partsCh[parts.indexOf(word)];
             }else if(type == "mainEntry"){
-                return this.mainEntryShow[mainEntryList.indexOf(word)];
+                return mainEntryListCh[mainEntryList.indexOf(word)];
             }else if(type == "score"){
                 return scoreListCH[scoreList.indexOf(word)];
             }
@@ -91,10 +95,12 @@ app.component("artifact-show",{
         showEntryList(entry,value){
             let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
             resEntry = this.toChinese(entry,"entry"),
-            resValue = Number(value.toFixed(2));
+            resValue = value;
             if(percentEntry.indexOf(entry) != -1){
                 resEntry = resEntry.replace("%","");
-                resValue += "%";
+                resValue = resValue.toFixed(1) + "%";
+            }else{
+                resValue = resValue = value.toFixed(0);
             }
             return resEntry + "+" + resValue;
         }
@@ -111,8 +117,7 @@ app.component("artifact-show",{
 // .ArtifactShow .aTitle{
 //     height: 30px;
 //     color: #fff;
-//     font-weight: bold;
-//     line-height: 27px;
+//     line-height: 33px;
 //     padding-left: 18px;
 //     background-color: #BC6832;
 // }
@@ -130,17 +135,23 @@ app.component("artifact-show",{
 // .ArtifactShow .aHead{
 //     position: relative;
 //     color: #fff;
-//     font-size: 0.9rem;
-//     font-weight: bold;
+//     font-size: 13px;
+//     /* font-weight: bold; */
 //     height: 135px;
 //     padding: 9px 18px;
 //     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
 // }
 // .ArtifactShow .aHead .mainEntry{
 //     position: absolute;
-//     top: 57px;
+//     top: 55px;
 //     left: 18px;
 //     color: rgb(191,173,166);
+// }
+// .ArtifactShow .aHead .mainEntryValue{
+//     position: absolute;
+//     font-size: 24px;
+//     top: 70px;
+//     left: 18px;
 // }
 // .ArtifactShow .aHead .aImg{
 //     position: absolute;
@@ -173,6 +184,7 @@ app.component("artifact-show",{
 //     background-color: #ECE5D8;
 // }
 // .ArtifactShow .aContent .badge{
+//     font-weight: 400;
 //     font-size: 0.9rem;
 //     padding: 3px 6px;
 //     background-color: rgb(57,68,79) !important;
@@ -183,7 +195,6 @@ app.component("artifact-show",{
 //     padding: 0;
 // }
 // .ArtifactShow .aContent ul li{
-//     font-weight: bold;
 //     margin-bottom: 1px;
 //     color: rgb(76,86,104);
 // }

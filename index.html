@@ -55,14 +55,11 @@
         <!-- Artifacts -->
         <div class="main-container">
             <div class="container-fluid demo-container">
-                <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == Artifacts.part" @click="showIndex=index">
+                <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="(selected=='default' || selected == Artifacts.part) && (userSetting.filterMain == 'default' || userSetting.filterMain == Artifacts.mainEntry)" @click="showIndex=index">
                     <div class="card-body">
-                        <div :class="'card-text fs-6 '+(ArtifactRate(index)>=35?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}
-                            <span class="highScoreAward" v-show="ArtifactRate(index)>=35">
-                            </span>
-                        </div>
-                        <div class="card-text lh-lg">{{ toChinese(Artifacts.mainEntry,"mainEntry") }}<br>+{{ mainEntryValue(Artifacts.mainEntry,Artifacts.mainEntryValue) }}</div>
-                        <span class="badge">+{{ Artifacts.level }}</span>
+                        <div :class="'card-text fs-6 '+(ArtifactRate(index)>=userSetting.highScore?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}</span></div>
+                        <div class="card-text" style="color:rgb(223,185,170);">{{ toChinese(Artifacts.mainEntry,"mainEntry") }} </div>
+                        <div>{{ mainEntryValue(Artifacts.mainEntry,Artifacts.mainEntryValue) }} <span class="badge float-end fw-normal">+{{ Artifacts.level }}</div>
                         <a id="mobileShow" data-bs-toggle="offcanvas" href="#offcanArtifactShow" aria-controls="offcanArtifactShow">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
@@ -109,23 +106,35 @@
             <!-- /ArtifactShowBox -->
         </div>
         <footer>
-            <div class="gap-2 d-md-flex justify-content-md-end buttonBox">
+            <div class="gap-2 d-md-flex justify-content-end buttonBox">
+                <!-- filter -->
+                <button id="filter" class="btn me-auto" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+                    </svg>
+                </button>
+                <ul class="dropdown-menu filterList" aria-labelledby="filter">
+                    <li><a class="dropdown-item" href="#" @click="mainEntryfilter('default')" :style="{background:(userSetting.filterMain=='default'?'rgb(89, 99, 121)':'inherit')}">默认</a></li>
+                    <li v-for="mainEntryF in mainEntryList"><a class="dropdown-item" href="#" @click="mainEntryfilter(mainEntryF)" :style="{background:(userSetting.filterMain==mainEntryF?'#596379':'inherit')}">{{ toChinese(mainEntryF,"mainEntry") }}</a></li>
+                </ul>
+                <!-- start -->
                 <div class="btn-group">
                     <button id="start" @click="start" class="btn"><span class="circleinbox"></span>随机生成</button>
                     <button id="start-drop" type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-footer">
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cusArtifact">自选属性</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item disabled" href="#">敬请期待</a></li>
                     </ul>
                 </div>
+                <!-- more setting -->
                 <div class="dropdown" style="display:inline-block;">
                     <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" style="background-color: #ece5d8;" data-bs-toggle="dropdown" aria-expanded="false">
                       更多
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <ul class="dropdown-menu dropdown-footer" aria-labelledby="dropdownMenuLink">
                         <li>
                             <a class="dropdown-item" href="#" @click="undoDel">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
@@ -201,17 +210,17 @@
                               {{ toChinese(entry,"entry") }}
                             </label>
                             <select class="form-select form-select-sm mt-1 mb-1 col-md-6 ms-auto" v-model="cusEntryRate[entry]" :disabled="cusEntry.length==4&&cusEntry.indexOf(entry)==-1">
-                                <option v-for="entryValueModal in entryValue[entry]" :value="entryValueModal">{{ entryValueModal }}</option>
+                                <option v-for="entryValueModal in entryValue[entry]" :value="entryValueModal">{{ (entry=="ATK"||entry=="def"||entry=="HP"||entry=="elementMastery")?entryValueModal.toFixed(0):entryValueModal.toFixed(1) }}</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="form-check form-switch">
+                        <div class="form-check form-switch me-auto">
                             <input class="form-check-input" type="checkbox" id="cusCloseSwitch" v-model="cusCloseSwitch" checked>
                             <label class="form-check-label" for="cusCloseSwitch">生成后关闭此窗口</label>
                         </div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" @click="cusCreatArtifact" :data-bs-dismiss="cusCloseSwitch?'modal':null">确认</button>
+                        <button type="button" class="btn btn-genshin" data-bs-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-genshin" @click="cusCreatArtifact" :data-bs-dismiss="cusCloseSwitch?'modal':null"><span class="circleinbox"></span>确认</button>
                     </div>
                 </div>
             </div>
@@ -273,7 +282,7 @@
                         <button type="button" class="btn btn-primary btn-sm mt-3" @click="resetSetting">恢复默认设置（含评分设置）</button>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-genshin" data-bs-dismiss="modal"><span class="circleinbox"></span>确认</button>
                     </div>
                 </div>
             </div>
@@ -292,24 +301,12 @@
                         <div>Author: <a href="https://github.com/DioMao" target="_blank">DioMao</a></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-genshin" data-bs-dismiss="modal"><span class="circleinbox"></span>确认</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /about -->
-        <!-- Confirmation box -->
-        <div class="modal fade" id="confirmation" aria-labelledby="confirmation" aria-hidden="true">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-header">确认操作</div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal" @click="confirmation()">确认</button>
-            </div>
-        </div>
-        <!-- /Confirmation box -->
         <!-- offcanMenu -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanMenu" aria-labelledby="offcanvasMenu">
             <div class="offcanvas-header">
@@ -318,10 +315,19 @@
             </div>
             <div class="offcanvas-body">
                 <div>
-                    <p style="color: red;"><b>——仅供娱乐，请勿作为实际游戏参考——</b></p>
-                    <p><b>本模拟器采用本地存储，脱机可用，不上传任何数据。</b></p>
-                    <p><b>1. 自选圣遗物说明</b></p>
-                    <p>自选圣遗物时，不足3条的情况会<b>随机选择</b>符合条件的副词条补至3条，且<b>不会</b>生成第四副词条。</p>
+                    <p style="color: red;">——仅供娱乐，请勿作为实际游戏参考——</p>
+                    <p>本模拟器采用本地存储，脱机可用，不上传任何数据。</p>
+                    <p>遇到bug就清理一下缓存，或者看看git上更新没有。<del>都不行就只能辱骂作者了。</del>></p>
+                    <p style="color: red;">1. 自选圣遗物说明</p>
+                    <p>自选圣遗物在随机生成的下拉按钮里。</p>
+                    <p>自选圣遗物时，不足3条的情况会随机选择符合条件的副词条补至3条，且不会生成第四副词条。</p>
+                    <p style="color: red;">2. 圣遗物评分说明</p>
+                    <p>1) 预设模式</p>
+                    <p>预设模式是根据已有的设定来进行分数估算。<del>目前还没有完善，实际是选什么算什么。</del></p>
+                    <p>2) 自选模式</p>
+                    <p>顾名思义，选中哪几个就算哪几个的总分。</p>
+                    <p style="color: red;">3. 删除和清空列表</p>
+                    <p>单独删除圣遗物是可以撤销的。清空列表比较大力，生效了就不能找回了。</p>
                 </div>
             </div>
         </div>
@@ -360,6 +366,7 @@
                     showDetail: Object,             // 右侧圣遗物展示详情
                     ArtifactsList: Array,           // 圣遗物列表
                     parts: Array,                   // 圣遗物位置*自选
+                    mainEntryList: Array,           // 圣遗物主词条列表
                     entryList: Array,               // 副词条列表
                     selected: "default",            // 根据位置筛选结果
                     cusCloseSwitch: true,           // 自选圣遗物-生成后是否关闭modal窗
@@ -374,17 +381,21 @@
                         scoreConfig:{               // 圣遗物得分设置
                             mode: "string",
                             strRule: "default",
-                            arrRule: []
+                            arrRule: [],
                         },
+                        highScore: 35,              // 高分圣遗物标准
                         listBriefMode: false,       // 圣遗物列表模式（details/brief）
+                        filterMain: "default"       // 主词条筛选
                     },
                     userSetting: {                  // 用户设置
                         scoreConfig:{
                             mode: "string",
                             strRule: "default",
-                            arrRule: []
+                            arrRule: [],
                         },
+                        highScore: 35,
                         listBriefMode: false,
+                        filterMain: "default"
                     },
                     alertFunc: {
                         alertShow: false,           // 是否显示提示框
@@ -398,6 +409,7 @@
             },
             created(){
                 this.parts = parts;
+                this.mainEntryList = mainEntryList;
                 this.entryList = entryList;
                 this.cusEntryList = cusEntryList;
                 this.entryValue = entryValue;
@@ -416,7 +428,7 @@
                 }else{
                     if(localStorage.localRecord == undefined){
                         localStorage.localRecord = [];
-                    }else if(localStorage.localRecord != '' || localStorage.localRecord != "[]"){
+                    }else if(localStorage.localRecord != '' && localStorage.localRecord != "[]"){
                         ArtifactsSim.result = JSON.parse(localStorage.getItem("localRecord"));
                         this.ArtifactsList = JSON.parse(localStorage.getItem("localRecord"));
                     };
@@ -428,6 +440,7 @@
                         this.userSetting = JSON.parse(JSON.stringify(this.defaultSetting));
                         for(let key in settingObj){
                             this.userSetting[key] = settingObj[key];
+                            console.log(key)
                         }
                     };
                 }
@@ -522,10 +535,14 @@
                 },
                 // 清除结果列表
                 ArtifactClear(){
-                    this.showIndex = -1;
-                    ArtifactsSim.clearAll();
-                    this.ArtifactsList = [...ArtifactsSim.result];
-                    this.localRecord(this.ArtifactsList);
+                    if(this.ArtifactsList.length == 0){
+                        this.alertControl("当前列表已经空了哦！",1500,"warning");
+                    }else if(confirm("确认要清空圣遗物吗？\n请注意，此操作不可恢复！")){
+                        this.showIndex = -1;
+                        ArtifactsSim.clearAll();
+                        this.ArtifactsList = [...ArtifactsSim.result];
+                        this.localRecord(this.ArtifactsList);
+                    }
                 },
                 // 删除圣遗物
                 deleteArtifact(index){
@@ -571,10 +588,14 @@
                         localStorage.userSetting = JSON.stringify(this.userSetting);
                     }
                 },
+                // 清除本地数据
                 clearStorge(){
-                    localStorage.clear();
-                    this.ArtifactsList.length = 0;
-                    ArtifactsSim.result.length = 0;
+                    if(confirm("确定要清除模拟器所有数据吗？\n执行此操作会刷新页面。")){
+                        localStorage.clear();
+                        this.ArtifactsList.length = 0;
+                        ArtifactsSim.result.length = 0;
+                        location.reload();
+                    }
                 },
                 // 恢复默认设置
                 resetSetting(){
@@ -636,6 +657,10 @@
                 mainEntryValue(mainEntry,val){
                     return fomatMainEntryValue(mainEntry,val);
                 },
+                // 
+                mainEntryfilter(val){
+                    this.userSetting.filterMain = val;
+                },
                 // 转换为中文
                 toChinese(word,type){
                     if(type == "entry"){
@@ -649,7 +674,7 @@
                     }
                     return "";
                 },
-                // 展示界面词条文字处理
+                // 展示界面副词条文字处理
                 formatEntry(entry,value){
                     let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
                     resEntry = this.toChinese(entry,"entry"),
