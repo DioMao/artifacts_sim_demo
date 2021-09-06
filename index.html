@@ -602,6 +602,7 @@
                     localStorage.removeItem("userSetting");
                     localStorage.userSetting = strSetting;
                     this.userSetting = JSON.parse(strSetting);
+                    this.alertControl("设置重置成功！",1500);
                 },
                 // 雷达图设置
                 setRadarChart(){
