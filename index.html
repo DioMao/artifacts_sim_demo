@@ -16,12 +16,13 @@
     <meta name="applicable-device" content="pc,mobile">
     <title>原神圣遗物强化模拟器 | Genshin Artifacts Upgrade Simulator</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="style/demo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha256-KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js" integrity="sha256-TI0rIaxop+pDlHNVI6kDCFvmpxNYUnVH/SMjknZ/W0Y=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3.2.4"></script>
-    <script src="js/ArtifactsUpradeSim@0.1.5.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.11"></script>
+    <script src="js/ArtifactsUpradeSim@0.1.6.js"></script>
 </head>
 
 <body>
@@ -56,14 +57,11 @@
             <div class="container-fluid demo-container">
                 <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="selected=='default' || selected == Artifacts.part" @click="showIndex=index">
                     <div class="card-body">
-                        <div class="card-text fs-6 fw-bolder">{{ toChinese(Artifacts.part,"parts") }}
+                        <div :class="'card-text fs-6 fw-bolder '+(ArtifactRate(index)>=35?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}
                             <span class="highScoreAward" v-show="ArtifactRate(index)>=35">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fed323" class="bi bi-stars" viewBox="0 0 16 16">
-                                    <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z"/>
-                                </svg>
                             </span>
                         </div>
-                        <div class="card-text fw-bold lh-lg">主属性: {{ toChinese(Artifacts.mainEntry,"mainEntry") }}</div>
+                        <div class="card-text fw-bold lh-lg">{{ toChinese(Artifacts.mainEntry,"mainEntry") }}+{{ mainEntryValue(Artifacts.mainEntry,Artifacts.mainEntryValue) }}</div>
                         <span class="badge">+{{ Artifacts.level }}</span>
                         <a id="mobileShow" data-bs-toggle="offcanvas" href="#offcanArtifactShow" aria-controls="offcanArtifactShow">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
@@ -123,9 +121,8 @@
                         <li><a class="dropdown-item disabled" href="#">敬请期待</a></li>
                     </ul>
                 </div>
-                <button id="clear" @click="ArtifactClear" class="btn btn-danger">清除数据</button>
                 <div class="dropdown" style="display:inline-block;">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn dropdown-toggle fw-bold" href="#" role="button" id="dropdownMenuLink" style="background-color: #ece5d8;" data-bs-toggle="dropdown" aria-expanded="false">
                       更多
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -144,6 +141,14 @@
                                     <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
                                 </svg>
                                 全部重置
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" @click="ArtifactClear">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                                清空列表
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
@@ -263,7 +268,7 @@
                             <input class="form-check-input" type="checkbox" id="listModeRadio" v-model="userSetting['listBriefMode']">
                             <label class="form-check-label" for="listModeRadio">使用简洁列表</label>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm mt-3" @click="clearStorge">清除本地数据</button>
+                        <button type="button" class="btn btn-danger btn-sm mt-3" @click="clearStorge">清除本地数据</button>
                         <br>
                         <button type="button" class="btn btn-primary btn-sm mt-3" @click="resetSetting">恢复默认设置（含评分设置）</button>
                     </div>
@@ -402,7 +407,6 @@
                 for(let i in entryValue){
                     this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
                 }
-                console.log("Vue is runnning.");
             },
             mounted(){
                 var that = this;
@@ -590,16 +594,19 @@
                     let radarChart = echarts.init(this.$refs.radarChartBox);
                     let radarChart2 = echarts.init(this.$refs.radarChartBox2);
                     this.radarChartOption = {
+                        textStyle: {
+                            fontFamily: "genshin-font"
+                        },
                         radar: {
                             splitNumber: 7,
                             indicator: [
                                 { name: '攻击力', max: entryValue['ATKPer'][entryValue['ATKPer'].length-1]*6, min: -5.8, color: "#262626"},
                                 { name: '暴击', max: entryValue['critRate'][entryValue['critRate'].length-1]*6, min: -3.9, color: "#262626"},
                                 { name: '暴伤' , max: entryValue['critDMG'][entryValue['critDMG'].length-1]*6, min: -7.8, color: "#262626"},
-                                { name: '生命值', max: entryValue['HPPer'][entryValue['HPPer'].length-1]*6, min: -5.8, color: "#262626"},
-                                { name: '防御力', max: entryValue['defPer'][entryValue['defPer'].length-1]*6, min: -7.3, color: "#262626"},
                                 { name: '充能效率', max: entryValue['energyRecharge'][entryValue['energyRecharge'].length-1]*6, min: -6.5, color: "#262626"},
-                                { name: '元素精通', max: entryValue['elementMastery'][entryValue['elementMastery'].length-1]*6, min: -23, color: "#262626"}
+                                { name: '元素精通', max: entryValue['elementMastery'][entryValue['elementMastery'].length-1]*6, min: -23, color: "#262626"},
+                                { name: '生命值', max: entryValue['HPPer'][entryValue['HPPer'].length-1]*6, min: -5.8, color: "#262626"},
+                                { name: '防御力', max: entryValue['defPer'][entryValue['defPer'].length-1]*6, min: -7.3, color: "#262626"}
                             ]
                         },
                         series: [{
@@ -607,7 +614,7 @@
                             type: "radar",
                             areaStyle: {},
                             data: [{
-                                value: [opObj["ATKPer"] || 0, opObj["critRate"] || 0, opObj["critDMG"] || 0, opObj["HPPer"] || 0, opObj["defPer"] || 0, opObj["energyRecharge"] || 0,  opObj["elementMastery"] || 0],
+                                value: [opObj["ATKPer"] || 0, opObj["critRate"] || 0, opObj["critDMG"] || 0, opObj["energyRecharge"] || 0,  opObj["elementMastery"] || 0, opObj["HPPer"] || 0, opObj["defPer"] || 0],
                             }]
                         }]
                     }
@@ -624,6 +631,10 @@
                     this.alertFunc.alertClose = setTimeout(() => {
                         this.alertFunc.alertShow = false;
                     },time)
+                },
+                // 主词条属性
+                mainEntryValue(mainEntry,val){
+                    return fomatMainEntryValue(mainEntry,val);
                 },
                 // 转换为中文
                 toChinese(word,type){
@@ -642,19 +653,23 @@
                 formatEntry(entry,value){
                     let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
                     resEntry = this.toChinese(entry,"entry"),
-                    resValue = Number(value.toFixed(2));
+                    resValue = value;
                     if(percentEntry.indexOf(entry) != -1){
                         resEntry = resEntry.replace("%","");
-                        resValue += "%";
+                        resValue = resValue.toFixed(1) + "%";
+                    }else{
+                        resValue = resValue = value.toFixed(0);
                     }
                     return resEntry + "+" + resValue;
                 }
             }
         })
     </script>
+    <script src="js/router/router.js"></script>
     <script src="components/demo-alert.js"></script>
     <script src="components/artifact-show.js"></script>
     <script>
+        app.use(router);
         app.mount('#vueApp');
     </script>
     <div style="display: none;">

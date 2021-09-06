@@ -1,29 +1,29 @@
 /**
- * ArtifactsUpgradeSim v0.1.5
+ * ArtifactsUpgradeSim v0.1.6
  * Copyrigth 2021-2022 DioMao (https://github.com/DioMao/genshin_ArtifactsUpgradeSim_js/graphs/contributors)
  * Licensed under MIT (https://github.com/DioMao/genshin_ArtifactsUpgradeSim_js/blob/main/LICENSE)
  */
 "use strict";
 
 const ArtifactsSim = new ArtifactsFunction();
-const ArtifactsSimVersion = "0.1.5";
-// ArtifactsSim.creatArtifact("cup","fire",["ATKPer","critRate","critDMG","elementMastery"],[5.8,3.9,7.8,23]);
+const ArtifactsSimVersion = "0.1.6";
+console.log("%cArtifactsUpgradeSim is running.Learn more: https://github.com/DioMao/genshin_ArtifactsUpgradeSim_js", "color:rgb(144,82,41)");
 
 // 词缀条目
 const entryList = ["critRate", "critDMG", "ATK", "ATKPer", "def", "defPer", "HP", "HPPer", "energyRecharge", "elementMastery"],
     entryListCh = ["暴击率%", "暴击伤害%", "攻击力", "攻击力%", "防御力", "防御力%", "生命值", "生命值%", "充能效率%", "元素精通"],
     entryProbability = [0.3, 0.3, 0.75, 0.5, 0.75, 0.5, 0.75, 0.5, 0.3, 0.3],
     entryValue = {
-        critRate: [2.7, 3.1, 3.5, 3.9],
-        critDMG: [5.4, 6.2, 7, 7.8],
-        ATK: [14, 16, 18, 19],
-        ATKPer: [4.1, 4.7, 5.3, 5.8],
-        def: [16, 19, 21, 23],
-        defPer: [5.1, 5.8, 6.6, 7.3],
-        HP: [209, 239, 269, 299],
-        HPPer: [4.1, 4.7, 5.3, 5.8],
-        energyRecharge: [4.5, 5.2, 5.8, 6.5],
-        elementMastery: [16, 19, 21, 23]
+        critRate: [2.7222, 3.1111, 3.5, 3.8889],
+        critDMG: [5.4402, 6.2174, 7, 7.7718],
+        ATK: [13.6111, 15.5556, 17.5, 19.4444],
+        ATKPer: [4.0833, 4.6667, 5.25, 5.8333],
+        def: [16.3333, 18.5, 21, 23.3333],
+        defPer: [5.1031, 5.8321, 6.5611, 7.2901],
+        HP: [209.125, 239, 268.875, 298.75],
+        HPPer: [4.0833, 4.6667, 5.25, 5.8333],
+        energyRecharge: [4.5325, 5.18, 5.8275, 6.475],
+        elementMastery: [16.3333, 18.5, 21, 23.3333]
     },
     extraEnrtyRate = 0.3;
 
@@ -38,7 +38,7 @@ const feather = ["ATK"],
     hat = ["critRate", "critDMG", "ATKPer", "defPer", "HPPer", "elementMastery", "HPRes"],
     cup = ["ATKPer", "defPer", "HPPer", "elementMastery", "water", "fire", "thunder", "rock", "wind", "ice", "Physical"],
     mainEntryList = ["ATK", "HP", "critRate", "energyRecharge", "HPRes", "critDMG", "ATKPer", "defPer", "HPPer", "elementMastery", "water", "fire", "thunder", "rock", "wind", "ice", "Physical"],
-    mainEntryListCh = ["攻击", "生命", "暴击率%", "充能效率%", "治疗加成", "暴击伤害%", "攻击%", "防御%", "生命%", "元素精通", "水元素伤害", "火元素伤害", "雷元素伤害", "岩元素伤害", "风元素伤害", "冰元素伤害", "物理伤害"];
+    mainEntryListCh = ["攻击力", "生命值", "暴击率", "元素充能效率", "治疗加成", "暴击伤害", "攻击力", "防御力", "生命值", "元素精通", "水元素伤害加成", "火元素伤害加成", "雷元素伤害加成", "岩元素伤害加成", "风元素伤害加成", "冰元素伤害加成", "物理伤害加成"];
 
 const cusEntryList = {
     feather: feather,
@@ -53,9 +53,30 @@ const hourglassRate = [0.26, 0.26, 0.26, 0.1, 0.1],
     hatRate = [0.1, 0.1, 0.22, 0.22, 0.22, 0.04, 0.1],
     cupRate = [0.21, 0.21, 0.21, 0.025, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05];
 
+// 圣遗物主词条属性
+const mainEntryValueList = {
+    ATK: [47, 100, 152, 205, 258, 311],
+    HP: [717, 1530, 2342, 3156, 3967, 4780],
+    critRate: [4.7, 9.9, 15.3, 20.5, 25.8, 31.1],
+    energyRecharge: [7.8, 16.5, 25.4, 34.2, 43, 51.8],
+    HPRes: [5.4, 11.5, 17.6, 23.7, 29.8, 35.9],
+    critDMG: [9.3, 19.9, 30.5, 41, 51.6, 62.2],
+    ATKPer: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    defPer: [8.7, 18.6, 28.6, 38.5, 48.4, 58.3],
+    HPPer: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    elementMastery: [28, 60, 91, 123, 155, 187],
+    water: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    fire: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    thunder: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    rock: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    wind: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    ice: [7, 14.9, 22.8, 30.8, 38.7, 46.6],
+    Physical: [8.7, 18.6, 28.6, 38.5, 48.4, 58.3]
+};
+
 // 圣遗物评分选项
-const scoreList = ["atk","crit","def","hp","er","em"],
-scoreListCH = ["攻击得分","双暴得分","防御得分","生命得分","充能得分","精通得分"];
+const scoreList = ["atk", "crit", "def", "hp", "er", "em"],
+    scoreListCH = ["攻击得分", "双暴得分", "防御得分", "生命得分", "充能得分", "精通得分"];
 
 /**
  * 构造函数
@@ -70,24 +91,25 @@ function ArtifactsFunction() {
 
 /**
  * 生成初始数据
- * @param {string} __part 指定位置，可为空
- * @param {string} __main 指定主词条，可为空
+ * @param {String} __part 指定位置，可为空
+ * @param {String} __main 指定主词条，可为空
  * @param {Array} __entryArr 指定词条（至多四条），可为空
  * @param {Array} __entryRate 副词条数值（对应自选副词条），可为空
- * @returns {object} 对象newArtifacts
+ * @returns {Object} 对象newArtifacts
  */
 ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", __entry = [], __entryRate = []) {
     let newArtifacts = {
-        level: 0,
-        part: "none",
-        mainEntry: "none",
-        entry: [],
-        initEntry: '',
-        upgradeHistory: [],
-        creationDate: Date.now()
-    },
-    ArtifactEntry = [],
-    ArtifactEntryRate = [];
+            level: 0,
+            part: "none",
+            mainEntry: "none",
+            mainEntryValue: 0,
+            entry: [],
+            initEntry: '',
+            upgradeHistory: [],
+            creationDate: Date.now()
+        },
+        ArtifactEntry = [],
+        ArtifactEntryRate = [];
     // 自选或随机位置
     if (typeof (__part) == "string" && parts.indexOf(__part) != -1) {
         newArtifacts.part = __part;
@@ -100,6 +122,8 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
     } else {
         newArtifacts.mainEntry = randomMainEntry(newArtifacts.part);
     }
+    // 主属性数值
+    newArtifacts.mainEntryValue = mainEntryValueList[newArtifacts.mainEntry][0];
     // 临时词条库（排除已有词条）
     for (let i = 0; i < entryList.length; i++) {
         entryList[i] == newArtifacts.mainEntry ? null : (ArtifactEntry.push(entryList[i]), ArtifactEntryRate.push(entryProbability[i]));
@@ -110,9 +134,9 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
             let cusEntry = __entry[i],
                 cusEntryRate = __entryRate[i],
                 index = ArtifactEntry.indexOf(cusEntry);
-                // 从临时词条库中移除已有词条，避免重复
-                ArtifactEntry.splice(index, 1);
-                ArtifactEntryRate.splice(index, 1);
+            // 从临时词条库中移除已有词条，避免重复
+            ArtifactEntry.splice(index, 1);
+            ArtifactEntryRate.splice(index, 1);
             // 判断自选副词条数值是否合规
             if (__entryRate.length == 0 || typeof (cusEntryRate) != "number" || entryValue[cusEntry].indexOf(cusEntryRate) == -1) {
                 cusEntryRate = randomEntryValue(__entry);
@@ -121,7 +145,7 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
         }
     }
     // 随机词条/+若自选词条数量不到3条则补至3条
-    while(newArtifacts.entry.length < 3){
+    while (newArtifacts.entry.length < 3) {
         //临时词条库
         let newEntry = randomRate(ArtifactEntry, ArtifactEntryRate),
             newEntryRate = randomEntryValue(newEntry),
@@ -129,7 +153,7 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
         // 从临时词条库中移除已有词条，避免重复
         ArtifactEntry.splice(index, 1);
         ArtifactEntryRate.splice(index, 1);
-        newArtifacts.entry.push([newEntry,newEntryRate]);
+        newArtifacts.entry.push([newEntry, newEntryRate]);
     }
     // 是否拥有初始四词条
     if (__entry.length == 0 && Math.random() < extraEnrtyRate) {
@@ -147,9 +171,9 @@ ArtifactsFunction.prototype.creatArtifact = function (__part = "", __main = "", 
 
 /**
  * 升级强化
- * @param {number} __index 序号
- * @param {string} __entry 指定强化的词条（默认空值）
- * @param {number} __upLevel 强化数值的级别(0-3，3最高)
+ * @param {Number} __index 序号
+ * @param {String} __entry 指定强化的词条（默认空值）
+ * @param {Number} __upLevel 强化数值的级别(0-3，3最高)
  * @returns 升级结果
  */
 ArtifactsFunction.prototype.upgrade = function (__index, __entry = "", __upLevel = -1) {
@@ -160,7 +184,7 @@ ArtifactsFunction.prototype.upgrade = function (__index, __entry = "", __upLevel
         currentEntryRate = [];
     // 判断圣遗物是否满级
     if (currentArtifact.level >= 20) {
-        console.log("Upgrade failed,this Artifact is fully rated.");
+        // console.log("Upgrade failed,this Artifact is fully rated.");
         return false;
     };
     // 是否需要补充词条
@@ -177,8 +201,8 @@ ArtifactsFunction.prototype.upgrade = function (__index, __entry = "", __upLevel
         }
         let addEntry = randomRate(currentEntryList, currentEntryRate),
             addRate = randomEntryValue(addEntry);
-        this.result[__index].entry.push([addEntry, addRate]);
-        this.result[__index].upgradeHistory.push([addEntry, addRate]);
+            currentArtifact.entry.push([addEntry, addRate]);
+            currentArtifact.upgradeHistory.push([addEntry, addRate]);
         // console.log("Upgrade success,new entry is " + addEntry + " + " + addRate);
     } else {
         let upIndex = 0,
@@ -197,28 +221,30 @@ ArtifactsFunction.prototype.upgrade = function (__index, __entry = "", __upLevel
             upIndex = Math.floor(Math.random() * currentArtifact.entry.length);
             upEntry = currentArtifact.entry[upIndex][0];
         }
-        if(__upLevel != -1 && typeof(__upLevel) == "number" && Math.floor(__upLevel) < entryValue[upEntry].length){
+        if (__upLevel != -1 && typeof (__upLevel) == "number" && Math.floor(__upLevel) < entryValue[upEntry].length) {
             upRate = entryValue[upEntry][Math.floor(__upLevel)];
-        }else{
+        } else {
             upRate = randomEntryValue(upEntry);
         }
         // console.log("Upgrade success," + upEntry + " + " + upRate);
-        this.result[__index].entry[upIndex][1] += upRate;
-        this.result[__index].upgradeHistory.push([upEntry, upRate]);
+        currentArtifact.entry[upIndex][1] += upRate;
+        currentArtifact.upgradeHistory.push([upEntry, upRate]);
     }
     // 增加等级
-    this.result[__index].level += 4;
+    currentArtifact.level += 4;
+    // 增加主属性
+    currentArtifact.mainEntryValue = mainEntryValueList[currentArtifact.mainEntry][currentArtifact.level/4];
     return true;
 }
 
 /**
  * 圣遗物得分计算
  * @param {*} __index 需要计算的圣遗物序号 
- * @param {string/Array} __rule 计算规则，可以为字符串和数组
+ * @param {String/Array} __rule 计算规则，可以为字符串和数组
  * @returns 得分
  */
-ArtifactsFunction.prototype.ArtifactScore = function(__index, __rule = "default"){
-    if(__index >= this.result.length || __index < 0){
+ArtifactsFunction.prototype.ArtifactScore = function (__index, __rule = "default") {
+    if (__index >= this.result.length || __index < 0) {
         return 0;
     }
     // 计分标准（待完善）
@@ -235,33 +261,33 @@ ArtifactsFunction.prototype.ArtifactScore = function(__index, __rule = "default"
         elementMastery: 0.339
     }
     let atkScore = 0,
-    critScore = 0,
-    defScore = 0,
-    HPScore = 0,
-    rechargeScore = 0,
-    EMScore = 0,
-    totalScore = 0,
-    entryArr = this.result[__index].entry;
-    for(let i = 0; i < entryArr.length; i++){
+        critScore = 0,
+        defScore = 0,
+        HPScore = 0,
+        rechargeScore = 0,
+        EMScore = 0,
+        totalScore = 0,
+        entryArr = this.result[__index].entry;
+    for (let i = 0; i < entryArr.length; i++) {
         let entryNow = entryArr[i][0],
-        addScore = entryArr[i][1]*scoreStandar[entryNow];
-        if(entryNow == "ATK" || entryNow == "ATKPer"){
+            addScore = entryArr[i][1] * scoreStandar[entryNow];
+        if (entryNow == "ATK" || entryNow == "ATKPer") {
             atkScore += addScore;
-        }else if(entryNow == "critRate" || entryNow == "critDMG"){
+        } else if (entryNow == "critRate" || entryNow == "critDMG") {
             critScore += addScore;
-        }else if(entryNow == "def" || entryNow == "defPer"){
+        } else if (entryNow == "def" || entryNow == "defPer") {
             defScore += addScore;
-        }else if(entryNow == "HP" || entryNow == "HPPer"){
+        } else if (entryNow == "HP" || entryNow == "HPPer") {
             HPScore += addScore;
-        }else if(entryNow == "energyRecharge"){
+        } else if (entryNow == "energyRecharge") {
             rechargeScore += addScore;
-        }else if(entryNow == "elementMastery"){
+        } else if (entryNow == "elementMastery") {
             EMScore += addScore;
         }
     }
-    if(Array.isArray(__rule)){
-        for(let i = 0; i < __rule.length; i++){
-            switch(__rule[i]){
+    if (Array.isArray(__rule)) {
+        for (let i = 0; i < __rule.length; i++) {
+            switch (__rule[i]) {
                 case "atk":
                     totalScore += atkScore;
                     break;
@@ -285,9 +311,9 @@ ArtifactsFunction.prototype.ArtifactScore = function(__index, __rule = "default"
                     break;
             }
         }
-    }else{
+    } else {
         __rule = __rule.toLowerCase();
-        switch(__rule){
+        switch (__rule) {
             case "default":
                 return atkScore + critScore;
             case "atk":
@@ -310,13 +336,15 @@ ArtifactsFunction.prototype.ArtifactScore = function(__index, __rule = "default"
 
 /**
  * 圣遗物重置初始状态
- * @param {number} __index 序号
+ * @param {Number} __index 序号
  */
 ArtifactsFunction.prototype.reset = function (__index) {
-    this.result[__index].entry.length = 0;
-    this.result[__index].entry = JSON.parse(this.result[__index].initEntry);
-    this.result[__index].upgradeHistory.length = 0;
-    this.result[__index].level = 0;
+    let currentArtifact = this.result[__index];
+    currentArtifact.entry.length = 0;
+    currentArtifact.entry = JSON.parse(currentArtifact.initEntry);
+    currentArtifact.upgradeHistory.length = 0;
+    currentArtifact.level = 0;
+    currentArtifact.mainEntryValue = mainEntryValueList[currentArtifact.mainEntry][0];
 }
 
 /**
@@ -376,16 +404,16 @@ ArtifactsFunction.prototype.undoDel = function () {
  * 模拟器版本检查
  * @returns 检查结果
  */
-function versionCheck(){
+function versionCheck() {
     let storage = window.localStorage;
-    if(!storage){
+    if (!storage) {
         alert("浏览器不支持localstorage");
         return false;
-    }else{
-        if(storage.ArtifactsSimVersion == undefined){
+    } else {
+        if (storage.ArtifactsSimVersion == undefined) {
             storage.ArtifactsSimVersion = ArtifactsSimVersion;
             return true;
-        }else if(storage.ArtifactsSimVersion != ArtifactsSimVersion){
+        } else if (storage.ArtifactsSimVersion != ArtifactsSimVersion) {
             alert("模拟器版本更新，如果遇到错误，请尝试清除浏览器缓存!");
             storage.ArtifactsSimVersion = ArtifactsSimVersion;
             return false;
@@ -422,14 +450,14 @@ function randomRate(__arr1, __arr2) {
 
 /**
  * 主词条合规验证
- * @param {string} __part 位置
- * @param {string} __main 主词条
- * @returns {boolean} true/false
+ * @param {String} __part 位置
+ * @param {String} __main 主词条
+ * @returns {Boolean} true/false
  */
 function mainEntryVerify(__part, __main) {
     if (typeof (__part) != "string" || typeof (__main) != "string") return false;
     if (parts.indexOf(__part) != -1 && mainEntryList.indexOf(__main) != -1) {
-        if(cusEntryList[__part].indexOf(__main) != -1){
+        if (cusEntryList[__part].indexOf(__main) != -1) {
             return true;
         }
         return false;
@@ -439,7 +467,7 @@ function mainEntryVerify(__part, __main) {
 
 /**
  * 随机主词条
- * @param {string} __part 位置
+ * @param {String} __part 位置
  */
 function randomMainEntry(__part) {
     switch (__part) {
@@ -460,7 +488,7 @@ function randomMainEntry(__part) {
 
 /**
  * 自选副词条合规验证
- * @param {string} __mainEntry 主词条
+ * @param {String} __mainEntry 主词条
  * @param {Array} __entryArr 副词条数组
  * @returns 
  */
@@ -475,7 +503,7 @@ function entryVerify(__mainEntry, __entryArr) {
 
 /** 
  * 随机副词条数值
- * @param {string} __entry 词条名称
+ * @param {String} __entry 词条名称
  */
 function randomEntryValue(__entry) {
     return entryValue[__entry][Math.floor(Math.random() * entryValue[__entry].length)];
@@ -487,34 +515,59 @@ function randomEntryValue(__entry) {
  * @param {*} type 词条的类型
  * @returns 翻译结果
  */
-function toChinese(word,type){
-    if(type == "entry"){
+function toChinese(word, type) {
+    if (type == "entry") {
         return entryListCh[entryList.indexOf(word)]
-    }else if(type == "parts"){
+    } else if (type == "parts") {
         return partsCh[parts.indexOf(word)];
-    }else if(type == "mainEntry"){
+    } else if (type == "mainEntry") {
         return mainEntryListCh[mainEntryList.indexOf(word)];
-    }else if(type == "score"){
+    } else if (type == "score") {
         return scoreListCH[scoreList.indexOf(word)];
     }
     return "";
 }
 
 /**
+ * 格式化主词条数值（用于展示）
+ * @param {String} mainEntry 主词条名称
+ * @param {Number} value 主词条数值
+ * @returns 展示用数值
+ */
+function fomatMainEntryValue(mainEntry = "", value = 0){
+    if(mainEntry == "ATK" || mainEntry == "HP" || mainEntry == "elementMastery"){
+        value = toThousands(value);
+    }else{
+        value = value.toFixed(1) + "%";
+    }
+    return value;
+}
+
+/**
  * 副词条展示优化
  * 将词条展示为 攻击力+5.8% 这样的形式
- * @param {string} entry 副词条名称
- * @param {number} value 副词条数值
+ * @param {String} entry 副词条名称
+ * @param {Number} value 副词条数值
  * @returns 结果（字符串）
  */
-function formatEntry(entry,value){
+function formatEntry(entry, value, language = "en") {
     // 带百分号的词条
-    let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
-    resEntry = toChinese(entry,"entry"),
-    resValue = Number(value.toFixed(2));
-    if(percentEntry.indexOf(entry) != -1){
-        resEntry = resEntry.replace("%","");
+    let percentEntry = ["critRate", "critDMG", "ATKPer", "defPer", "HPPer", "energyRecharge"],
+        resEntry = entry,
+        resValue = Number(value.toFixed(2));
+    if (language == "ch") resEntry = toChinese(entry, "entry");
+    if (percentEntry.indexOf(entry) != -1) {
+        // resEntry = resEntry.replace("%", "");
         resValue += "%";
     }
     return resEntry + "+" + resValue;
+}
+
+/**
+ * 数字千位分割（加逗号）
+ * @param {Number | Srting} val 待转化的数字
+ * @returns 转换结果（字符串）
+ */
+function toThousands(val) {
+    return (val || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }

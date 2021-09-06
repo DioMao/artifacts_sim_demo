@@ -1,4 +1,10 @@
+@font-face {
+    font-family: "genshin-font";
+    src: url(genshin_mini_artifact.ttf);
+}
+
 #vueApp{
+    font-family: "genshin-font";
     width: 100%;
     user-select: none;
 }
@@ -21,6 +27,9 @@
 }
 .hide{
     display: none !important;
+}
+.highscore{
+    color: rgb(148,38,6);
 }
 .navbar{
     background-color: #d2cab0;
@@ -54,7 +63,7 @@
     background-color: #eae2c9;
     top: 56px;
     width: 100%;
-    height: calc(100vh - 116px);
+    height: calc(100% - 116px);
     user-select: none;
 }
 .demo-container{
@@ -122,8 +131,8 @@
 
 #radarChartBox,#radarChartBox2{
     margin: 10px auto;
-    width: 280px;
-    height: 280px;
+    width: 290px;
+    height: 240px;
 }
 #mobileShow{
     position: absolute;
@@ -134,9 +143,9 @@
     .ArtifactsBox{
         width: calc(50% - 20px);
     }
-    ::-webkit-scrollbar{
+    /* ::-webkit-scrollbar{
         display: none;
-    }
+    } */
 }
 @media screen and (max-width:819px){
     .ArtifactShowBox{
@@ -156,7 +165,7 @@
     .ArtifactShowBox{
         overflow-y: scroll;
         position: fixed;
-        padding-top: 3px;
+        padding-top: 15px;
         top: 56px;
         right: 50px;
         width: 320px;
@@ -199,11 +208,6 @@ footer{
     width: 1.4rem;
     border-radius: 100rem;
     background-color: rgb(48,48,48);
-}
-.circleinbox::before{
-    content: "";
-    display: block;
-    width: 1.5rem;
 }
 .circleinbox::after{
     content: "";
@@ -257,7 +261,7 @@ footer{
     height: 30px;
     color: #fff;
     font-weight: bold;
-    line-height: 27px;
+    line-height: 30px;
     padding-left: 18px;
     background-color: #BC6832;
 }
@@ -275,7 +279,7 @@ footer{
 .ArtifactShow .aHead{
     position: relative;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 13px;
     font-weight: bold;
     height: 135px;
     padding: 9px 18px;
@@ -283,9 +287,15 @@ footer{
 }
 .ArtifactShow .aHead .mainEntry{
     position: absolute;
-    top: 57px;
+    top: 55px;
     left: 18px;
     color: rgb(191,173,166);
+}
+.ArtifactShow .aHead .mainEntryValue{
+    position: absolute;
+    font-size: 24px;
+    top: 70px;
+    left: 18px;
 }
 .ArtifactShow .aHead .aImg{
     position: absolute;
