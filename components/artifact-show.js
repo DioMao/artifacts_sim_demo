@@ -1,4 +1,37 @@
 app.component("artifact-show",{
+    template:`
+    <div class="ArtifactShow">
+        <div class="aTitle"> {{ artifactName }} </div>
+        <div class="titleLine"></div>
+        <div class="aHead">
+            {{ toChinese(showdetail.part,"parts") }}
+            <div class="mainEntry"> {{ toChinese(showdetail.mainEntry,"mainEntry") }} </div>
+            <div class="mainEntryValue">{{ mainEntryValue }}</div>
+            <div class="aImg">
+                <img :src="'img/A-'+showdetail.part+'.png'" :alt="showdetail.part">
+            </div>
+            <div class="levelStar">
+                <span v-for="i in 5" style="margin-right: 3px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <div class="blurLine"></div>
+        <div class="aContent">
+            <span class="badge">+{{ showdetail.level }}</span>
+            <ul>
+                <li v-for="entry in showdetail.entry">·{{ showEntryList(entry[0],entry[1]) }}</li>
+            </ul>
+        </div>
+        <div class="aButtonBox">
+            <button class="btn btn-genshin btn-sm float-start" @click="upgrade" :disable="showdetail.level>=20"> 强化 </button>
+            <button class="btn btn-genshin btn-sm" @click="init" v-show="showdetail.level>0"> 重置 </button>
+            <button class="btn btn-genshin btn-sm float-end del" @click="del"> 删除 </button>
+        </div>
+    </div>
+    `,
     data(){
         return {
             name: {
@@ -29,39 +62,6 @@ app.component("artifact-show",{
             default: -1
         }
     },
-    template:`
-    <div class="ArtifactShow">
-        <div class="aTitle"> {{ artifactName }} </div>
-        <div class="titleLine"></div>
-        <div class="aHead">
-            {{ toChinese(showdetail.part,"parts") }}
-            <div class="mainEntry"> {{ toChinese(showdetail.mainEntry,"mainEntry") }} </div>
-            <div class="mainEntryValue">{{ mainEntryValue }}</div>
-            <div class="aImg">
-                <img :src="'img/A-'+showdetail.part+'.png'" :alt="showdetail.part">
-            </div>
-            <div class="levelStar">
-                <span v-for="i in 5" style="margin-right: 3px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC32" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                </span>
-            </div>
-        </div>
-        <div class="blurLine"></div>
-        <div class="aContent">
-            <span class="badge">+{{ showdetail.level }}</span>
-            <ul>
-                <li v-for="entry in showdetail.entry">· {{ showEntryList(entry[0],entry[1]) }}</li>
-            </ul>
-        </div>
-        <div class="aButtonBox">
-            <button class="btn btn-sm float-start fw-bold" @click="upgrade" :disable="showdetail.level>=20"> 强化 </button>
-            <button class="btn btn-sm fw-bold" @click="init" v-show="showdetail.level>0"> 重置 </button>
-            <button class="btn btn-sm float-end fw-bold del" @click="del"> 删除 </button>
-        </div>
-    </div>
-    `,
     computed:{
         artifactName(){
             return this.name[this.showdetail.part];
@@ -112,7 +112,6 @@ app.component("artifact-show",{
 //     position: relative;
 //     margin: 0 auto;
 //     width: 300px;
-//     height: 345px;
 // }
 // .ArtifactShow .aTitle{
 //     height: 30px;
@@ -136,7 +135,6 @@ app.component("artifact-show",{
 //     position: relative;
 //     color: #fff;
 //     font-size: 13px;
-//     /* font-weight: bold; */
 //     height: 135px;
 //     padding: 9px 18px;
 //     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
@@ -179,18 +177,18 @@ app.component("artifact-show",{
 // }
 // .ArtifactShow .aContent{
 //     height: 150px;
-//     font-size: 0.9rem;
+//     font-size: 14px;
 //     padding: 15px 18px;
 //     background-color: #ECE5D8;
 // }
 // .ArtifactShow .aContent .badge{
 //     font-weight: 400;
-//     font-size: 0.9rem;
-//     padding: 3px 6px;
+//     font-size: 14px;
+//     padding: 2px 4px 1px;
 //     background-color: rgb(57,68,79) !important;
 // }
 // .ArtifactShow .aContent ul{
-//     margin-top: 15px;
+//     margin-top: 10px;
 //     list-style-type: none;
 //     padding: 0;
 // }
@@ -199,13 +197,15 @@ app.component("artifact-show",{
 //     color: rgb(76,86,104);
 // }
 // .ArtifactShow .aButtonBox{
-//     height: 30px;
+//     height: 40px;
 //     background-color: #a87940;
 //     text-align: center;
-//     padding: 0 30px;
+//     padding: 7px 30px;
 //     overflow: hidden;
 // }
 // .ArtifactShow .aButtonBox button{
+//     font-size: 15px;
+//     line-height: 15px;
 //     background-color: #dea752;
 //     color: #303030;
 //     width: 70px;

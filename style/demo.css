@@ -9,6 +9,38 @@
     background-color: rgb(236, 229, 216) !important;
     border-radius: 25px !important;
 }
+.btn-genshin::before{
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    display: block;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 25px;
+}
+.btn-genshin:hover::before{
+    border: solid 3px rgb(255, 255, 255);
+}
+.btn-genshin-dark{
+    position: relative;
+    color: rgb(236,229,216) !important;
+    background-color: rgb(74,83,102) !important;
+    border-radius: 25px !important;
+}
+.btn-genshin-dark::before{
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    display: block;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 25px;
+}
+.btn-genshin-dark:hover::before{
+    border: solid 3px rgb(255,230,178);
+}
 .circleinbox{
     position: relative;
     float: left;
@@ -28,6 +60,116 @@
     left: 0.3rem;
     border: solid 2px rgb(245,195,50);
     border-radius: 100rem;
+}
+.squareinbox{
+    position: relative;
+    float: left;
+    margin-top: 0.1rem;
+    margin-left: -0.3rem;
+    margin-right: 0.4rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: rgb(48,48,48);
+    border-radius: 2px;
+}
+.squareinbox::after{
+    content: "";
+    position: absolute;
+    width: 0.7rem;
+    height: 0.7rem;
+    top: 0.25rem;
+    left: 0.25rem;
+    border: solid 2px rgb(245,195,50);
+}
+.xinbox{
+    position: relative;
+    float: left;
+    margin-left: -0.35rem;
+    margin-right: 0.4rem;
+    height: 1.4rem;
+    width: 1.4rem;
+    border-radius: 100rem;
+    background-color: rgb(48,48,48);
+}
+.xinbox::before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1rem;
+    top: 0.25rem;
+    left: 0.65rem;
+    background-color: rgb(245,195,50);
+    border: solid 1px rgb(245,195,50);
+    transform: rotate(45deg);
+}
+.xinbox::after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1rem;
+    top: 0.25rem;
+    left: 0.65rem;
+    background-color: rgb(245,195,50);
+    border: solid 1px rgb(245,195,50);
+    transform: rotate(135deg);
+}
+
+/* bootstrap样式修改 */
+.modal-content{
+    border: none !important;
+}
+.modal-header{
+    position: relative;
+    color: rgb(236,229,216);
+    background-color: rgb(69,77,92);
+}
+.modal-header::after{
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: calc(100% - 6px);
+    width: calc(100% - 6px);
+    border: solid 3px rgb(81,91,107);
+}
+.modal-header .btn-close{
+    position: relative;
+    background-color: rgb(236,229,216);
+    border-radius: 25px;
+    margin-right: 0 !important;
+}
+.modal-header .btn-close::after{
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    height: calc(100% + 8px);
+    width: calc(100% + 8px);
+    border: solid 7px rgb(135,141,141);
+    border-radius: 25px;
+}
+.modal-header .btn-close:hover::after{
+    border: solid 6px rgb(236,229,216);
+}
+.modal-body{
+    position: relative;
+    background-color: rgb(249,246,242);
+}
+.modal-body::after{
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: calc(100% - 6px);
+    width: calc(100% - 6px);
+    border: solid 3px rgb(242,238,231);
+}
+.modal-footer{
+    padding: 0.5rem 0.75rem !important;
+    background-color: rgb(231,226,216);
 }
 
 #vueApp{
@@ -59,6 +201,7 @@
     color: rgb(148,38,6);
 }
 .navbar{
+    height: 53px;
     background-color: #d2cab0;
     width: 100%;
     position: fixed !important;
@@ -145,13 +288,13 @@
 }
 .ArtifactsBox .card-body:first-child .badge{
     background-color: rgb(57,68,79);
+    padding: 3px 4px 3px;
 }
 .ArtifactsBox .card-body:last-child{
     background-color: rgb(255, 231, 187);
     padding: 5px 15px;
 }
 .ArtifactsBox ul li{
-    /* font-weight: bold; */
     color: rgb(76,86,104);
     background-color: rgb(233,229,220);
 }
@@ -223,6 +366,7 @@ footer{
     background-color: #d2cab0;
     width: 100%;
     height: 60px;
+    left: 0;
     bottom: 0;
 }
 .buttonBox{
@@ -247,7 +391,7 @@ footer{
 }
 .filterList li a:hover{
     color: rgb(234,227,214);
-    background-color: rgb(89, 99, 121) !important;
+    background-color: rgb(85,92,107) !important;
 }
 .filterList li a{
     color: rgb(234,227,214);
@@ -269,11 +413,9 @@ footer{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-#clear{
-    border-radius: 25px;
-}
-#dropdownMenuLink{
-    border-radius: 25px;
+#dropdownMenuLink::after{
+    content: "";
+    clear: both;
 }
 
 #score,#score-2{
@@ -283,7 +425,10 @@ footer{
 }
 .selectBox{
     width: 160px;
-    position: relative;
+    position: fixed;
+    top: 8px;
+    right: 15px;
+    z-index: 20;
 }
 
 /* ArtifactShow */
@@ -291,7 +436,6 @@ footer{
     position: relative;
     margin: 0 auto;
     width: 300px;
-    height: 345px;
 }
 .ArtifactShow .aTitle{
     height: 30px;
@@ -315,7 +459,6 @@ footer{
     position: relative;
     color: #fff;
     font-size: 13px;
-    /* font-weight: bold; */
     height: 135px;
     padding: 9px 18px;
     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
@@ -358,18 +501,18 @@ footer{
 }
 .ArtifactShow .aContent{
     height: 150px;
-    font-size: 0.9rem;
+    font-size: 14px;
     padding: 15px 18px;
     background-color: #ECE5D8;
 }
 .ArtifactShow .aContent .badge{
     font-weight: 400;
-    font-size: 0.9rem;
-    padding: 3px 6px;
+    font-size: 14px;
+    padding: 2px 4px 1px;
     background-color: rgb(57,68,79) !important;
 }
 .ArtifactShow .aContent ul{
-    margin-top: 15px;
+    margin-top: 10px;
     list-style-type: none;
     padding: 0;
 }
@@ -378,13 +521,15 @@ footer{
     color: rgb(76,86,104);
 }
 .ArtifactShow .aButtonBox{
-    height: 30px;
+    height: 40px;
     background-color: #a87940;
     text-align: center;
-    padding: 0 30px;
+    padding: 7px 30px;
     overflow: hidden;
 }
 .ArtifactShow .aButtonBox button{
+    font-size: 15px;
+    line-height: 15px;
     background-color: #dea752;
     color: #303030;
     width: 70px;
