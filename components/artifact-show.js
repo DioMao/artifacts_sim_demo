@@ -30,6 +30,7 @@ app.component("artifact-show",{
             <button class="btn btn-genshin btn-sm" @click="init" v-show="showdetail.level>0"> 重置 </button>
             <button class="btn btn-genshin btn-sm float-end del" @click="del"> 删除 </button>
         </div>
+        <router-link :to="{path:'/artifact-'+index}" class="btn btn-genshin-dark mt-1 float-end">强化界面</router-link>
     </div>
     `,
     data(){

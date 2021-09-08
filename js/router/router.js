@@ -3,11 +3,12 @@ const routes = [{
         name: 'home',
         component: app.component('artifact-box')
     },
-    // {
-    //     path: '/about',
-    //     name: 'About',
-    //     component: About
-    // },
+    {
+        path: '/artifact-:index',
+        name: 'upgrade',
+        component: app.component('artifact-upgrade'),
+        props: true
+    },
     // {
     //     path: '/artifactShow',
     //     name: '',

@@ -209,7 +209,7 @@ app.component("artifact-box",{
             </div>
         </div>
         <div class="modal fade" id="scoreSet" tabindex="-1" aria-labelledby="scoreSetting" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="scoreSetting">评分标准选择</h5>
@@ -232,8 +232,8 @@ app.component("artifact-box",{
                                 <option v-for="config in scoreList" :value="config">{{ toChinese(config,"score") }}</option>
                             </select>
                         </div>
-                        <div v-show="userSetting.scoreConfig.mode=='array'">
-                            <div class="form-check" v-for="config in scoreList">
+                        <div class="justify-content-between flex-wrap" style="display:flex;" v-show="userSetting.scoreConfig.mode=='array'">
+                            <div class="form-check" style="width:40%;" v-for="config in scoreList">
                                 <input class="form-check-input" type="checkbox" :value="config" :id="'score-'+config" v-model="userSetting.scoreConfig.arrRule">
                                 <label class="form-check-label" :for="'score-'+config">
                                     {{ toChinese(config,"score") }}
@@ -268,7 +268,7 @@ app.component("artifact-box",{
         return {
             showIndex: -1,                  // 右侧圣遗物展示序号
             showDetail: Object,             // 右侧圣遗物展示详情
-            ArtifactsList: Array,           // 圣遗物列表
+            ArtifactsList: [],           // 圣遗物列表
             parts: Array,                   // 圣遗物位置*自选
             mainEntryList: Array,           // 圣遗物主词条列表
             entryList: Array,               // 副词条列表
@@ -326,13 +326,17 @@ app.component("artifact-box",{
     },
     mounted(){
         var that = this;
+        // 初始化时列表数据保持一致
+        if(this.ArtifactsList.length == 0 && ArtifactsSim.result.length != 0){
+            this.ArtifactsList = [...ArtifactsSim.result];
+        }
         if(!window.localStorage){
             alert("浏览器不支持localstorage");
             return false;
         }else{
             if(localStorage.localRecord == undefined){
                 localStorage.localRecord = [];
-            }else if(localStorage.localRecord != '' && localStorage.localRecord != "[]"){
+            }else if(localStorage.localRecord != '' && localStorage.localRecord != "[]" && this.ArtifactsList.length == 0){
                 ArtifactsSim.result = JSON.parse(localStorage.getItem("localRecord"));
                 this.ArtifactsList = JSON.parse(localStorage.getItem("localRecord"));
             };
