@@ -599,9 +599,9 @@ footer{
     left: 90%;
     margin-left: 3.5rem;
     display: inline-block;
-    width: 7px;
-    height: 5px;
-    margin-bottom: 0px;
+    width: .4375rem;
+    height: .3125rem;
+    margin-bottom: 0rem;
     background-image: -webkit-linear-gradient(180deg,rgb(144,232,0.9),#00000030);
     transform: rotate(270deg);
 }
@@ -758,7 +758,7 @@ footer{
 }
 .myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry .upgradeArrowUp{
     top: 0.75rem;
-    margin-left: 60px;
+    margin-left: 3.75rem;
 }
 
 /* 动画效果 */
@@ -853,7 +853,7 @@ footer{
     }
     .entryBox{
         padding: 0 .9375rem;
-        width: 100%;
+        width: 100% !important;
     }
     .upgrade-button-lg{
         bottom: .9375rem;
