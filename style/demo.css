@@ -596,8 +596,7 @@ footer{
 .upgradeArrowUp{
     position: absolute;
     top: 1rem;
-    left: 90%;
-    margin-left: 3.5rem;
+    right: -0.5rem;
     display: inline-block;
     width: .4375rem;
     height: .3125rem;
@@ -758,7 +757,7 @@ footer{
 }
 .myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry .upgradeArrowUp{
     top: 0.75rem;
-    margin-left: 3.75rem;
+    right: -0.8rem;
 }
 
 /* 动画效果 */
@@ -853,7 +852,10 @@ footer{
     }
     .entryBox{
         padding: 0 .9375rem;
-        width: 100% !important;
+        width: 95% !important;
+    }
+    .upgradeArrowUp{
+        right: 0.45rem;
     }
     .upgrade-button-lg{
         bottom: .9375rem;
