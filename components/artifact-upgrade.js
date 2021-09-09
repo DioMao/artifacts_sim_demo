@@ -53,8 +53,9 @@ app.component("artifact-upgrade",{
                 <div class="UpAlertBody ani-showAlertBody">
                     <div class="entryBox UpAlertEntry">
                         <div class="mb-1 mainEntry">
-                            <span class="iconBox">✦</span> {{ toChinese(Artifact.mainEntry,"mainEntry") }}
-                            <span class="centerEntry"> {{ mainEntryValue(Artifact.mainEntry,mainValueBefore) }} </span>
+                            <span class="iconBox">✦</span> 
+                            <span class="UpAlertMainEntry"> {{ toChinese(Artifact.mainEntry,"mainEntry") }} </span>
+                            <span> {{ mainEntryValue(Artifact.mainEntry,mainValueBefore) }} </span>
                             <span class="upgradeArrow"></span>
                             <span class="float-end upColor"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span>
                             <span class="upgradeArrowUp"></span>

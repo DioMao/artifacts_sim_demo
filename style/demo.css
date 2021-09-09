@@ -861,6 +861,9 @@ footer{
         bottom: .9375rem;
         right: .9375rem;
     }
+    .UpAlertMainEntry{
+        margin-right: 0.15rem;
+    }
     /* ::-webkit-scrollbar{
         display: none;
     } */
