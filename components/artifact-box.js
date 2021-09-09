@@ -9,7 +9,7 @@ app.component("artifact-box",{
             </select>
         </div>
         <div class="container-fluid demo-container">
-            <div v-for="(Artifacts,index) in ArtifactsList" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="(selected=='default' || selected == Artifacts.part) && (userSetting.filterMain == 'default' || userSetting.filterMain == Artifacts.mainEntry)" @click="showIndex=index">
+            <div v-for="(Artifacts,index) in ArtifactsList" :id="'artifact-'+index" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="(selected=='default' || selected == Artifacts.part) && (userSetting.filterMain == 'default' || userSetting.filterMain == Artifacts.mainEntry)" @click="showIndex=index">
                 <div class="card-body">
                     <div :class="'card-text fs-6 '+(ArtifactRate(index)>=userSetting.highScore?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}</div>
                     <div class="levelStar">
@@ -198,9 +198,9 @@ app.component("artifact-box",{
                             <input class="form-check-input" type="checkbox" id="listModeRadio" v-model="userSetting['listBriefMode']">
                             <label class="form-check-label" for="listModeRadio">使用简洁列表</label>
                         </div>
-                        <button type="button" class="btn btn-danger btn-sm mt-3" @click="clearStorge">清除本地数据</button>
+                        <button type="button" class="btn btn-genshin-dark btn-sm mt-3" @click="clearStorge">清除本地数据</button>
                         <br>
-                        <button type="button" class="btn btn-primary btn-sm mt-3" @click="resetSetting">恢复默认设置（含评分设置）</button>
+                        <button type="button" class="btn btn-genshin-dark btn-sm mt-3" @click="resetSetting">恢复默认设置（含评分设置）</button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-genshin-dark" data-bs-dismiss="modal"><span class="circleinbox"></span>确认</button>

@@ -87,7 +87,7 @@
     <script src="js/router/router.js"></script>
     <script>
         app.use(router);
-        app.mount('#vueApp');
+        router.isReady().then(() => app.mount('#vueApp'));
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ4Y49LFZ3"></script>

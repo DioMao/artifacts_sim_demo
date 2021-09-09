@@ -122,11 +122,13 @@ html{
 .modal-content{
     border: none !important;
 }
+.offcanvas-header,
 .modal-header{
     position: relative;
     color: rgb(236,229,216);
     background-color: rgb(69,77,92);
 }
+.offcanvas-header::after,
 .modal-header::after{
     content: "";
     pointer-events: none;
@@ -137,12 +139,14 @@ html{
     width: calc(100% - .375rem);
     border: solid .1875rem rgb(81,91,107);
 }
+.offcanvas-header .btn-close,
 .modal-header .btn-close{
     position: relative;
     background-color: rgb(236,229,216);
     border-radius: 1.5625rem;
     margin-right: 0 !important;
 }
+.offcanvas-header .btn-close::after,
 .modal-header .btn-close::after{
     content: "";
     pointer-events: none;
@@ -154,9 +158,11 @@ html{
     border: solid .4375rem rgb(135,141,141);
     border-radius: 1.5625rem;
 }
+.offcanvas-header .btn-close:hover::after,
 .modal-header .btn-close:hover::after{
     border: solid .375rem rgb(236,229,216);
 }
+.offcanvas-body,
 .modal-body{
     position: relative;
     background-color: rgb(249,246,242);

@@ -362,6 +362,7 @@ ArtifactsFunction.prototype.resetAll = function () {
  */
 ArtifactsFunction.prototype.deleteOne = function (__del) {
     this.deleteHistory.push(this.result.splice(__del, 1)[0]);
+    this.count--;
 }
 
 /**
@@ -383,6 +384,7 @@ ArtifactsFunction.prototype.clearAll = function () {
     if (this.backup.length != 0) this.backup.length = 0;
     this.backup = JSON.parse(JSON.stringify(this.result));
     this.result.length = 0;
+    this.count = 0;
 }
 
 /**
@@ -512,7 +514,7 @@ function randomEntryValue(__entry) {
 /**
  * 词条汉化
  * @param {String} word 需要翻译成中文的词条
- * @param {*} type 词条的类型
+ * @param {Array | String} type 词条的类型
  * @returns 翻译结果
  */
 function toChinese(word, type) {
@@ -565,7 +567,7 @@ function formatEntry(entry, value, language = "en") {
 
 /**
  * 数字千位分割（加逗号）
- * @param {Number | Srting} val 待转化的数字
+ * @param {Number | String} val 待转化的数字
  * @returns 转换结果（字符串）
  */
 function toThousands(val) {
