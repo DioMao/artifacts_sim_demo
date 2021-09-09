@@ -15,18 +15,25 @@ app.component("artifact-upgrade",{
         </button>
         <div class="entryBox">
             <div class="mb-3">+{{ Artifact.level }}</div>
-            <div class="mb-1 mainEntry"><span class="me-1" style="color:rgb(172,160,148);">✦</span> {{ toChinese(Artifact.mainEntry,"mainEntry") }} <span class="float-end"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span></div>
+            <div class="mb-1 mainEntry"><span class="iconBox">✦</span> {{ toChinese(Artifact.mainEntry,"mainEntry") }} <span class="float-end"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span></div>
             <div class="entryLine"></div>
             <div class="entryList mb-1" v-for="entry in Artifact.entry">
-                <div class=""><span class="me-1" style="color:rgb(172,160,148);">•</span> {{ toChinese(entry[0],"entry") }} <span class="float-end">{{ showEntryList(entry[0],entry[1]) }}</span></div>
+                <div class=""><span class="iconBox">•</span> {{ toChinese(entry[0],"entry") }} <span class="float-end">{{ showEntryList(entry[0],entry[1]) }}</span></div>
             </div>
+        </div>
+        <div class="upArtifactBox">
+            <div class="artiImgBox">
+                <img :src="'img/A-'+Artifact.part+'.png'" :alt="Artifact.part">
+            </div>
+            <div class="flashingCircle ani-rotate1"></div>
+            <div class="flashingCircle flashingCircle2 ani-rotate2"></div>
         </div>
         <button @click="upgrade" class="btn btn-genshin upgrade-button-lg" v-show="Artifact.level<20"><span class="circleinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强化&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         <div class="upgradeMax" v-show="Artifact.level>=20">已达到当前等级上限</div>
         <div class="myMask" v-show="showUpdate">
             <div class="upgradeAlert ani-AlertBoxUp">
                 <div class="UpAlertHead">
-                    <div class="upgradeImgBox">
+                    <div class="upgradeImgBox ani-ArtifactShow">
                         <div class="upgradeImg">
                             <img :src="'img/A-'+Artifact.part+'.png'" :alt="Artifact.part">
                         </div>
@@ -45,9 +52,19 @@ app.component("artifact-upgrade",{
                 </div>
                 <div class="UpAlertBody ani-showAlertBody">
                     <div class="entryBox UpAlertEntry">
-                        <div class="mb-1 mainEntry"><span class="me-1" style="color:rgb(172,160,148);">✦</span> {{ toChinese(Artifact.mainEntry,"mainEntry") }} <span class="float-end"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span></div>
-                        <div class="entryList mb-1" v-for="entry in Artifact.entry">
-                            <div class=""><span class="me-1" style="color:rgb(172,160,148);">•</span> {{ toChinese(entry[0],"entry") }} <span class="float-end">{{ showEntryList(entry[0],entry[1]) }}</span></div>
+                        <div class="mb-1 mainEntry">
+                            <span class="iconBox">✦</span> {{ toChinese(Artifact.mainEntry,"mainEntry") }}
+                            <span class="centerEntry"> {{ mainEntryValue(Artifact.mainEntry,mainValueBefore) }} </span>
+                            <span class="upgradeArrow"></span>
+                            <span class="float-end upColor"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span>
+                        </div>
+                        <div class="entryList mb-1">
+                            <div class="upEntry">
+                                <span class="iconBox">•</span> {{ toChinese(newEntry,"entry") }}
+                                <span class="centerEntry" v-show="!isNew"> {{ showEntryList(newEntry,oldEntryValue) }} </span>
+                                <span class="upgradeArrow" v-show="!isNew"></span>
+                                <span class="float-end upColor">{{ showEntryList(newEntry,newEntryValue) }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,6 +90,11 @@ app.component("artifact-upgrade",{
                 upgradeHistory: [],
                 creationDate: Date.now()
             },
+            mainValueBefore: 0,                 // 升级前的主属性
+            isNew: false,                       // 是否是新词条
+            newEntry: "HP",                   
+            newEntryValue: 0,
+            oldEntryValue: 0,                   // 旧词条数值
             upgradeLv: -1,
             upEntry: String,
             alertFunc: {
@@ -109,11 +131,28 @@ app.component("artifact-upgrade",{
     methods: {
         // 升级圣遗物
         upgrade(){
+            let ArtiEntry = this.Artifact.entry;
+            // 升级前的数据
+            let oldEntryList = JSON.parse(JSON.stringify(ArtiEntry));
+            this.mainValueBefore = this.Artifact.mainEntryValue;
             let res = ArtifactsSim.upgrade(this.index,this.upEntry,this.upgradeLv);
             this.ArtifactsList = [...ArtifactsSim.result];
             this.localRecord(this.ArtifactsList);
-            this.Artifact = JSON.parse(JSON.stringify(ArtifactsSim.result[this.index]));
             if(res == true){
+                if(oldEntryList.length < ArtiEntry.length){
+                    this.isNew = true;
+                    this.newEntry = ArtiEntry[ArtiEntry.length-1][0];
+                    this.newEntryValue = ArtiEntry[ArtiEntry.length-1][1];
+                }else{
+                    this.isNew = false;
+                    for(let i = 0;i < oldEntryList.length; i++){
+                        if(oldEntryList[i][1] != ArtiEntry[i][1]){
+                            this.newEntry = ArtiEntry[i][0];
+                            this.newEntryValue = ArtiEntry[i][1];
+                            this.oldEntryValue = oldEntryList[i][1];
+                        }
+                    }
+                }
                 this.showUpdate = true;
             }else{
                 this.alertControl("当前圣遗物已满级~",1500,"warning");
@@ -132,7 +171,7 @@ app.component("artifact-upgrade",{
                 // resEntry = resEntry.replace("%","");
                 resValue = resValue.toFixed(1) + "%";
             }else{
-                resValue = resValue = value.toFixed(0);
+                resValue = value.toFixed(0);
             }
             return resValue;
         },

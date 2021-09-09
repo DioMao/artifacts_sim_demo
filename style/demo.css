@@ -502,6 +502,9 @@ footer{
 
 /* upgrade界面css */
 
+.upColor{
+    color: rgb(254,203,49);
+}
 .btn-back{
     position: fixed;
     top: 8px;
@@ -564,6 +567,79 @@ footer{
     bottom: 30px;
     right: 50px;
 }
+.upgradeArrow{
+    position: absolute;
+    top: 0.8rem;
+    left: 50%;
+    margin-left: 3.5rem;
+    display: inline-block;
+    width: 1rem;
+    height: 0.3rem;
+    margin-bottom: 0.2rem;
+    background-image: -webkit-linear-gradient(180deg,#ffffff90,#00000030);
+}
+.upgradeArrow::after{
+    content: "";
+    position: absolute;
+    top: -0.15rem;
+    right: -0.4rem;
+    width: 0;
+    height: 0;
+    border-top: 0.3rem solid transparent;
+    border-left: 0.4rem solid #ffffff90;
+    border-bottom: 0.3rem solid transparent;
+}
+.centerEntry{
+    position: absolute;
+    width: 30px;
+    left: 50%;
+    margin-left: -30px;
+}
+.iconBox{
+    display: inline-block;
+    color:rgb(172,160,148); 
+    width: 1rem;
+    text-align: center;
+}
+.upArtifactBox{
+    position: relative;
+    z-index: 2;
+    bottom: -45%;
+    left: 20%;
+}
+.upArtifactBox .artiImgBox{
+    position: absolute;
+    z-index: 2;
+    top: 30px;
+    left: 30px;
+    width: 140px;
+    height: 140px;
+}
+.upArtifactBox .artiImgBox img{
+    width: 100%;
+    height: 100%;
+}
+.upArtifactBox .flashingCircle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(211 169 0 / 20%);
+    border-top-left-radius: 73px;
+    border-top-right-radius: 132px;
+    border-bottom-left-radius: 113px;
+    border-bottom-right-radius: 78px;
+    border: solid 2px #ffffff;
+    box-shadow: 0 0 4px 2px rgb(255 255 153);
+}
+.upArtifactBox .flashingCircle2{
+    border-top-left-radius: 121px;
+    border-top-right-radius: 67px;
+    border-bottom-left-radius: 112px;
+    border-bottom-right-radius: 91px;
+}
+
 .myMask{
     position: absolute;
     top: 0;
@@ -601,6 +677,7 @@ footer{
 .myMask .upgradeAlert .UpAlertHead .upgradeImgBox{
     overflow: hidden;
     position: absolute;
+    z-index: 2;
     top: -54px;
     left: 50%;
     margin-left: -40px;
@@ -639,12 +716,20 @@ footer{
     overflow: hidden;
     width: 100%;
     height: 0px;
-    background: rgba(63, 71, 87, 0.8);
+    background: rgba(63, 71, 87, 0.9);
 }
 .myMask .upgradeAlert .UpAlertBody .UpAlertEntry{
     float: none;
     margin: 0 auto;
+    width: 50%;
 }
+.myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry{
+    position: relative;
+}
+.myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry .upgradeArrow{
+    top: 0.55rem;
+}
+
 /* 动画效果 */
 .ani-showAlertBody{
     animation: showAlertBody 1s ease forwards;
@@ -655,11 +740,20 @@ footer{
 .ani-AlertBtnShow{
     animation: AlertBtnShow 1s ease forwards;
 }
+.ani-ArtifactShow{
+    animation: ArtifactShow 0.2s ease-in forwards;
+}
+.ani-rotate1{
+    animation: rotate 15s linear infinite;
+}
+.ani-rotate2{
+    animation: rotate2 10s linear infinite;
+}
 @keyframes showAlertBody{
     0%{
         height: 0;
     }
-    30%{
+    40%{
         height: 0;
     }
     100%{
@@ -670,7 +764,7 @@ footer{
     0%{
         margin-top: 0;
     }
-    30%{
+    40%{
         margin-top: 0;
     }
     100%{
@@ -686,6 +780,38 @@ footer{
     }
     100%{
         visibility: inherit;
+    }
+}
+@keyframes ArtifactShow{
+    0%{
+        transform: scale(1.7);
+        filter: brightness(20);
+        box-shadow: #fff 0px 0px 20px 20px;
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes rotate{
+    0%{
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate2{
+    0%{
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(-180deg);
+    }
+    100%{
+        transform: rotate(-360deg);
     }
 }
 
@@ -709,6 +835,10 @@ footer{
 @media screen and (max-width:819px){
     .ArtifactShowBox{
         display: none;
+    }
+    .upArtifactBox{
+        left: 50%;
+        margin-left: -100px;
     }
 }
 @media screen and (min-width:820px){
