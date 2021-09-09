@@ -617,7 +617,8 @@ footer{
 }
 .centerEntry{
     position: absolute;
-    width: 1.875rem;
+    text-align: center;
+    width: 3rem;
     left: 50%;
     margin-left: -1.875rem;
 }
@@ -851,11 +852,14 @@ footer{
         width: calc(50% - 1.25rem);
     }
     .entryBox{
-        padding: 0 .9375rem;
-        width: 95% !important;
+        padding: 0 .5rem;
+        width: 100% !important;
     }
     .upgradeArrowUp{
-        right: 0.45rem;
+        right: 0.2rem;
+    }
+    .myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry .upgradeArrowUp{
+        right: -0.6rem;
     }
     .upgrade-button-lg{
         bottom: .9375rem;
