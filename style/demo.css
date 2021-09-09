@@ -3,43 +3,47 @@
     src: url(genshin_mini_artifact.ttf);
 }
 
+html{
+    font-size: 16px;
+}
+
 /* 仿原神按键 */
 .btn-genshin{
     position: relative;
     background-color: rgb(236, 229, 216) !important;
-    border-radius: 25px !important;
+    border-radius: 1.5625rem !important;
 }
 .btn-genshin::before{
     content: "";
     position: absolute;
-    top: -2px;
-    left: -2px;
+    top: -0.125rem;
+    left: -0.125rem;
     display: block;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    border-radius: 25px;
+    width: calc(100% + .25rem);
+    height: calc(100% + .25rem);
+    border-radius: 1.5625rem;
 }
 .btn-genshin:hover::before{
-    border: solid 3px rgb(255, 255, 255);
+    border: solid .1875rem rgb(255, 255, 255);
 }
 .btn-genshin-dark{
     position: relative;
     color: rgb(236,229,216) !important;
     background-color: rgb(74,83,102) !important;
-    border-radius: 25px !important;
+    border-radius: 1.5625rem !important;
 }
 .btn-genshin-dark::before{
     content: "";
     position: absolute;
-    top: -2px;
-    left: -2px;
+    top: -0.125rem;
+    left: -0.125rem;
     display: block;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    border-radius: 25px;
+    width: calc(100% + .25rem);
+    height: calc(100% + .25rem);
+    border-radius: 1.5625rem;
 }
 .btn-genshin-dark:hover::before{
-    border: solid 3px rgb(255,230,178);
+    border: solid .1875rem rgb(255,230,178);
 }
 .circleinbox{
     position: relative;
@@ -58,7 +62,7 @@
     height: 0.8rem;
     top: 0.3rem;
     left: 0.3rem;
-    border: solid 2px rgb(245,195,50);
+    border: solid .125rem rgb(245,195,50);
     border-radius: 100rem;
 }
 .squareinbox{
@@ -70,7 +74,7 @@
     height: 1.2rem;
     width: 1.2rem;
     background-color: rgb(48,48,48);
-    border-radius: 2px;
+    border-radius: .125rem;
 }
 .squareinbox::after{
     content: "";
@@ -79,7 +83,7 @@
     height: 0.7rem;
     top: 0.25rem;
     left: 0.25rem;
-    border: solid 2px rgb(245,195,50);
+    border: solid .125rem rgb(245,195,50);
 }
 .xinbox{
     position: relative;
@@ -99,7 +103,7 @@
     top: 0.2rem;
     left: 0.65rem;
     background-color: rgb(56,161,228);
-    border: solid 1px rgb(56,161,228);
+    border: solid .0625rem rgb(56,161,228);
     transform: rotate(45deg);
 }
 .xinbox::after{
@@ -110,7 +114,7 @@
     top: 0.2rem;
     left: 0.65rem;
     background-color: rgb(56,161,228);
-    border: solid 1px rgb(56,161,228);
+    border: solid .0625rem rgb(56,161,228);
     transform: rotate(135deg);
 }
 
@@ -127,31 +131,31 @@
     content: "";
     pointer-events: none;
     position: absolute;
-    top: 3px;
-    left: 3px;
-    height: calc(100% - 6px);
-    width: calc(100% - 6px);
-    border: solid 3px rgb(81,91,107);
+    top: .1875rem;
+    left: .1875rem;
+    height: calc(100% - .375rem);
+    width: calc(100% - .375rem);
+    border: solid .1875rem rgb(81,91,107);
 }
 .modal-header .btn-close{
     position: relative;
     background-color: rgb(236,229,216);
-    border-radius: 25px;
+    border-radius: 1.5625rem;
     margin-right: 0 !important;
 }
 .modal-header .btn-close::after{
     content: "";
     pointer-events: none;
     position: absolute;
-    top: -4px;
-    left: -4px;
-    height: calc(100% + 8px);
-    width: calc(100% + 8px);
-    border: solid 7px rgb(135,141,141);
-    border-radius: 25px;
+    top: -0.25rem;
+    left: -0.25rem;
+    height: calc(100% + .5rem);
+    width: calc(100% + .5rem);
+    border: solid .4375rem rgb(135,141,141);
+    border-radius: 1.5625rem;
 }
 .modal-header .btn-close:hover::after{
-    border: solid 6px rgb(236,229,216);
+    border: solid .375rem rgb(236,229,216);
 }
 .modal-body{
     position: relative;
@@ -161,11 +165,11 @@
     content: "";
     pointer-events: none;
     position: absolute;
-    top: 3px;
-    left: 3px;
-    height: calc(100% - 6px);
-    width: calc(100% - 6px);
-    border: solid 3px rgb(242,238,231);
+    top: .1875rem;
+    left: .1875rem;
+    height: calc(100% - .375rem);
+    width: calc(100% - .375rem);
+    border: solid .1875rem rgb(242,238,231);
 }
 .modal-footer{
     padding: 0.5rem 0.75rem !important;
@@ -192,8 +196,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-top: -12px;
-    margin-left: -12px;
+    margin-top: -0.75rem;
+    margin-left: -0.75rem;
 }
 .hide{
     display: none !important;
@@ -202,7 +206,7 @@
     color: rgb(148,38,6);
 }
 .navbar{
-    height: 53px;
+    height: 3.3125rem;
     background-color: #d2cab0;
     width: 100%;
     /* position: fixed !important; */
@@ -215,14 +219,14 @@
 .navbar .siteTitle a{
     color: #262626;
     text-decoration-line: none;
-    box-shadow: #70575c -11px 1px 0px 0px;
+    box-shadow: #70575c -0.6875rem .0625rem 0rem 0rem;
 }
 .alertBox{
     pointer-events: none;
     user-select: none;
     position: fixed;
     z-index: 1056;
-    top: 20px;
+    top: 1.25rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -232,9 +236,9 @@
 .main-container{
     position: absolute;
     background-color: #eae2c9;
-    top: 56px;
+    top: 3.5rem;
     width: 100%;
-    height: calc(100% - 116px);
+    height: calc(100% - 7.25rem);
     user-select: none;
 }
 
@@ -252,26 +256,26 @@
     align-items: flex-start;
 }
 .demo-container::-webkit-scrollbar{
-    width : 10px;
-    height: 1px;
+    width : .625rem;
+    height: .0625rem;
     transition: ease 0.2s all;
 }
 .demo-container::-webkit-scrollbar-thumb {
     /*滚动条里面小方块*/
-    border-radius: 10px;
-    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: .625rem;
+    box-shadow   : inset 0 0 .3125rem rgba(0, 0, 0, 0.2);
     background   : #b67015;
 }
 .demo-container::-webkit-scrollbar-track {
     /*滚动条里面轨道*/
-    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    box-shadow   : inset 0 0 .3125rem rgba(0, 0, 0, 0.2);
+    border-radius: .625rem;
     background   : #ededed;
 }
 
 /* ArtifactsBox */
 .ArtifactsBox{
-    margin: 15px 10px;
+    margin: .9375rem .625rem;
     width: 10rem;
     font-size: 0.8rem;
     transition: ease 0.2s all;
@@ -285,17 +289,17 @@
 }
 .ArtifactsBox .card-body:first-child{
     background-color: rgb(195,133,66);
-    border-bottom-right-radius: 25px;
+    border-bottom-right-radius: 1.5625rem;
     color: #fff;
-    padding: 10px 15px;
+    padding: .625rem .9375rem;
 }
 .ArtifactsBox .card-body:first-child .badge{
     background-color: rgb(57,68,79);
-    padding: 3px 4px 3px;
+    padding: .1875rem .25rem .1875rem;
 }
 .ArtifactsBox .card-body:last-child{
     background-color: rgb(255, 231, 187);
-    padding: 5px 15px;
+    padding: .3125rem .9375rem;
 }
 .ArtifactsBox ul li{
     color: rgb(76,86,104);
@@ -303,19 +307,19 @@
 }
 
 #radarChartBox,#radarChartBox2{
-    margin: 10px auto;
-    width: 290px;
-    height: 240px;
+    margin: .625rem auto;
+    width: 18.125rem;
+    height: 15rem;
 }
 #mobileShow{
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: .625rem;
+    right: .625rem;
 }
 .upgradeCheat{
     display: inline-block;
     position: absolute;
-    right: 5px;
+    right: .3125rem;
 }
 
 /* footer */
@@ -323,24 +327,24 @@ footer{
     position: fixed !important;
     background-color: #d2cab0;
     width: 100%;
-    height: 60px;
+    height: 3.75rem;
     left: 0;
     bottom: 0;
 }
 .buttonBox{
     display: flex;
-    padding: 13px 10px;
+    padding: .8125rem .625rem;
     justify-content: flex-end;
 }
 #filter{
-    height: 37px;
-    width: 37px;
+    height: 2.3125rem;
+    width: 2.3125rem;
     background-color: #ece5d8;
-    border-radius: 25px;
+    border-radius: 1.5625rem;
     padding: 0.375rem 0;
 }
 .filterList{
-    height: 430px;
+    height: 26.875rem;
     overflow-y: scroll;
     background-color: rgb(61,69,86) !important;
 }
@@ -355,19 +359,19 @@ footer{
     color: rgb(234,227,214);
 }
 .dropdown-footer{
-    inset: auto auto 16px 0 !important;
+    inset: auto auto 1rem 0 !important;
 }
 #start{
     position: relative;
     background-color: #ece5d8;
-    border-radius: 25px;
+    border-radius: 1.5625rem;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 #start-drop{
     background-color: #ece5d8;
-    border-left: solid 1px rgb(191,173,166);
-    border-radius: 25px;
+    border-left: solid .0625rem rgb(191,173,166);
+    border-radius: 1.5625rem;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -379,13 +383,13 @@ footer{
 #score,#score-2{
     background-color: #fed323;
     float: right;
-    margin-top: -4px;
+    margin-top: -0.25rem;
 }
 .selectBox{
-    width: 160px;
+    width: 10rem;
     position: fixed;
-    top: 8px;
-    right: 15px;
+    top: .5rem;
+    right: .9375rem;
     z-index: 20;
 }
 
@@ -393,53 +397,53 @@ footer{
 .ArtifactShow{
     position: relative;
     margin: 0 auto;
-    width: 300px;
+    width: 18.75rem;
     overflow: hidden;
 }
 .ArtifactShow .aTitle{
-    height: 30px;
+    height: 1.875rem;
     color: #fff;
-    line-height: 33px;
-    padding-left: 18px;
+    line-height: 2.0625rem;
+    padding-left: 1.125rem;
     background-color: #BC6832;
 }
 .ArtifactShow .titleLine{
     position: absolute;
     z-index: 2;
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-    left: 2px;
-    width: 296px;
-    height: 26px;
-    border: solid 2px rgba(144,82,41,0.7);
+    top: .125rem;
+    right: .125rem;
+    bottom: .125rem;
+    left: .125rem;
+    width: 18.5rem;
+    height: 1.625rem;
+    border: solid .125rem rgba(144,82,41,0.7);
 }
 .ArtifactShow .aHead{
     position: relative;
     color: #fff;
-    font-size: 13px;
-    height: 135px;
-    padding: 9px 18px;
+    font-size: .8125rem;
+    height: 8.4375rem;
+    padding: .5625rem 1.125rem;
     background-image: linear-gradient(to bottom right,#6A5453,#E4AB52);
 }
 .ArtifactShow .aHead .mainEntry{
     position: absolute;
-    top: 55px;
-    left: 18px;
+    top: 3.4375rem;
+    left: 1.125rem;
     color: rgb(191,173,166);
 }
 .ArtifactShow .aHead .mainEntryValue{
     position: absolute;
-    font-size: 24px;
-    top: 70px;
-    left: 18px;
+    font-size: 1.5rem;
+    top: 4.375rem;
+    left: 1.125rem;
 }
 .ArtifactShow .aHead .aImg{
     position: absolute;
-    right: 18px;
-    top: 5px;
-    width: 125px;
-    height: 125px;
+    right: 1.125rem;
+    top: .3125rem;
+    width: 7.8125rem;
+    height: 7.8125rem;
 }
 .ArtifactShow .aHead .aImg img{
     width: inherit;
@@ -447,53 +451,53 @@ footer{
 }
 .ArtifactShow .aHead .levelStar{
     position: absolute;
-    left: 18px;
-    bottom: 9px;
+    left: 1.125rem;
+    bottom: .5625rem;
 }
 .ArtifactShow .blurLine{
     position: absolute;
-    top: 161px;
-    height: 4px;
+    top: 10.0625rem;
+    height: .25rem;
     width: 100%;
     background-color: #000;
     opacity: 0.2;
 }
 .ArtifactShow .aContent{
-    height: 150px;
-    font-size: 14px;
-    padding: 15px 18px;
+    height: 9.375rem;
+    font-size: .875rem;
+    padding: .9375rem 1.125rem;
     background-color: #ECE5D8;
 }
 .ArtifactShow .aContent .badge{
     font-weight: 400;
-    font-size: 14px;
-    padding: 2px 4px 1px;
+    font-size: .875rem;
+    padding: .125rem .25rem .0625rem;
     background-color: rgb(57,68,79) !important;
 }
 .ArtifactShow .aContent ul{
-    margin-top: 10px;
+    margin-top: .625rem;
     list-style-type: none;
     padding: 0;
 }
 .ArtifactShow .aContent ul li{
-    margin-bottom: 1px;
+    margin-bottom: .0625rem;
     color: rgb(76,86,104);
 }
 .ArtifactShow .aButtonBox{
-    height: 40px;
+    height: 2.5rem;
     background-color: #a87940;
     text-align: center;
-    padding: 7px 30px;
+    padding: .4375rem 1.875rem;
     overflow: hidden;
 }
 .ArtifactShow .aButtonBox button{
-    font-size: 15px;
-    line-height: 15px;
+    font-size: .9375rem;
+    line-height: .9375rem;
     background-color: #dea752;
     color: #303030;
-    width: 70px;
-    border-left: solid 1px rgb(243, 239, 225);
-    border-right: solid 1px rgb(243, 239, 225);
+    width: 4.375rem;
+    border-left: solid .0625rem rgb(243, 239, 225);
+    border-right: solid .0625rem rgb(243, 239, 225);
 }
 
 #offcanArtifactShow{
@@ -507,25 +511,25 @@ footer{
 }
 .btn-back{
     position: fixed;
-    top: 8px;
-    right: 15px;
+    top: .5rem;
+    right: .9375rem;
     z-index: 20;
 }
 .upgradeMax{
     position: absolute;
-    width: 200px;
+    width: 12.5rem;
     z-index: 2;
-    bottom: 70px;
-    right: 50px;
+    bottom: 4.375rem;
+    right: 3.125rem;
     color: #fff;
     font-size: 0.9rem;
 }
 .containerUp{
     position: absolute;
     background-color: rgb(114,71,36);
-    top: 56px;
+    top: 3.5rem;
     width: 100%;
-    height: calc(100% - 56px);
+    height: calc(100% - 3.5rem);
     user-select: none;
     overflow: hidden;
 }
@@ -536,36 +540,36 @@ footer{
 .entryBox{
     position: relative;
     z-index: 2;
-    top: 15px;
+    top: .9375rem;
     color: #fff;
-    width: 400px;
+    width: 25rem;
     float: right;
 }
 .entryBox .mainEntry{
-    padding: 2px 5px;
+    padding: .125rem .3125rem;
     background: -webkit-linear-gradient(180deg, #ffffff00,#00000030,#fff00000);
     font-size: 1.1rem;
 }
 .entryBox .entryLine{
     margin: .3rem 0;
     overflow: hidden;
-    border-top: 1px solid rgba(255,255,255,.15);
+    border-top: .0625rem solid rgba(255,255,255,.15);
 }
 .entryBox .entryList:nth-child(2n){
-    padding: 2px 5px;
+    padding: .125rem .3125rem;
     background: -webkit-linear-gradient(180deg, #ffffff00,#00000020,#fff00000);
     font-size: 0.9rem;
 }
 .entryBox .entryList:nth-child(2n-1){
-    padding: 2px 5px;
+    padding: .125rem .3125rem;
     background: -webkit-linear-gradient(180deg, #ffffff00,#00000030,#fff00000);
     font-size: 0.9rem;
 }
 .upgrade-button-lg{
     position: absolute;
     z-index: 2;
-    bottom: 30px;
-    right: 50px;
+    bottom: 1.875rem;
+    right: 3.125rem;
 }
 .upgradeArrow{
     position: absolute;
@@ -591,9 +595,9 @@ footer{
 }
 .centerEntry{
     position: absolute;
-    width: 30px;
+    width: 1.875rem;
     left: 50%;
-    margin-left: -30px;
+    margin-left: -1.875rem;
 }
 .iconBox{
     display: inline-block;
@@ -610,10 +614,10 @@ footer{
 .upArtifactBox .artiImgBox{
     position: absolute;
     z-index: 2;
-    top: 30px;
-    left: 30px;
-    width: 140px;
-    height: 140px;
+    top: 1.875rem;
+    left: 1.875rem;
+    width: 8.75rem;
+    height: 8.75rem;
 }
 .upArtifactBox .artiImgBox img{
     width: 100%;
@@ -623,21 +627,21 @@ footer{
     position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     background-color: rgb(211 169 0 / 20%);
-    border-top-left-radius: 73px;
-    border-top-right-radius: 132px;
-    border-bottom-left-radius: 113px;
-    border-bottom-right-radius: 78px;
-    border: solid 2px #ffffff;
-    box-shadow: 0 0 4px 2px rgb(255 255 153);
+    border-top-left-radius: 4.5625rem;
+    border-top-right-radius: 8.25rem;
+    border-bottom-left-radius: 7.0625rem;
+    border-bottom-right-radius: 4.875rem;
+    border: solid .125rem #ffffff;
+    box-shadow: 0 0 .25rem .125rem rgb(255 255 153);
 }
 .upArtifactBox .flashingCircle2{
-    border-top-left-radius: 121px;
-    border-top-right-radius: 67px;
-    border-bottom-left-radius: 112px;
-    border-bottom-right-radius: 91px;
+    border-top-left-radius: 7.5625rem;
+    border-top-right-radius: 4.1875rem;
+    border-bottom-left-radius: 7rem;
+    border-bottom-right-radius: 5.6875rem;
 }
 
 .myMask{
@@ -657,13 +661,13 @@ footer{
 }
 .myMask .upAlertBtn{
     position: relative;
-    top: 320px;
+    top: 20rem;
     text-align: center;
 }
 .myMask .upgradeAlert .UpAlertHead{
     position: relative;
     width: 100%;
-    height: 80px;
+    height: 5rem;
     background-color: #BC6832E0;
 }
 .myMask .upgradeAlert .UpAlertHead .upgradeMsg{
@@ -671,29 +675,29 @@ footer{
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-size: 22px;
+    font-size: 1.375rem;
     color: #fff;
 }
 .myMask .upgradeAlert .UpAlertHead .upgradeImgBox{
     overflow: hidden;
     position: absolute;
     z-index: 2;
-    top: -54px;
+    top: -3.375rem;
     left: 50%;
-    margin-left: -40px;
+    margin-left: -2.5rem;
     background: #fff;
-    width: 80px;
-    height: 98px;
-    border: solid 2px #fff;
-    border-radius: 5px;
+    width: 5rem;
+    height: 6.125rem;
+    border: solid .125rem #fff;
+    border-radius: .3125rem;
     box-sizing: border-box;
-    box-shadow: yellow 0px 0px 20px 2px;
+    box-shadow: yellow 0rem 0rem 1.25rem .125rem;
 }
 .myMask .upgradeAlert .UpAlertHead .upgradeImgBox .upgradeImg{
-    height: 80px;
+    height: 5rem;
     width: 100%;
     background-color: rgb(195,133,66);
-    border-bottom-right-radius: 15px;
+    border-bottom-right-radius: .9375rem;
 }
 .myMask .upgradeAlert .UpAlertHead .upgradeImgBox .upgradeImg img{
     height: 100%;
@@ -701,21 +705,21 @@ footer{
 }
 .myMask .upgradeAlert .UpAlertHead .upgradeImgBox .UpLevelStar{
     position: absolute;
-    top: 65px;
-    left: -6px;
-    height: 10px;
+    top: 4.0625rem;
+    left: -0.375rem;
+    height: .625rem;
     white-space: nowrap;
     transform: scale(0.7);
 }
 .myMask .upgradeAlert .UpAlertHead .upgradeImgBox .upLevel{
     text-align: center;
-    font-size: 10px;
+    font-size: .625rem;
 }
 .myMask .upgradeAlert .UpAlertBody{
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 0px;
+    height: 0rem;
     background: rgba(63, 71, 87, 0.9);
 }
 .myMask .upgradeAlert .UpAlertBody .UpAlertEntry{
@@ -757,7 +761,7 @@ footer{
         height: 0;
     }
     100%{
-        height: 200px;
+        height: 12.5rem;
     }
 }
 @keyframes AlertBoxUp{
@@ -768,7 +772,7 @@ footer{
         margin-top: 0;
     }
     100%{
-        margin-top: -100px;
+        margin-top: -6.25rem;
     }
 }
 @keyframes AlertBtnShow{
@@ -786,7 +790,7 @@ footer{
     0%{
         transform: scale(1.7);
         filter: brightness(20);
-        box-shadow: #fff 0px 0px 20px 20px;
+        box-shadow: #fff 0rem 0rem 1.25rem 1.25rem;
     }
     100%{
         transform: scale(1);
@@ -816,48 +820,48 @@ footer{
 }
 
 /* 响应式 */
-@media screen and (max-width:480px) {
+@media screen and (max-width:30rem) {
     .ArtifactsBox{
-        width: calc(50% - 20px);
+        width: calc(50% - 1.25rem);
     }
     .entryBox{
-        padding: 0 15px;
+        padding: 0 .9375rem;
         width: 100%;
     }
     .upgrade-button-lg{
-        bottom: 15px;
-        right: 15px;
+        bottom: .9375rem;
+        right: .9375rem;
     }
     /* ::-webkit-scrollbar{
         display: none;
     } */
 }
-@media screen and (max-width:819px){
+@media screen and (max-width:51.1875rem){
     .ArtifactShowBox{
         display: none;
     }
     .upArtifactBox{
         left: 50%;
-        margin-left: -100px;
+        margin-left: -6.25rem;
     }
 }
-@media screen and (min-width:820px){
+@media screen and (min-width:51.25rem){
     #mobileShow{
         display: none;
     }
     .navbar .siteTitle{
-        margin-left: 50px;
+        margin-left: 3.125rem;
     }
     .main-container,.containerUp{
-        padding: 0 50px;
+        padding: 0 3.125rem;
     }
     .ArtifactShowBox{
         overflow-y: scroll;
         position: fixed;
-        padding-top: 15px;
-        top: 56px;
-        right: 50px;
-        width: 320px;
+        padding-top: .9375rem;
+        top: 3.5rem;
+        right: 3.125rem;
+        width: 20rem;
         height: inherit;
         background-color: #ffffff70;
     }
@@ -866,76 +870,76 @@ footer{
     }
     .demo-container{
         margin-left: 0 !important;
-        width: calc(100% - 320px) !important;
+        width: calc(100% - 20rem) !important;
     }
     footer{
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 3.125rem;
+        padding-right: 3.125rem;
     }
 }
 
 
 /* “借鉴”的星空动画 */
 #stars {
-    width: 1px;
-    height: 1px;
+    width: .0625rem;
+    height: .0625rem;
     background: transparent;
-    box-shadow: 1407px 511px #FFF,1611px 119px #FFF,1686px 956px #FFF,1163px 1929px #FFF,912px 1242px #FFF,490px 469px #FFF,869px 425px #FFF,1447px 891px #FFF,422px 1960px #FFF,517px 1995px #FFF,738px 171px #FFF,1328px 1668px #FFF,874px 1490px #FFF,83px 81px #FFF,632px 98px #FFF,1518px 1764px #FFF,636px 596px #FFF,1178px 131px #FFF,278px 1179px #FFF,1898px 1951px #FFF,1787px 326px #FFF,186px 1588px #FFF,552px 1942px #FFF,1929px 1300px #FFF,802px 681px #FFF,430px 1711px #FFF,1192px 308px #FFF,123px 1604px #FFF,880px 169px #FFF,1400px 632px #FFF,500px 1165px #FFF,288px 1208px #FFF,319px 1419px #FFF,1170px 980px #FFF,1608px 784px #FFF,1735px 1276px #FFF,966px 1534px #FFF,654px 783px #FFF,1366px 964px #FFF,1213px 60px #FFF,302px 1509px #FFF,845px 714px #FFF,524px 323px #FFF,1538px 1399px #FFF,394px 619px #FFF,680px 26px #FFF,353px 776px #FFF,1826px 1450px #FFF,1909px 1452px #FFF,1014px 1315px #FFF,1883px 1474px #FFF,766px 1742px #FFF,1693px 658px #FFF,1186px 302px #FFF,376px 1575px #FFF,712px 1739px #FFF,1627px 299px #FFF,482px 224px #FFF,1379px 510px #FFF,1543px 1602px #FFF,45px 606px #FFF,827px 1336px #FFF,224px 1939px #FFF,1098px 1342px #FFF,813px 1553px #FFF,825px 419px #FFF,519px 894px #FFF,1406px 797px #FFF,1341px 274px #FFF,1787px 903px #FFF,1701px 1483px #FFF,1108px 232px #FFF,1599px 1409px #FFF,659px 870px #FFF,1538px 335px #FFF,632px 1855px #FFF,154px 1026px #FFF,1722px 979px #FFF,1339px 509px #FFF,1833px 460px #FFF,315px 65px #FFF,496px 1927px #FFF,1314px 427px #FFF,344px 1046px #FFF,1658px 724px #FFF,1899px 264px #FFF,1200px 1305px #FFF,1562px 339px #FFF,159px 766px #FFF,1639px 1966px #FFF,459px 1898px #FFF,944px 763px #FFF,1174px 1056px #FFF,1825px 790px #FFF,906px 1526px #FFF,1537px 1303px #FFF,79px 1105px #FFF,1318px 672px #FFF,1232px 61px #FFF,709px 1078px #FFF,1010px 1810px #FFF,777px 1160px #FFF,1598px 1428px #FFF,815px 684px #FFF,1003px 943px #FFF,1876px 1003px #FFF,1025px 1529px #FFF,66px 549px #FFF,514px 457px #FFF,262px 1005px #FFF,812px 1705px #FFF,1163px 1087px #FFF,165px 45px #FFF,677px 1462px #FFF,580px 1675px #FFF,1848px 1384px #FFF,449px 862px #FFF,1629px 1979px #FFF,667px 135px #FFF,240px 53px #FFF,1919px 1832px #FFF,696px 1384px #FFF,1630px 361px #FFF,878px 663px #FFF,1226px 1723px #FFF,765px 686px #FFF,576px 1647px #FFF,97px 1602px #FFF,1117px 1049px #FFF,1433px 68px #FFF,1375px 1991px #FFF,1755px 990px #FFF,1483px 801px #FFF,473px 1802px #FFF,822px 768px #FFF,196px 577px #FFF,516px 504px #FFF,623px 981px #FFF,1478px 819px #FFF,126px 384px #FFF,584px 1908px #FFF,1549px 521px #FFF,1866px 1335px #FFF,586px 342px #FFF,1698px 642px #FFF,136px 188px #FFF,1613px 520px #FFF,937px 326px #FFF,1111px 169px #FFF,229px 229px #FFF,1357px 20px #FFF,725px 1305px #FFF,23px 1977px #FFF,426px 1945px #FFF,1628px 1530px #FFF,256px 1295px #FFF,58px 78px #FFF,409px 1145px #FFF,1607px 767px #FFF,212px 144px #FFF,361px 1890px #FFF,1827px 1451px #FFF,1875px 645px #FFF,571px 853px #FFF,1302px 301px #FFF,9px 1344px #FFF,418px 619px #FFF,1941px 90px #FFF,949px 640px #FFF,179px 1783px #FFF,1104px 360px #FFF,1723px 370px #FFF,1122px 1418px #FFF,1374px 508px #FFF,1108px 1089px #FFF,1440px 1743px #FFF,462px 1495px #FFF,1187px 265px #FFF,567px 74px #FFF,557px 542px #FFF,967px 673px #FFF,825px 1971px #FFF,988px 1260px #FFF,710px 1206px #FFF,538px 1805px #FFF,137px 861px #FFF,1922px 1313px #FFF,481px 470px #FFF,1224px 316px #FFF,1979px 239px #FFF,22px 1155px #FFF,1640px 186px #FFF,592px 1709px #FFF,765px 170px #FFF,129px 1750px #FFF,788px 719px #FFF,181px 1327px #FFF,433px 1455px #FFF,141px 450px #FFF,1287px 1027px #FFF,1278px 1462px #FFF,688px 1526px #FFF,463px 1604px #FFF,1232px 297px #FFF,920px 1227px #FFF,1571px 1765px #FFF,1482px 1316px #FFF,759px 1463px #FFF,950px 1166px #FFF,1532px 1588px #FFF,608px 267px #FFF,1862px 1943px #FFF,805px 717px #FFF,1803px 1319px #FFF,1821px 683px #FFF,995px 1958px #FFF,484px 932px #FFF,366px 901px #FFF,451px 1563px #FFF,1704px 1471px #FFF,1379px 44px #FFF,1778px 472px #FFF,419px 1806px #FFF,1545px 222px #FFF,1563px 777px #FFF,39px 964px #FFF,1620px 24px #FFF,1151px 320px #FFF,1940px 1426px #FFF,1555px 1538px #FFF,1747px 488px #FFF,1348px 300px #FFF,990px 538px #FFF,780px 361px #FFF,988px 971px #FFF,1973px 1534px #FFF,1542px 1829px #FFF,1557px 216px #FFF,1404px 641px #FFF,47px 877px #FFF,65px 1738px #FFF,1895px 1798px #FFF,56px 591px #FFF,536px 906px #FFF,568px 74px #FFF,433px 462px #FFF,727px 295px #FFF,876px 1878px #FFF,1891px 1946px #FFF,1451px 493px #FFF,1569px 226px #FFF,879px 1351px #FFF,1529px 43px #FFF,33px 74px #FFF,1516px 1924px #FFF,878px 323px #FFF,455px 1122px #FFF,1943px 526px #FFF,1456px 1060px #FFF,1631px 979px #FFF,1819px 1324px #FFF,1660px 1192px #FFF,1867px 1714px #FFF,1928px 1940px #FFF,1618px 744px #FFF,979px 357px #FFF,98px 1645px #FFF,1898px 1207px #FFF,1134px 16px #FFF,1313px 1018px #FFF,717px 812px #FFF,1503px 234px #FFF,1612px 188px #FFF,29px 459px #FFF,414px 1487px #FFF,1223px 1730px #FFF,1643px 1188px #FFF,424px 767px #FFF,1692px 1591px #FFF,1265px 367px #FFF,54px 832px #FFF,410px 804px #FFF,1397px 1242px #FFF,549px 1484px #FFF,721px 1088px #FFF,472px 1240px #FFF,1927px 514px #FFF,1303px 1310px #FFF,71px 1276px #FFF,829px 1332px #FFF,84px 1920px #FFF,1088px 375px #FFF,1659px 736px #FFF,967px 294px #FFF,651px 92px #FFF,1572px 143px #FFF,1680px 770px #FFF,1873px 1289px #FFF,1983px 821px #FFF,448px 1090px #FFF,890px 1332px #FFF,836px 867px #FFF,1867px 1213px #FFF,1874px 1574px #FFF,750px 1063px #FFF,1297px 1971px #FFF,1274px 1015px #FFF,1628px 933px #FFF,309px 1386px #FFF,299px 1621px #FFF,1973px 526px #FFF,196px 1416px #FFF,778px 715px #FFF,1993px 1294px #FFF,381px 435px #FFF,1405px 681px #FFF,1759px 1077px #FFF,1764px 1748px #FFF,168px 470px #FFF,978px 781px #FFF,110px 1666px #FFF,835px 747px #FFF,112px 95px #FFF,604px 712px #FFF,1121px 1752px #FFF,393px 1782px #FFF,1869px 830px #FFF,1303px 348px #FFF,427px 1546px #FFF,761px 718px #FFF,946px 674px #FFF,832px 964px #FFF,1607px 2000px #FFF,1624px 1296px #FFF,1093px 735px #FFF,1865px 608px #FFF,933px 1278px #FFF,1402px 547px #FFF,1865px 1211px #FFF,109px 72px #FFF,249px 1482px #FFF,586px 1933px #FFF,911px 1336px #FFF,697px 853px #FFF,987px 1797px #FFF,1371px 933px #FFF,492px 1896px #FFF,998px 1866px #FFF,518px 31px #FFF,1873px 372px #FFF,1025px 1308px #FFF,1478px 965px #FFF,1934px 934px #FFF,1048px 1262px #FFF,1839px 40px #FFF,1399px 732px #FFF,735px 416px #FFF,621px 394px #FFF,788px 1802px #FFF,1918px 307px #FFF,432px 1845px #FFF,616px 481px #FFF,921px 798px #FFF,354px 597px #FFF,1622px 214px #FFF,1349px 1983px #FFF,1033px 1622px #FFF,1198px 407px #FFF,1239px 1449px #FFF,1278px 1978px #FFF,426px 1264px #FFF,507px 1341px #FFF,1956px 818px #FFF,1041px 277px #FFF,1371px 639px #FFF,1224px 419px #FFF,211px 1106px #FFF,847px 656px #FFF,534px 1891px #FFF,1289px 823px #FFF,906px 482px #FFF,347px 1837px #FFF,1246px 1462px #FFF,915px 1858px #FFF,559px 1320px #FFF,77px 1555px #FFF,845px 1743px #FFF,313px 1414px #FFF,188px 252px #FFF,509px 637px #FFF,374px 142px #FFF,1397px 474px #FFF,458px 1197px #FFF,292px 619px #FFF,1749px 14px #FFF,1638px 24px #FFF,563px 1752px #FFF,1940px 1065px #FFF,1145px 1030px #FFF,894px 1470px #FFF,444px 32px #FFF,1341px 1136px #FFF,1941px 412px #FFF,1328px 785px #FFF,161px 1740px #FFF,948px 829px #FFF,933px 823px #FFF,1709px 507px #FFF,1366px 1821px #FFF,720px 731px #FFF,162px 682px #FFF,1684px 882px #FFF,134px 497px #FFF,1659px 1701px #FFF,1186px 446px #FFF,911px 1435px #FFF,1814px 1028px #FFF,1234px 1520px #FFF,1186px 23px #FFF,318px 87px #FFF,1179px 837px #FFF,1071px 46px #FFF,1125px 1862px #FFF,94px 261px #FFF,1574px 282px #FFF,1039px 815px #FFF,1776px 1472px #FFF,867px 473px #FFF,901px 215px #FFF,862px 630px #FFF,1480px 1673px #FFF,411px 1896px #FFF,1335px 944px #FFF,148px 1235px #FFF,57px 140px #FFF,447px 651px #FFF,1414px 1651px #FFF,209px 1770px #FFF,1800px 1590px #FFF,1304px 1px #FFF,279px 771px #FFF,1770px 1398px #FFF,724px 1201px #FFF,245px 1145px #FFF,172px 1951px #FFF,284px 236px #FFF,1905px 1307px #FFF,1948px 574px #FFF,283px 669px #FFF,247px 384px #FFF,224px 619px #FFF,128px 772px #FFF,1698px 1405px #FFF,830px 505px #FFF,1938px 397px #FFF,1772px 1001px #FFF,1454px 808px #FFF,304px 561px #FFF,1321px 966px #FFF,735px 1368px #FFF,894px 345px #FFF,1217px 1997px #FFF,892px 1342px #FFF,353px 379px #FFF,1382px 1156px #FFF,164px 1239px #FFF,1268px 1859px #FFF,1385px 1721px #FFF,16px 283px #FFF,1819px 200px #FFF,660px 1111px #FFF,1679px 1728px #FFF,463px 596px #FFF,217px 1834px #FFF,1879px 538px #FFF,304px 906px #FFF,1327px 1347px #FFF,1226px 1579px #FFF,1786px 1616px #FFF,1234px 1982px #FFF,1868px 1862px #FFF,814px 948px #FFF,178px 1837px #FFF,571px 1701px #FFF,106px 566px #FFF,270px 925px #FFF,1417px 248px #FFF,609px 1551px #FFF,992px 1825px #FFF,1515px 1999px #FFF,1167px 914px #FFF,1698px 490px #FFF,189px 1463px #FFF,928px 612px #FFF,1714px 803px #FFF,535px 402px #FFF,1000px 379px #FFF,1610px 574px #FFF,1882px 1155px #FFF,1425px 1514px #FFF,417px 1987px #FFF,1681px 1059px #FFF,841px 762px #FFF,1886px 1098px #FFF,1785px 236px #FFF,1950px 950px #FFF,444px 1937px #FFF,1364px 540px #FFF,1971px 225px #FFF,1624px 868px #FFF,869px 640px #FFF,1637px 559px #FFF,20px 823px #FFF,409px 177px #FFF,1804px 1626px #FFF,388px 527px #FFF,1385px 1734px #FFF,988px 1310px #FFF,443px 599px #FFF,1780px 434px #FFF,654px 419px #FFF,268px 1424px #FFF,1971px 40px #FFF,360px 1834px #FFF,875px 1930px #FFF,1866px 1885px #FFF,453px 1670px #FFF,1696px 1337px #FFF,604px 1887px #FFF,1405px 769px #FFF,1546px 897px #FFF,595px 1975px #FFF,32px 1765px #FFF,896px 1150px #FFF,1818px 95px #FFF,444px 49px #FFF,589px 1796px #FFF,764px 1965px #FFF,920px 1803px #FFF,403px 1997px #FFF,833px 1282px #FFF,1127px 1770px #FFF,1810px 77px #FFF,1214px 1102px #FFF,364px 401px #FFF,1139px 1191px #FFF,916px 1907px #FFF,870px 290px #FFF,688px 678px #FFF,1523px 34px #FFF,1265px 1082px #FFF,1394px 1080px #FFF,1787px 1738px #FFF,1682px 755px #FFF,1955px 832px #FFF,546px 1577px #FFF,1062px 1561px #FFF,344px 826px #FFF,1442px 782px #FFF,467px 1477px #FFF,879px 1439px #FFF,1672px 268px #FFF,1317px 1355px #FFF,1980px 1965px #FFF,688px 1465px #FFF,1131px 872px #FFF,1301px 1656px #FFF,974px 583px #FFF,1613px 1467px #FFF,1976px 1995px #FFF,1377px 760px #FFF,1367px 387px #FFF,1880px 191px #FFF,711px 876px #FFF,539px 152px #FFF,545px 1809px #FFF,920px 970px #FFF,1154px 1355px #FFF,1968px 94px #FFF,1703px 490px #FFF,380px 146px #FFF,1561px 785px #FFF,1930px 1385px #FFF,519px 1091px #FFF,269px 570px #FFF,109px 1326px #FFF,1476px 969px #FFF,1999px 1885px #FFF,341px 1238px #FFF,1105px 1076px #FFF,596px 88px #FFF,937px 492px #FFF,1339px 1673px #FFF,1967px 762px #FFF,65px 952px #FFF,111px 93px #FFF,1011px 1684px #FFF,377px 1430px #FFF,1011px 386px #FFF,1162px 421px #FFF,196px 617px #FFF,1407px 1141px #FFF,1562px 572px #FFF,316px 690px #FFF,1600px 1980px #FFF,1545px 1254px #FFF,680px 1120px #FFF,575px 1284px #FFF,179px 1470px #FFF,1496px 1506px #FFF,977px 1376px #FFF,1282px 708px #FFF,408px 1427px #FFF,1173px 1597px #FFF,1120px 1755px #FFF,974px 520px #FFF,979px 384px #FFF,622px 1116px #FFF,1307px 866px #FFF,1188px 1596px #FFF,858px 1947px #FFF,861px 1373px #FFF,857px 43px #FFF,1878px 499px #FFF,1297px 535px #FFF,870px 1286px #FFF,1452px 448px #FFF,906px 72px #FFF,1450px 872px #FFF,1607px 1755px #FFF,1071px 1959px #FFF,976px 879px #FFF,1435px 284px #FFF,1601px 496px #FFF,671px 1713px #FFF,356px 1148px #FFF,837px 867px #FFF,246px 858px #FFF,1031px 1594px #FFF,571px 214px #FFF,1012px 1329px #FFF,1566px 1142px #FFF,219px 1376px #FFF,1580px 1454px #FFF,690px 1037px #FFF,1940px 756px #FFF,1755px 850px #FFF,1037px 363px #FFF,25px 515px #FFF,806px 1571px #FFF,1266px 1398px #FFF,695px 791px #FFF,1838px 950px #FFF,1578px 27px #FFF,1692px 1581px #FFF,1817px 1040px #FFF,1781px 238px #FFF,1052px 895px #FFF,398px 440px #FFF,1643px 325px #FFF,79px 848px #FFF,1295px 326px #FFF,293px 81px #FFF,1202px 1580px #FFF,1441px 100px #FFF,1295px 1465px #FFF,1132px 1275px #FFF,774px 704px #FFF,1109px 1546px #FFF,557px 1390px #FFF,1253px 1224px #FFF,1063px 1618px #FFF,1793px 440px #FFF,890px 1988px #FFF,814px 424px #FFF,1390px 1280px #FFF,1127px 907px #FFF,1044px 1368px #FFF,1317px 876px #FFF,762px 638px #FFF,965px 747px #FFF,755px 1945px #FFF,706px 414px #FFF,1842px 1673px #FFF,1158px 1336px #FFF,989px 1955px #FFF,1857px 89px #FFF,1659px 343px #FFF,509px 1385px #FFF,1620px 758px #FFF,1958px 1064px #FFF,178px 341px #FFF,1500px 808px #FFF,20px 1646px #FFF,1572px 870px #FFF,1821px 1377px #FFF,328px 1965px #FFF,903px 616px #FFF,1731px 1599px #FFF,267px 856px #FFF;
+    box-shadow: 87.9375rem 31.9375rem #FFF,100.6875rem 7.4375rem #FFF,105.375rem 59.75rem #FFF,72.6875rem 120.5625rem #FFF,57rem 77.625rem #FFF,30.625rem 29.3125rem #FFF,54.3125rem 26.5625rem #FFF,90.4375rem 55.6875rem #FFF,26.375rem 122.5rem #FFF,32.3125rem 124.6875rem #FFF,46.125rem 10.6875rem #FFF,83rem 104.25rem #FFF,54.625rem 93.125rem #FFF,5.1875rem 5.0625rem #FFF,39.5rem 6.125rem #FFF,94.875rem 110.25rem #FFF,39.75rem 37.25rem #FFF,73.625rem 8.1875rem #FFF,17.375rem 73.6875rem #FFF,118.625rem 121.9375rem #FFF,111.6875rem 20.375rem #FFF,11.625rem 99.25rem #FFF,34.5rem 121.375rem #FFF,120.5625rem 81.25rem #FFF,50.125rem 42.5625rem #FFF,26.875rem 106.9375rem #FFF,74.5rem 19.25rem #FFF,7.6875rem 100.25rem #FFF,55rem 10.5625rem #FFF,87.5rem 39.5rem #FFF,31.25rem 72.8125rem #FFF,18rem 75.5rem #FFF,19.9375rem 88.6875rem #FFF,73.125rem 61.25rem #FFF,100.5rem 49rem #FFF,108.4375rem 79.75rem #FFF,60.375rem 95.875rem #FFF,40.875rem 48.9375rem #FFF,85.375rem 60.25rem #FFF,75.8125rem 3.75rem #FFF,18.875rem 94.3125rem #FFF,52.8125rem 44.625rem #FFF,32.75rem 20.1875rem #FFF,96.125rem 87.4375rem #FFF,24.625rem 38.6875rem #FFF,42.5rem 1.625rem #FFF,22.0625rem 48.5rem #FFF,114.125rem 90.625rem #FFF,119.3125rem 90.75rem #FFF,63.375rem 82.1875rem #FFF,117.6875rem 92.125rem #FFF,47.875rem 108.875rem #FFF,105.8125rem 41.125rem #FFF,74.125rem 18.875rem #FFF,23.5rem 98.4375rem #FFF,44.5rem 108.6875rem #FFF,101.6875rem 18.6875rem #FFF,30.125rem 14rem #FFF,86.1875rem 31.875rem #FFF,96.4375rem 100.125rem #FFF,2.8125rem 37.875rem #FFF,51.6875rem 83.5rem #FFF,14rem 121.1875rem #FFF,68.625rem 83.875rem #FFF,50.8125rem 97.0625rem #FFF,51.5625rem 26.1875rem #FFF,32.4375rem 55.875rem #FFF,87.875rem 49.8125rem #FFF,83.8125rem 17.125rem #FFF,111.6875rem 56.4375rem #FFF,106.3125rem 92.6875rem #FFF,69.25rem 14.5rem #FFF,99.9375rem 88.0625rem #FFF,41.1875rem 54.375rem #FFF,96.125rem 20.9375rem #FFF,39.5rem 115.9375rem #FFF,9.625rem 64.125rem #FFF,107.625rem 61.1875rem #FFF,83.6875rem 31.8125rem #FFF,114.5625rem 28.75rem #FFF,19.6875rem 4.0625rem #FFF,31rem 120.4375rem #FFF,82.125rem 26.6875rem #FFF,21.5rem 65.375rem #FFF,103.625rem 45.25rem #FFF,118.6875rem 16.5rem #FFF,75rem 81.5625rem #FFF,97.625rem 21.1875rem #FFF,9.9375rem 47.875rem #FFF,102.4375rem 122.875rem #FFF,28.6875rem 118.625rem #FFF,59rem 47.6875rem #FFF,73.375rem 66rem #FFF,114.0625rem 49.375rem #FFF,56.625rem 95.375rem #FFF,96.0625rem 81.4375rem #FFF,4.9375rem 69.0625rem #FFF,82.375rem 42rem #FFF,77rem 3.8125rem #FFF,44.3125rem 67.375rem #FFF,63.125rem 113.125rem #FFF,48.5625rem 72.5rem #FFF,99.875rem 89.25rem #FFF,50.9375rem 42.75rem #FFF,62.6875rem 58.9375rem #FFF,117.25rem 62.6875rem #FFF,64.0625rem 95.5625rem #FFF,4.125rem 34.3125rem #FFF,32.125rem 28.5625rem #FFF,16.375rem 62.8125rem #FFF,50.75rem 106.5625rem #FFF,72.6875rem 67.9375rem #FFF,10.3125rem 2.8125rem #FFF,42.3125rem 91.375rem #FFF,36.25rem 104.6875rem #FFF,115.5rem 86.5rem #FFF,28.0625rem 53.875rem #FFF,101.8125rem 123.6875rem #FFF,41.6875rem 8.4375rem #FFF,15rem 3.3125rem #FFF,119.9375rem 114.5rem #FFF,43.5rem 86.5rem #FFF,101.875rem 22.5625rem #FFF,54.875rem 41.4375rem #FFF,76.625rem 107.6875rem #FFF,47.8125rem 42.875rem #FFF,36rem 102.9375rem #FFF,6.0625rem 100.125rem #FFF,69.8125rem 65.5625rem #FFF,89.5625rem 4.25rem #FFF,85.9375rem 124.4375rem #FFF,109.6875rem 61.875rem #FFF,92.6875rem 50.0625rem #FFF,29.5625rem 112.625rem #FFF,51.375rem 48rem #FFF,12.25rem 36.0625rem #FFF,32.25rem 31.5rem #FFF,38.9375rem 61.3125rem #FFF,92.375rem 51.1875rem #FFF,7.875rem 24rem #FFF,36.5rem 119.25rem #FFF,96.8125rem 32.5625rem #FFF,116.625rem 83.4375rem #FFF,36.625rem 21.375rem #FFF,106.125rem 40.125rem #FFF,8.5rem 11.75rem #FFF,100.8125rem 32.5rem #FFF,58.5625rem 20.375rem #FFF,69.4375rem 10.5625rem #FFF,14.3125rem 14.3125rem #FFF,84.8125rem 1.25rem #FFF,45.3125rem 81.5625rem #FFF,1.4375rem 123.5625rem #FFF,26.625rem 121.5625rem #FFF,101.75rem 95.625rem #FFF,16rem 80.9375rem #FFF,3.625rem 4.875rem #FFF,25.5625rem 71.5625rem #FFF,100.4375rem 47.9375rem #FFF,13.25rem 9rem #FFF,22.5625rem 118.125rem #FFF,114.1875rem 90.6875rem #FFF,117.1875rem 40.3125rem #FFF,35.6875rem 53.3125rem #FFF,81.375rem 18.8125rem #FFF,.5625rem 84rem #FFF,26.125rem 38.6875rem #FFF,121.3125rem 5.625rem #FFF,59.3125rem 40rem #FFF,11.1875rem 111.4375rem #FFF,69rem 22.5rem #FFF,107.6875rem 23.125rem #FFF,70.125rem 88.625rem #FFF,85.875rem 31.75rem #FFF,69.25rem 68.0625rem #FFF,90rem 108.9375rem #FFF,28.875rem 93.4375rem #FFF,74.1875rem 16.5625rem #FFF,35.4375rem 4.625rem #FFF,34.8125rem 33.875rem #FFF,60.4375rem 42.0625rem #FFF,51.5625rem 123.1875rem #FFF,61.75rem 78.75rem #FFF,44.375rem 75.375rem #FFF,33.625rem 112.8125rem #FFF,8.5625rem 53.8125rem #FFF,120.125rem 82.0625rem #FFF,30.0625rem 29.375rem #FFF,76.5rem 19.75rem #FFF,123.6875rem 14.9375rem #FFF,1.375rem 72.1875rem #FFF,102.5rem 11.625rem #FFF,37rem 106.8125rem #FFF,47.8125rem 10.625rem #FFF,8.0625rem 109.375rem #FFF,49.25rem 44.9375rem #FFF,11.3125rem 82.9375rem #FFF,27.0625rem 90.9375rem #FFF,8.8125rem 28.125rem #FFF,80.4375rem 64.1875rem #FFF,79.875rem 91.375rem #FFF,43rem 95.375rem #FFF,28.9375rem 100.25rem #FFF,77rem 18.5625rem #FFF,57.5rem 76.6875rem #FFF,98.1875rem 110.3125rem #FFF,92.625rem 82.25rem #FFF,47.4375rem 91.4375rem #FFF,59.375rem 72.875rem #FFF,95.75rem 99.25rem #FFF,38rem 16.6875rem #FFF,116.375rem 121.4375rem #FFF,50.3125rem 44.8125rem #FFF,112.6875rem 82.4375rem #FFF,113.8125rem 42.6875rem #FFF,62.1875rem 122.375rem #FFF,30.25rem 58.25rem #FFF,22.875rem 56.3125rem #FFF,28.1875rem 97.6875rem #FFF,106.5rem 91.9375rem #FFF,86.1875rem 2.75rem #FFF,111.125rem 29.5rem #FFF,26.1875rem 112.875rem #FFF,96.5625rem 13.875rem #FFF,97.6875rem 48.5625rem #FFF,2.4375rem 60.25rem #FFF,101.25rem 1.5rem #FFF,71.9375rem 20rem #FFF,121.25rem 89.125rem #FFF,97.1875rem 96.125rem #FFF,109.1875rem 30.5rem #FFF,84.25rem 18.75rem #FFF,61.875rem 33.625rem #FFF,48.75rem 22.5625rem #FFF,61.75rem 60.6875rem #FFF,123.3125rem 95.875rem #FFF,96.375rem 114.3125rem #FFF,97.3125rem 13.5rem #FFF,87.75rem 40.0625rem #FFF,2.9375rem 54.8125rem #FFF,4.0625rem 108.625rem #FFF,118.4375rem 112.375rem #FFF,3.5rem 36.9375rem #FFF,33.5rem 56.625rem #FFF,35.5rem 4.625rem #FFF,27.0625rem 28.875rem #FFF,45.4375rem 18.4375rem #FFF,54.75rem 117.375rem #FFF,118.1875rem 121.625rem #FFF,90.6875rem 30.8125rem #FFF,98.0625rem 14.125rem #FFF,54.9375rem 84.4375rem #FFF,95.5625rem 2.6875rem #FFF,2.0625rem 4.625rem #FFF,94.75rem 120.25rem #FFF,54.875rem 20.1875rem #FFF,28.4375rem 70.125rem #FFF,121.4375rem 32.875rem #FFF,91rem 66.25rem #FFF,101.9375rem 61.1875rem #FFF,113.6875rem 82.75rem #FFF,103.75rem 74.5rem #FFF,116.6875rem 107.125rem #FFF,120.5rem 121.25rem #FFF,101.125rem 46.5rem #FFF,61.1875rem 22.3125rem #FFF,6.125rem 102.8125rem #FFF,118.625rem 75.4375rem #FFF,70.875rem 1rem #FFF,82.0625rem 63.625rem #FFF,44.8125rem 50.75rem #FFF,93.9375rem 14.625rem #FFF,100.75rem 11.75rem #FFF,1.8125rem 28.6875rem #FFF,25.875rem 92.9375rem #FFF,76.4375rem 108.125rem #FFF,102.6875rem 74.25rem #FFF,26.5rem 47.9375rem #FFF,105.75rem 99.4375rem #FFF,79.0625rem 22.9375rem #FFF,3.375rem 52rem #FFF,25.625rem 50.25rem #FFF,87.3125rem 77.625rem #FFF,34.3125rem 92.75rem #FFF,45.0625rem 68rem #FFF,29.5rem 77.5rem #FFF,120.4375rem 32.125rem #FFF,81.4375rem 81.875rem #FFF,4.4375rem 79.75rem #FFF,51.8125rem 83.25rem #FFF,5.25rem 120rem #FFF,68rem 23.4375rem #FFF,103.6875rem 46rem #FFF,60.4375rem 18.375rem #FFF,40.6875rem 5.75rem #FFF,98.25rem 8.9375rem #FFF,105rem 48.125rem #FFF,117.0625rem 80.5625rem #FFF,123.9375rem 51.3125rem #FFF,28rem 68.125rem #FFF,55.625rem 83.25rem #FFF,52.25rem 54.1875rem #FFF,116.6875rem 75.8125rem #FFF,117.125rem 98.375rem #FFF,46.875rem 66.4375rem #FFF,81.0625rem 123.1875rem #FFF,79.625rem 63.4375rem #FFF,101.75rem 58.3125rem #FFF,19.3125rem 86.625rem #FFF,18.6875rem 101.3125rem #FFF,123.3125rem 32.875rem #FFF,12.25rem 88.5rem #FFF,48.625rem 44.6875rem #FFF,124.5625rem 80.875rem #FFF,23.8125rem 27.1875rem #FFF,87.8125rem 42.5625rem #FFF,109.9375rem 67.3125rem #FFF,110.25rem 109.25rem #FFF,10.5rem 29.375rem #FFF,61.125rem 48.8125rem #FFF,6.875rem 104.125rem #FFF,52.1875rem 46.6875rem #FFF,7rem 5.9375rem #FFF,37.75rem 44.5rem #FFF,70.0625rem 109.5rem #FFF,24.5625rem 111.375rem #FFF,116.8125rem 51.875rem #FFF,81.4375rem 21.75rem #FFF,26.6875rem 96.625rem #FFF,47.5625rem 44.875rem #FFF,59.125rem 42.125rem #FFF,52rem 60.25rem #FFF,100.4375rem 125rem #FFF,101.5rem 81rem #FFF,68.3125rem 45.9375rem #FFF,116.5625rem 38rem #FFF,58.3125rem 79.875rem #FFF,87.625rem 34.1875rem #FFF,116.5625rem 75.6875rem #FFF,6.8125rem 4.5rem #FFF,15.5625rem 92.625rem #FFF,36.625rem 120.8125rem #FFF,56.9375rem 83.5rem #FFF,43.5625rem 53.3125rem #FFF,61.6875rem 112.3125rem #FFF,85.6875rem 58.3125rem #FFF,30.75rem 118.5rem #FFF,62.375rem 116.625rem #FFF,32.375rem 1.9375rem #FFF,117.0625rem 23.25rem #FFF,64.0625rem 81.75rem #FFF,92.375rem 60.3125rem #FFF,120.875rem 58.375rem #FFF,65.5rem 78.875rem #FFF,114.9375rem 2.5rem #FFF,87.4375rem 45.75rem #FFF,45.9375rem 26rem #FFF,38.8125rem 24.625rem #FFF,49.25rem 112.625rem #FFF,119.875rem 19.1875rem #FFF,27rem 115.3125rem #FFF,38.5rem 30.0625rem #FFF,57.5625rem 49.875rem #FFF,22.125rem 37.3125rem #FFF,101.375rem 13.375rem #FFF,84.3125rem 123.9375rem #FFF,64.5625rem 101.375rem #FFF,74.875rem 25.4375rem #FFF,77.4375rem 90.5625rem #FFF,79.875rem 123.625rem #FFF,26.625rem 79rem #FFF,31.6875rem 83.8125rem #FFF,122.25rem 51.125rem #FFF,65.0625rem 17.3125rem #FFF,85.6875rem 39.9375rem #FFF,76.5rem 26.1875rem #FFF,13.1875rem 69.125rem #FFF,52.9375rem 41rem #FFF,33.375rem 118.1875rem #FFF,80.5625rem 51.4375rem #FFF,56.625rem 30.125rem #FFF,21.6875rem 114.8125rem #FFF,77.875rem 91.375rem #FFF,57.1875rem 116.125rem #FFF,34.9375rem 82.5rem #FFF,4.8125rem 97.1875rem #FFF,52.8125rem 108.9375rem #FFF,19.5625rem 88.375rem #FFF,11.75rem 15.75rem #FFF,31.8125rem 39.8125rem #FFF,23.375rem 8.875rem #FFF,87.3125rem 29.625rem #FFF,28.625rem 74.8125rem #FFF,18.25rem 38.6875rem #FFF,109.3125rem .875rem #FFF,102.375rem 1.5rem #FFF,35.1875rem 109.5rem #FFF,121.25rem 66.5625rem #FFF,71.5625rem 64.375rem #FFF,55.875rem 91.875rem #FFF,27.75rem 2rem #FFF,83.8125rem 71rem #FFF,121.3125rem 25.75rem #FFF,83rem 49.0625rem #FFF,10.0625rem 108.75rem #FFF,59.25rem 51.8125rem #FFF,58.3125rem 51.4375rem #FFF,106.8125rem 31.6875rem #FFF,85.375rem 113.8125rem #FFF,45rem 45.6875rem #FFF,10.125rem 42.625rem #FFF,105.25rem 55.125rem #FFF,8.375rem 31.0625rem #FFF,103.6875rem 106.3125rem #FFF,74.125rem 27.875rem #FFF,56.9375rem 89.6875rem #FFF,113.375rem 64.25rem #FFF,77.125rem 95rem #FFF,74.125rem 1.4375rem #FFF,19.875rem 5.4375rem #FFF,73.6875rem 52.3125rem #FFF,66.9375rem 2.875rem #FFF,70.3125rem 116.375rem #FFF,5.875rem 16.3125rem #FFF,98.375rem 17.625rem #FFF,64.9375rem 50.9375rem #FFF,111rem 92rem #FFF,54.1875rem 29.5625rem #FFF,56.3125rem 13.4375rem #FFF,53.875rem 39.375rem #FFF,92.5rem 104.5625rem #FFF,25.6875rem 118.5rem #FFF,83.4375rem 59rem #FFF,9.25rem 77.1875rem #FFF,3.5625rem 8.75rem #FFF,27.9375rem 40.6875rem #FFF,88.375rem 103.1875rem #FFF,13.0625rem 110.625rem #FFF,112.5rem 99.375rem #FFF,81.5rem .0625rem #FFF,17.4375rem 48.1875rem #FFF,110.625rem 87.375rem #FFF,45.25rem 75.0625rem #FFF,15.3125rem 71.5625rem #FFF,10.75rem 121.9375rem #FFF,17.75rem 14.75rem #FFF,119.0625rem 81.6875rem #FFF,121.75rem 35.875rem #FFF,17.6875rem 41.8125rem #FFF,15.4375rem 24rem #FFF,14rem 38.6875rem #FFF,8rem 48.25rem #FFF,106.125rem 87.8125rem #FFF,51.875rem 31.5625rem #FFF,121.125rem 24.8125rem #FFF,110.75rem 62.5625rem #FFF,90.875rem 50.5rem #FFF,19rem 35.0625rem #FFF,82.5625rem 60.375rem #FFF,45.9375rem 85.5rem #FFF,55.875rem 21.5625rem #FFF,76.0625rem 124.8125rem #FFF,55.75rem 83.875rem #FFF,22.0625rem 23.6875rem #FFF,86.375rem 72.25rem #FFF,10.25rem 77.4375rem #FFF,79.25rem 116.1875rem #FFF,86.5625rem 107.5625rem #FFF,1rem 17.6875rem #FFF,113.6875rem 12.5rem #FFF,41.25rem 69.4375rem #FFF,104.9375rem 108rem #FFF,28.9375rem 37.25rem #FFF,13.5625rem 114.625rem #FFF,117.4375rem 33.625rem #FFF,19rem 56.625rem #FFF,82.9375rem 84.1875rem #FFF,76.625rem 98.6875rem #FFF,111.625rem 101rem #FFF,77.125rem 123.875rem #FFF,116.75rem 116.375rem #FFF,50.875rem 59.25rem #FFF,11.125rem 114.8125rem #FFF,35.6875rem 106.3125rem #FFF,6.625rem 35.375rem #FFF,16.875rem 57.8125rem #FFF,88.5625rem 15.5rem #FFF,38.0625rem 96.9375rem #FFF,62rem 114.0625rem #FFF,94.6875rem 124.9375rem #FFF,72.9375rem 57.125rem #FFF,106.125rem 30.625rem #FFF,11.8125rem 91.4375rem #FFF,58rem 38.25rem #FFF,107.125rem 50.1875rem #FFF,33.4375rem 25.125rem #FFF,62.5rem 23.6875rem #FFF,100.625rem 35.875rem #FFF,117.625rem 72.1875rem #FFF,89.0625rem 94.625rem #FFF,26.0625rem 124.1875rem #FFF,105.0625rem 66.1875rem #FFF,52.5625rem 47.625rem #FFF,117.875rem 68.625rem #FFF,111.5625rem 14.75rem #FFF,121.875rem 59.375rem #FFF,27.75rem 121.0625rem #FFF,85.25rem 33.75rem #FFF,123.1875rem 14.0625rem #FFF,101.5rem 54.25rem #FFF,54.3125rem 40rem #FFF,102.3125rem 34.9375rem #FFF,1.25rem 51.4375rem #FFF,25.5625rem 11.0625rem #FFF,112.75rem 101.625rem #FFF,24.25rem 32.9375rem #FFF,86.5625rem 108.375rem #FFF,61.75rem 81.875rem #FFF,27.6875rem 37.4375rem #FFF,111.25rem 27.125rem #FFF,40.875rem 26.1875rem #FFF,16.75rem 89rem #FFF,123.1875rem 2.5rem #FFF,22.5rem 114.625rem #FFF,54.6875rem 120.625rem #FFF,116.625rem 117.8125rem #FFF,28.3125rem 104.375rem #FFF,106rem 83.5625rem #FFF,37.75rem 117.9375rem #FFF,87.8125rem 48.0625rem #FFF,96.625rem 56.0625rem #FFF,37.1875rem 123.4375rem #FFF,2rem 110.3125rem #FFF,56rem 71.875rem #FFF,113.625rem 5.9375rem #FFF,27.75rem 3.0625rem #FFF,36.8125rem 112.25rem #FFF,47.75rem 122.8125rem #FFF,57.5rem 112.6875rem #FFF,25.1875rem 124.8125rem #FFF,52.0625rem 80.125rem #FFF,70.4375rem 110.625rem #FFF,113.125rem 4.8125rem #FFF,75.875rem 68.875rem #FFF,22.75rem 25.0625rem #FFF,71.1875rem 74.4375rem #FFF,57.25rem 119.1875rem #FFF,54.375rem 18.125rem #FFF,43rem 42.375rem #FFF,95.1875rem 2.125rem #FFF,79.0625rem 67.625rem #FFF,87.125rem 67.5rem #FFF,111.6875rem 108.625rem #FFF,105.125rem 47.1875rem #FFF,122.1875rem 52rem #FFF,34.125rem 98.5625rem #FFF,66.375rem 97.5625rem #FFF,21.5rem 51.625rem #FFF,90.125rem 48.875rem #FFF,29.1875rem 92.3125rem #FFF,54.9375rem 89.9375rem #FFF,104.5rem 16.75rem #FFF,82.3125rem 84.6875rem #FFF,123.75rem 122.8125rem #FFF,43rem 91.5625rem #FFF,70.6875rem 54.5rem #FFF,81.3125rem 103.5rem #FFF,60.875rem 36.4375rem #FFF,100.8125rem 91.6875rem #FFF,123.5rem 124.6875rem #FFF,86.0625rem 47.5rem #FFF,85.4375rem 24.1875rem #FFF,117.5rem 11.9375rem #FFF,44.4375rem 54.75rem #FFF,33.6875rem 9.5rem #FFF,34.0625rem 113.0625rem #FFF,57.5rem 60.625rem #FFF,72.125rem 84.6875rem #FFF,123rem 5.875rem #FFF,106.4375rem 30.625rem #FFF,23.75rem 9.125rem #FFF,97.5625rem 49.0625rem #FFF,120.625rem 86.5625rem #FFF,32.4375rem 68.1875rem #FFF,16.8125rem 35.625rem #FFF,6.8125rem 82.875rem #FFF,92.25rem 60.5625rem #FFF,124.9375rem 117.8125rem #FFF,21.3125rem 77.375rem #FFF,69.0625rem 67.25rem #FFF,37.25rem 5.5rem #FFF,58.5625rem 30.75rem #FFF,83.6875rem 104.5625rem #FFF,122.9375rem 47.625rem #FFF,4.0625rem 59.5rem #FFF,6.9375rem 5.8125rem #FFF,63.1875rem 105.25rem #FFF,23.5625rem 89.375rem #FFF,63.1875rem 24.125rem #FFF,72.625rem 26.3125rem #FFF,12.25rem 38.5625rem #FFF,87.9375rem 71.3125rem #FFF,97.625rem 35.75rem #FFF,19.75rem 43.125rem #FFF,100rem 123.75rem #FFF,96.5625rem 78.375rem #FFF,42.5rem 70rem #FFF,35.9375rem 80.25rem #FFF,11.1875rem 91.875rem #FFF,93.5rem 94.125rem #FFF,61.0625rem 86rem #FFF,80.125rem 44.25rem #FFF,25.5rem 89.1875rem #FFF,73.3125rem 99.8125rem #FFF,70rem 109.6875rem #FFF,60.875rem 32.5rem #FFF,61.1875rem 24rem #FFF,38.875rem 69.75rem #FFF,81.6875rem 54.125rem #FFF,74.25rem 99.75rem #FFF,53.625rem 121.6875rem #FFF,53.8125rem 85.8125rem #FFF,53.5625rem 2.6875rem #FFF,117.375rem 31.1875rem #FFF,81.0625rem 33.4375rem #FFF,54.375rem 80.375rem #FFF,90.75rem 28rem #FFF,56.625rem 4.5rem #FFF,90.625rem 54.5rem #FFF,100.4375rem 109.6875rem #FFF,66.9375rem 122.4375rem #FFF,61rem 54.9375rem #FFF,89.6875rem 17.75rem #FFF,100.0625rem 31rem #FFF,41.9375rem 107.0625rem #FFF,22.25rem 71.75rem #FFF,52.3125rem 54.1875rem #FFF,15.375rem 53.625rem #FFF,64.4375rem 99.625rem #FFF,35.6875rem 13.375rem #FFF,63.25rem 83.0625rem #FFF,97.875rem 71.375rem #FFF,13.6875rem 86rem #FFF,98.75rem 90.875rem #FFF,43.125rem 64.8125rem #FFF,121.25rem 47.25rem #FFF,109.6875rem 53.125rem #FFF,64.8125rem 22.6875rem #FFF,1.5625rem 32.1875rem #FFF,50.375rem 98.1875rem #FFF,79.125rem 87.375rem #FFF,43.4375rem 49.4375rem #FFF,114.875rem 59.375rem #FFF,98.625rem 1.6875rem #FFF,105.75rem 98.8125rem #FFF,113.5625rem 65rem #FFF,111.3125rem 14.875rem #FFF,65.75rem 55.9375rem #FFF,24.875rem 27.5rem #FFF,102.6875rem 20.3125rem #FFF,4.9375rem 53rem #FFF,80.9375rem 20.375rem #FFF,18.3125rem 5.0625rem #FFF,75.125rem 98.75rem #FFF,90.0625rem 6.25rem #FFF,80.9375rem 91.5625rem #FFF,70.75rem 79.6875rem #FFF,48.375rem 44rem #FFF,69.3125rem 96.625rem #FFF,34.8125rem 86.875rem #FFF,78.3125rem 76.5rem #FFF,66.4375rem 101.125rem #FFF,112.0625rem 27.5rem #FFF,55.625rem 124.25rem #FFF,50.875rem 26.5rem #FFF,86.875rem 80rem #FFF,70.4375rem 56.6875rem #FFF,65.25rem 85.5rem #FFF,82.3125rem 54.75rem #FFF,47.625rem 39.875rem #FFF,60.3125rem 46.6875rem #FFF,47.1875rem 121.5625rem #FFF,44.125rem 25.875rem #FFF,115.125rem 104.5625rem #FFF,72.375rem 83.5rem #FFF,61.8125rem 122.1875rem #FFF,116.0625rem 5.5625rem #FFF,103.6875rem 21.4375rem #FFF,31.8125rem 86.5625rem #FFF,101.25rem 47.375rem #FFF,122.375rem 66.5rem #FFF,11.125rem 21.3125rem #FFF,93.75rem 50.5rem #FFF,1.25rem 102.875rem #FFF,98.25rem 54.375rem #FFF,113.8125rem 86.0625rem #FFF,20.5rem 122.8125rem #FFF,56.4375rem 38.5rem #FFF,108.1875rem 99.9375rem #FFF,16.6875rem 53.5rem #FFF;
     animation: animStar 50s linear infinite
 }
 
 #stars:after {
     content: " ";
     position: absolute;
-    right: 2000px;
-    width: 1px;
-    height: 1px;
+    right: 125rem;
+    width: .0625rem;
+    height: .0625rem;
     background: transparent;
-    box-shadow: 1407px 511px #FFF,1611px 119px #FFF,1686px 956px #FFF,1163px 1929px #FFF,912px 1242px #FFF,490px 469px #FFF,869px 425px #FFF,1447px 891px #FFF,422px 1960px #FFF,517px 1995px #FFF,738px 171px #FFF,1328px 1668px #FFF,874px 1490px #FFF,83px 81px #FFF,632px 98px #FFF,1518px 1764px #FFF,636px 596px #FFF,1178px 131px #FFF,278px 1179px #FFF,1898px 1951px #FFF,1787px 326px #FFF,186px 1588px #FFF,552px 1942px #FFF,1929px 1300px #FFF,802px 681px #FFF,430px 1711px #FFF,1192px 308px #FFF,123px 1604px #FFF,880px 169px #FFF,1400px 632px #FFF,500px 1165px #FFF,288px 1208px #FFF,319px 1419px #FFF,1170px 980px #FFF,1608px 784px #FFF,1735px 1276px #FFF,966px 1534px #FFF,654px 783px #FFF,1366px 964px #FFF,1213px 60px #FFF,302px 1509px #FFF,845px 714px #FFF,524px 323px #FFF,1538px 1399px #FFF,394px 619px #FFF,680px 26px #FFF,353px 776px #FFF,1826px 1450px #FFF,1909px 1452px #FFF,1014px 1315px #FFF,1883px 1474px #FFF,766px 1742px #FFF,1693px 658px #FFF,1186px 302px #FFF,376px 1575px #FFF,712px 1739px #FFF,1627px 299px #FFF,482px 224px #FFF,1379px 510px #FFF,1543px 1602px #FFF,45px 606px #FFF,827px 1336px #FFF,224px 1939px #FFF,1098px 1342px #FFF,813px 1553px #FFF,825px 419px #FFF,519px 894px #FFF,1406px 797px #FFF,1341px 274px #FFF,1787px 903px #FFF,1701px 1483px #FFF,1108px 232px #FFF,1599px 1409px #FFF,659px 870px #FFF,1538px 335px #FFF,632px 1855px #FFF,154px 1026px #FFF,1722px 979px #FFF,1339px 509px #FFF,1833px 460px #FFF,315px 65px #FFF,496px 1927px #FFF,1314px 427px #FFF,344px 1046px #FFF,1658px 724px #FFF,1899px 264px #FFF,1200px 1305px #FFF,1562px 339px #FFF,159px 766px #FFF,1639px 1966px #FFF,459px 1898px #FFF,944px 763px #FFF,1174px 1056px #FFF,1825px 790px #FFF,906px 1526px #FFF,1537px 1303px #FFF,79px 1105px #FFF,1318px 672px #FFF,1232px 61px #FFF,709px 1078px #FFF,1010px 1810px #FFF,777px 1160px #FFF,1598px 1428px #FFF,815px 684px #FFF,1003px 943px #FFF,1876px 1003px #FFF,1025px 1529px #FFF,66px 549px #FFF,514px 457px #FFF,262px 1005px #FFF,812px 1705px #FFF,1163px 1087px #FFF,165px 45px #FFF,677px 1462px #FFF,580px 1675px #FFF,1848px 1384px #FFF,449px 862px #FFF,1629px 1979px #FFF,667px 135px #FFF,240px 53px #FFF,1919px 1832px #FFF,696px 1384px #FFF,1630px 361px #FFF,878px 663px #FFF,1226px 1723px #FFF,765px 686px #FFF,576px 1647px #FFF,97px 1602px #FFF,1117px 1049px #FFF,1433px 68px #FFF,1375px 1991px #FFF,1755px 990px #FFF,1483px 801px #FFF,473px 1802px #FFF,822px 768px #FFF,196px 577px #FFF,516px 504px #FFF,623px 981px #FFF,1478px 819px #FFF,126px 384px #FFF,584px 1908px #FFF,1549px 521px #FFF,1866px 1335px #FFF,586px 342px #FFF,1698px 642px #FFF,136px 188px #FFF,1613px 520px #FFF,937px 326px #FFF,1111px 169px #FFF,229px 229px #FFF,1357px 20px #FFF,725px 1305px #FFF,23px 1977px #FFF,426px 1945px #FFF,1628px 1530px #FFF,256px 1295px #FFF,58px 78px #FFF,409px 1145px #FFF,1607px 767px #FFF,212px 144px #FFF,361px 1890px #FFF,1827px 1451px #FFF,1875px 645px #FFF,571px 853px #FFF,1302px 301px #FFF,9px 1344px #FFF,418px 619px #FFF,1941px 90px #FFF,949px 640px #FFF,179px 1783px #FFF,1104px 360px #FFF,1723px 370px #FFF,1122px 1418px #FFF,1374px 508px #FFF,1108px 1089px #FFF,1440px 1743px #FFF,462px 1495px #FFF,1187px 265px #FFF,567px 74px #FFF,557px 542px #FFF,967px 673px #FFF,825px 1971px #FFF,988px 1260px #FFF,710px 1206px #FFF,538px 1805px #FFF,137px 861px #FFF,1922px 1313px #FFF,481px 470px #FFF,1224px 316px #FFF,1979px 239px #FFF,22px 1155px #FFF,1640px 186px #FFF,592px 1709px #FFF,765px 170px #FFF,129px 1750px #FFF,788px 719px #FFF,181px 1327px #FFF,433px 1455px #FFF,141px 450px #FFF,1287px 1027px #FFF,1278px 1462px #FFF,688px 1526px #FFF,463px 1604px #FFF,1232px 297px #FFF,920px 1227px #FFF,1571px 1765px #FFF,1482px 1316px #FFF,759px 1463px #FFF,950px 1166px #FFF,1532px 1588px #FFF,608px 267px #FFF,1862px 1943px #FFF,805px 717px #FFF,1803px 1319px #FFF,1821px 683px #FFF,995px 1958px #FFF,484px 932px #FFF,366px 901px #FFF,451px 1563px #FFF,1704px 1471px #FFF,1379px 44px #FFF,1778px 472px #FFF,419px 1806px #FFF,1545px 222px #FFF,1563px 777px #FFF,39px 964px #FFF,1620px 24px #FFF,1151px 320px #FFF,1940px 1426px #FFF,1555px 1538px #FFF,1747px 488px #FFF,1348px 300px #FFF,990px 538px #FFF,780px 361px #FFF,988px 971px #FFF,1973px 1534px #FFF,1542px 1829px #FFF,1557px 216px #FFF,1404px 641px #FFF,47px 877px #FFF,65px 1738px #FFF,1895px 1798px #FFF,56px 591px #FFF,536px 906px #FFF,568px 74px #FFF,433px 462px #FFF,727px 295px #FFF,876px 1878px #FFF,1891px 1946px #FFF,1451px 493px #FFF,1569px 226px #FFF,879px 1351px #FFF,1529px 43px #FFF,33px 74px #FFF,1516px 1924px #FFF,878px 323px #FFF,455px 1122px #FFF,1943px 526px #FFF,1456px 1060px #FFF,1631px 979px #FFF,1819px 1324px #FFF,1660px 1192px #FFF,1867px 1714px #FFF,1928px 1940px #FFF,1618px 744px #FFF,979px 357px #FFF,98px 1645px #FFF,1898px 1207px #FFF,1134px 16px #FFF,1313px 1018px #FFF,717px 812px #FFF,1503px 234px #FFF,1612px 188px #FFF,29px 459px #FFF,414px 1487px #FFF,1223px 1730px #FFF,1643px 1188px #FFF,424px 767px #FFF,1692px 1591px #FFF,1265px 367px #FFF,54px 832px #FFF,410px 804px #FFF,1397px 1242px #FFF,549px 1484px #FFF,721px 1088px #FFF,472px 1240px #FFF,1927px 514px #FFF,1303px 1310px #FFF,71px 1276px #FFF,829px 1332px #FFF,84px 1920px #FFF,1088px 375px #FFF,1659px 736px #FFF,967px 294px #FFF,651px 92px #FFF,1572px 143px #FFF,1680px 770px #FFF,1873px 1289px #FFF,1983px 821px #FFF,448px 1090px #FFF,890px 1332px #FFF,836px 867px #FFF,1867px 1213px #FFF,1874px 1574px #FFF,750px 1063px #FFF,1297px 1971px #FFF,1274px 1015px #FFF,1628px 933px #FFF,309px 1386px #FFF,299px 1621px #FFF,1973px 526px #FFF,196px 1416px #FFF,778px 715px #FFF,1993px 1294px #FFF,381px 435px #FFF,1405px 681px #FFF,1759px 1077px #FFF,1764px 1748px #FFF,168px 470px #FFF,978px 781px #FFF,110px 1666px #FFF,835px 747px #FFF,112px 95px #FFF,604px 712px #FFF,1121px 1752px #FFF,393px 1782px #FFF,1869px 830px #FFF,1303px 348px #FFF,427px 1546px #FFF,761px 718px #FFF,946px 674px #FFF,832px 964px #FFF,1607px 2000px #FFF,1624px 1296px #FFF,1093px 735px #FFF,1865px 608px #FFF,933px 1278px #FFF,1402px 547px #FFF,1865px 1211px #FFF,109px 72px #FFF,249px 1482px #FFF,586px 1933px #FFF,911px 1336px #FFF,697px 853px #FFF,987px 1797px #FFF,1371px 933px #FFF,492px 1896px #FFF,998px 1866px #FFF,518px 31px #FFF,1873px 372px #FFF,1025px 1308px #FFF,1478px 965px #FFF,1934px 934px #FFF,1048px 1262px #FFF,1839px 40px #FFF,1399px 732px #FFF,735px 416px #FFF,621px 394px #FFF,788px 1802px #FFF,1918px 307px #FFF,432px 1845px #FFF,616px 481px #FFF,921px 798px #FFF,354px 597px #FFF,1622px 214px #FFF,1349px 1983px #FFF,1033px 1622px #FFF,1198px 407px #FFF,1239px 1449px #FFF,1278px 1978px #FFF,426px 1264px #FFF,507px 1341px #FFF,1956px 818px #FFF,1041px 277px #FFF,1371px 639px #FFF,1224px 419px #FFF,211px 1106px #FFF,847px 656px #FFF,534px 1891px #FFF,1289px 823px #FFF,906px 482px #FFF,347px 1837px #FFF,1246px 1462px #FFF,915px 1858px #FFF,559px 1320px #FFF,77px 1555px #FFF,845px 1743px #FFF,313px 1414px #FFF,188px 252px #FFF,509px 637px #FFF,374px 142px #FFF,1397px 474px #FFF,458px 1197px #FFF,292px 619px #FFF,1749px 14px #FFF,1638px 24px #FFF,563px 1752px #FFF,1940px 1065px #FFF,1145px 1030px #FFF,894px 1470px #FFF,444px 32px #FFF,1341px 1136px #FFF,1941px 412px #FFF,1328px 785px #FFF,161px 1740px #FFF,948px 829px #FFF,933px 823px #FFF,1709px 507px #FFF,1366px 1821px #FFF,720px 731px #FFF,162px 682px #FFF,1684px 882px #FFF,134px 497px #FFF,1659px 1701px #FFF,1186px 446px #FFF,911px 1435px #FFF,1814px 1028px #FFF,1234px 1520px #FFF,1186px 23px #FFF,318px 87px #FFF,1179px 837px #FFF,1071px 46px #FFF,1125px 1862px #FFF,94px 261px #FFF,1574px 282px #FFF,1039px 815px #FFF,1776px 1472px #FFF,867px 473px #FFF,901px 215px #FFF,862px 630px #FFF,1480px 1673px #FFF,411px 1896px #FFF,1335px 944px #FFF,148px 1235px #FFF,57px 140px #FFF,447px 651px #FFF,1414px 1651px #FFF,209px 1770px #FFF,1800px 1590px #FFF,1304px 1px #FFF,279px 771px #FFF,1770px 1398px #FFF,724px 1201px #FFF,245px 1145px #FFF,172px 1951px #FFF,284px 236px #FFF,1905px 1307px #FFF,1948px 574px #FFF,283px 669px #FFF,247px 384px #FFF,224px 619px #FFF,128px 772px #FFF,1698px 1405px #FFF,830px 505px #FFF,1938px 397px #FFF,1772px 1001px #FFF,1454px 808px #FFF,304px 561px #FFF,1321px 966px #FFF,735px 1368px #FFF,894px 345px #FFF,1217px 1997px #FFF,892px 1342px #FFF,353px 379px #FFF,1382px 1156px #FFF,164px 1239px #FFF,1268px 1859px #FFF,1385px 1721px #FFF,16px 283px #FFF,1819px 200px #FFF,660px 1111px #FFF,1679px 1728px #FFF,463px 596px #FFF,217px 1834px #FFF,1879px 538px #FFF,304px 906px #FFF,1327px 1347px #FFF,1226px 1579px #FFF,1786px 1616px #FFF,1234px 1982px #FFF,1868px 1862px #FFF,814px 948px #FFF,178px 1837px #FFF,571px 1701px #FFF,106px 566px #FFF,270px 925px #FFF,1417px 248px #FFF,609px 1551px #FFF,992px 1825px #FFF,1515px 1999px #FFF,1167px 914px #FFF,1698px 490px #FFF,189px 1463px #FFF,928px 612px #FFF,1714px 803px #FFF,535px 402px #FFF,1000px 379px #FFF,1610px 574px #FFF,1882px 1155px #FFF,1425px 1514px #FFF,417px 1987px #FFF,1681px 1059px #FFF,841px 762px #FFF,1886px 1098px #FFF,1785px 236px #FFF,1950px 950px #FFF,444px 1937px #FFF,1364px 540px #FFF,1971px 225px #FFF,1624px 868px #FFF,869px 640px #FFF,1637px 559px #FFF,20px 823px #FFF,409px 177px #FFF,1804px 1626px #FFF,388px 527px #FFF,1385px 1734px #FFF,988px 1310px #FFF,443px 599px #FFF,1780px 434px #FFF,654px 419px #FFF,268px 1424px #FFF,1971px 40px #FFF,360px 1834px #FFF,875px 1930px #FFF,1866px 1885px #FFF,453px 1670px #FFF,1696px 1337px #FFF,604px 1887px #FFF,1405px 769px #FFF,1546px 897px #FFF,595px 1975px #FFF,32px 1765px #FFF,896px 1150px #FFF,1818px 95px #FFF,444px 49px #FFF,589px 1796px #FFF,764px 1965px #FFF,920px 1803px #FFF,403px 1997px #FFF,833px 1282px #FFF,1127px 1770px #FFF,1810px 77px #FFF,1214px 1102px #FFF,364px 401px #FFF,1139px 1191px #FFF,916px 1907px #FFF,870px 290px #FFF,688px 678px #FFF,1523px 34px #FFF,1265px 1082px #FFF,1394px 1080px #FFF,1787px 1738px #FFF,1682px 755px #FFF,1955px 832px #FFF,546px 1577px #FFF,1062px 1561px #FFF,344px 826px #FFF,1442px 782px #FFF,467px 1477px #FFF,879px 1439px #FFF,1672px 268px #FFF,1317px 1355px #FFF,1980px 1965px #FFF,688px 1465px #FFF,1131px 872px #FFF,1301px 1656px #FFF,974px 583px #FFF,1613px 1467px #FFF,1976px 1995px #FFF,1377px 760px #FFF,1367px 387px #FFF,1880px 191px #FFF,711px 876px #FFF,539px 152px #FFF,545px 1809px #FFF,920px 970px #FFF,1154px 1355px #FFF,1968px 94px #FFF,1703px 490px #FFF,380px 146px #FFF,1561px 785px #FFF,1930px 1385px #FFF,519px 1091px #FFF,269px 570px #FFF,109px 1326px #FFF,1476px 969px #FFF,1999px 1885px #FFF,341px 1238px #FFF,1105px 1076px #FFF,596px 88px #FFF,937px 492px #FFF,1339px 1673px #FFF,1967px 762px #FFF,65px 952px #FFF,111px 93px #FFF,1011px 1684px #FFF,377px 1430px #FFF,1011px 386px #FFF,1162px 421px #FFF,196px 617px #FFF,1407px 1141px #FFF,1562px 572px #FFF,316px 690px #FFF,1600px 1980px #FFF,1545px 1254px #FFF,680px 1120px #FFF,575px 1284px #FFF,179px 1470px #FFF,1496px 1506px #FFF,977px 1376px #FFF,1282px 708px #FFF,408px 1427px #FFF,1173px 1597px #FFF,1120px 1755px #FFF,974px 520px #FFF,979px 384px #FFF,622px 1116px #FFF,1307px 866px #FFF,1188px 1596px #FFF,858px 1947px #FFF,861px 1373px #FFF,857px 43px #FFF,1878px 499px #FFF,1297px 535px #FFF,870px 1286px #FFF,1452px 448px #FFF,906px 72px #FFF,1450px 872px #FFF,1607px 1755px #FFF,1071px 1959px #FFF,976px 879px #FFF,1435px 284px #FFF,1601px 496px #FFF,671px 1713px #FFF,356px 1148px #FFF,837px 867px #FFF,246px 858px #FFF,1031px 1594px #FFF,571px 214px #FFF,1012px 1329px #FFF,1566px 1142px #FFF,219px 1376px #FFF,1580px 1454px #FFF,690px 1037px #FFF,1940px 756px #FFF,1755px 850px #FFF,1037px 363px #FFF,25px 515px #FFF,806px 1571px #FFF,1266px 1398px #FFF,695px 791px #FFF,1838px 950px #FFF,1578px 27px #FFF,1692px 1581px #FFF,1817px 1040px #FFF,1781px 238px #FFF,1052px 895px #FFF,398px 440px #FFF,1643px 325px #FFF,79px 848px #FFF,1295px 326px #FFF,293px 81px #FFF,1202px 1580px #FFF,1441px 100px #FFF,1295px 1465px #FFF,1132px 1275px #FFF,774px 704px #FFF,1109px 1546px #FFF,557px 1390px #FFF,1253px 1224px #FFF,1063px 1618px #FFF,1793px 440px #FFF,890px 1988px #FFF,814px 424px #FFF,1390px 1280px #FFF,1127px 907px #FFF,1044px 1368px #FFF,1317px 876px #FFF,762px 638px #FFF,965px 747px #FFF,755px 1945px #FFF,706px 414px #FFF,1842px 1673px #FFF,1158px 1336px #FFF,989px 1955px #FFF,1857px 89px #FFF,1659px 343px #FFF,509px 1385px #FFF,1620px 758px #FFF,1958px 1064px #FFF,178px 341px #FFF,1500px 808px #FFF,20px 1646px #FFF,1572px 870px #FFF,1821px 1377px #FFF,328px 1965px #FFF,903px 616px #FFF,1731px 1599px #FFF,267px 856px #FFF
+    box-shadow: 87.9375rem 31.9375rem #FFF,100.6875rem 7.4375rem #FFF,105.375rem 59.75rem #FFF,72.6875rem 120.5625rem #FFF,57rem 77.625rem #FFF,30.625rem 29.3125rem #FFF,54.3125rem 26.5625rem #FFF,90.4375rem 55.6875rem #FFF,26.375rem 122.5rem #FFF,32.3125rem 124.6875rem #FFF,46.125rem 10.6875rem #FFF,83rem 104.25rem #FFF,54.625rem 93.125rem #FFF,5.1875rem 5.0625rem #FFF,39.5rem 6.125rem #FFF,94.875rem 110.25rem #FFF,39.75rem 37.25rem #FFF,73.625rem 8.1875rem #FFF,17.375rem 73.6875rem #FFF,118.625rem 121.9375rem #FFF,111.6875rem 20.375rem #FFF,11.625rem 99.25rem #FFF,34.5rem 121.375rem #FFF,120.5625rem 81.25rem #FFF,50.125rem 42.5625rem #FFF,26.875rem 106.9375rem #FFF,74.5rem 19.25rem #FFF,7.6875rem 100.25rem #FFF,55rem 10.5625rem #FFF,87.5rem 39.5rem #FFF,31.25rem 72.8125rem #FFF,18rem 75.5rem #FFF,19.9375rem 88.6875rem #FFF,73.125rem 61.25rem #FFF,100.5rem 49rem #FFF,108.4375rem 79.75rem #FFF,60.375rem 95.875rem #FFF,40.875rem 48.9375rem #FFF,85.375rem 60.25rem #FFF,75.8125rem 3.75rem #FFF,18.875rem 94.3125rem #FFF,52.8125rem 44.625rem #FFF,32.75rem 20.1875rem #FFF,96.125rem 87.4375rem #FFF,24.625rem 38.6875rem #FFF,42.5rem 1.625rem #FFF,22.0625rem 48.5rem #FFF,114.125rem 90.625rem #FFF,119.3125rem 90.75rem #FFF,63.375rem 82.1875rem #FFF,117.6875rem 92.125rem #FFF,47.875rem 108.875rem #FFF,105.8125rem 41.125rem #FFF,74.125rem 18.875rem #FFF,23.5rem 98.4375rem #FFF,44.5rem 108.6875rem #FFF,101.6875rem 18.6875rem #FFF,30.125rem 14rem #FFF,86.1875rem 31.875rem #FFF,96.4375rem 100.125rem #FFF,2.8125rem 37.875rem #FFF,51.6875rem 83.5rem #FFF,14rem 121.1875rem #FFF,68.625rem 83.875rem #FFF,50.8125rem 97.0625rem #FFF,51.5625rem 26.1875rem #FFF,32.4375rem 55.875rem #FFF,87.875rem 49.8125rem #FFF,83.8125rem 17.125rem #FFF,111.6875rem 56.4375rem #FFF,106.3125rem 92.6875rem #FFF,69.25rem 14.5rem #FFF,99.9375rem 88.0625rem #FFF,41.1875rem 54.375rem #FFF,96.125rem 20.9375rem #FFF,39.5rem 115.9375rem #FFF,9.625rem 64.125rem #FFF,107.625rem 61.1875rem #FFF,83.6875rem 31.8125rem #FFF,114.5625rem 28.75rem #FFF,19.6875rem 4.0625rem #FFF,31rem 120.4375rem #FFF,82.125rem 26.6875rem #FFF,21.5rem 65.375rem #FFF,103.625rem 45.25rem #FFF,118.6875rem 16.5rem #FFF,75rem 81.5625rem #FFF,97.625rem 21.1875rem #FFF,9.9375rem 47.875rem #FFF,102.4375rem 122.875rem #FFF,28.6875rem 118.625rem #FFF,59rem 47.6875rem #FFF,73.375rem 66rem #FFF,114.0625rem 49.375rem #FFF,56.625rem 95.375rem #FFF,96.0625rem 81.4375rem #FFF,4.9375rem 69.0625rem #FFF,82.375rem 42rem #FFF,77rem 3.8125rem #FFF,44.3125rem 67.375rem #FFF,63.125rem 113.125rem #FFF,48.5625rem 72.5rem #FFF,99.875rem 89.25rem #FFF,50.9375rem 42.75rem #FFF,62.6875rem 58.9375rem #FFF,117.25rem 62.6875rem #FFF,64.0625rem 95.5625rem #FFF,4.125rem 34.3125rem #FFF,32.125rem 28.5625rem #FFF,16.375rem 62.8125rem #FFF,50.75rem 106.5625rem #FFF,72.6875rem 67.9375rem #FFF,10.3125rem 2.8125rem #FFF,42.3125rem 91.375rem #FFF,36.25rem 104.6875rem #FFF,115.5rem 86.5rem #FFF,28.0625rem 53.875rem #FFF,101.8125rem 123.6875rem #FFF,41.6875rem 8.4375rem #FFF,15rem 3.3125rem #FFF,119.9375rem 114.5rem #FFF,43.5rem 86.5rem #FFF,101.875rem 22.5625rem #FFF,54.875rem 41.4375rem #FFF,76.625rem 107.6875rem #FFF,47.8125rem 42.875rem #FFF,36rem 102.9375rem #FFF,6.0625rem 100.125rem #FFF,69.8125rem 65.5625rem #FFF,89.5625rem 4.25rem #FFF,85.9375rem 124.4375rem #FFF,109.6875rem 61.875rem #FFF,92.6875rem 50.0625rem #FFF,29.5625rem 112.625rem #FFF,51.375rem 48rem #FFF,12.25rem 36.0625rem #FFF,32.25rem 31.5rem #FFF,38.9375rem 61.3125rem #FFF,92.375rem 51.1875rem #FFF,7.875rem 24rem #FFF,36.5rem 119.25rem #FFF,96.8125rem 32.5625rem #FFF,116.625rem 83.4375rem #FFF,36.625rem 21.375rem #FFF,106.125rem 40.125rem #FFF,8.5rem 11.75rem #FFF,100.8125rem 32.5rem #FFF,58.5625rem 20.375rem #FFF,69.4375rem 10.5625rem #FFF,14.3125rem 14.3125rem #FFF,84.8125rem 1.25rem #FFF,45.3125rem 81.5625rem #FFF,1.4375rem 123.5625rem #FFF,26.625rem 121.5625rem #FFF,101.75rem 95.625rem #FFF,16rem 80.9375rem #FFF,3.625rem 4.875rem #FFF,25.5625rem 71.5625rem #FFF,100.4375rem 47.9375rem #FFF,13.25rem 9rem #FFF,22.5625rem 118.125rem #FFF,114.1875rem 90.6875rem #FFF,117.1875rem 40.3125rem #FFF,35.6875rem 53.3125rem #FFF,81.375rem 18.8125rem #FFF,.5625rem 84rem #FFF,26.125rem 38.6875rem #FFF,121.3125rem 5.625rem #FFF,59.3125rem 40rem #FFF,11.1875rem 111.4375rem #FFF,69rem 22.5rem #FFF,107.6875rem 23.125rem #FFF,70.125rem 88.625rem #FFF,85.875rem 31.75rem #FFF,69.25rem 68.0625rem #FFF,90rem 108.9375rem #FFF,28.875rem 93.4375rem #FFF,74.1875rem 16.5625rem #FFF,35.4375rem 4.625rem #FFF,34.8125rem 33.875rem #FFF,60.4375rem 42.0625rem #FFF,51.5625rem 123.1875rem #FFF,61.75rem 78.75rem #FFF,44.375rem 75.375rem #FFF,33.625rem 112.8125rem #FFF,8.5625rem 53.8125rem #FFF,120.125rem 82.0625rem #FFF,30.0625rem 29.375rem #FFF,76.5rem 19.75rem #FFF,123.6875rem 14.9375rem #FFF,1.375rem 72.1875rem #FFF,102.5rem 11.625rem #FFF,37rem 106.8125rem #FFF,47.8125rem 10.625rem #FFF,8.0625rem 109.375rem #FFF,49.25rem 44.9375rem #FFF,11.3125rem 82.9375rem #FFF,27.0625rem 90.9375rem #FFF,8.8125rem 28.125rem #FFF,80.4375rem 64.1875rem #FFF,79.875rem 91.375rem #FFF,43rem 95.375rem #FFF,28.9375rem 100.25rem #FFF,77rem 18.5625rem #FFF,57.5rem 76.6875rem #FFF,98.1875rem 110.3125rem #FFF,92.625rem 82.25rem #FFF,47.4375rem 91.4375rem #FFF,59.375rem 72.875rem #FFF,95.75rem 99.25rem #FFF,38rem 16.6875rem #FFF,116.375rem 121.4375rem #FFF,50.3125rem 44.8125rem #FFF,112.6875rem 82.4375rem #FFF,113.8125rem 42.6875rem #FFF,62.1875rem 122.375rem #FFF,30.25rem 58.25rem #FFF,22.875rem 56.3125rem #FFF,28.1875rem 97.6875rem #FFF,106.5rem 91.9375rem #FFF,86.1875rem 2.75rem #FFF,111.125rem 29.5rem #FFF,26.1875rem 112.875rem #FFF,96.5625rem 13.875rem #FFF,97.6875rem 48.5625rem #FFF,2.4375rem 60.25rem #FFF,101.25rem 1.5rem #FFF,71.9375rem 20rem #FFF,121.25rem 89.125rem #FFF,97.1875rem 96.125rem #FFF,109.1875rem 30.5rem #FFF,84.25rem 18.75rem #FFF,61.875rem 33.625rem #FFF,48.75rem 22.5625rem #FFF,61.75rem 60.6875rem #FFF,123.3125rem 95.875rem #FFF,96.375rem 114.3125rem #FFF,97.3125rem 13.5rem #FFF,87.75rem 40.0625rem #FFF,2.9375rem 54.8125rem #FFF,4.0625rem 108.625rem #FFF,118.4375rem 112.375rem #FFF,3.5rem 36.9375rem #FFF,33.5rem 56.625rem #FFF,35.5rem 4.625rem #FFF,27.0625rem 28.875rem #FFF,45.4375rem 18.4375rem #FFF,54.75rem 117.375rem #FFF,118.1875rem 121.625rem #FFF,90.6875rem 30.8125rem #FFF,98.0625rem 14.125rem #FFF,54.9375rem 84.4375rem #FFF,95.5625rem 2.6875rem #FFF,2.0625rem 4.625rem #FFF,94.75rem 120.25rem #FFF,54.875rem 20.1875rem #FFF,28.4375rem 70.125rem #FFF,121.4375rem 32.875rem #FFF,91rem 66.25rem #FFF,101.9375rem 61.1875rem #FFF,113.6875rem 82.75rem #FFF,103.75rem 74.5rem #FFF,116.6875rem 107.125rem #FFF,120.5rem 121.25rem #FFF,101.125rem 46.5rem #FFF,61.1875rem 22.3125rem #FFF,6.125rem 102.8125rem #FFF,118.625rem 75.4375rem #FFF,70.875rem 1rem #FFF,82.0625rem 63.625rem #FFF,44.8125rem 50.75rem #FFF,93.9375rem 14.625rem #FFF,100.75rem 11.75rem #FFF,1.8125rem 28.6875rem #FFF,25.875rem 92.9375rem #FFF,76.4375rem 108.125rem #FFF,102.6875rem 74.25rem #FFF,26.5rem 47.9375rem #FFF,105.75rem 99.4375rem #FFF,79.0625rem 22.9375rem #FFF,3.375rem 52rem #FFF,25.625rem 50.25rem #FFF,87.3125rem 77.625rem #FFF,34.3125rem 92.75rem #FFF,45.0625rem 68rem #FFF,29.5rem 77.5rem #FFF,120.4375rem 32.125rem #FFF,81.4375rem 81.875rem #FFF,4.4375rem 79.75rem #FFF,51.8125rem 83.25rem #FFF,5.25rem 120rem #FFF,68rem 23.4375rem #FFF,103.6875rem 46rem #FFF,60.4375rem 18.375rem #FFF,40.6875rem 5.75rem #FFF,98.25rem 8.9375rem #FFF,105rem 48.125rem #FFF,117.0625rem 80.5625rem #FFF,123.9375rem 51.3125rem #FFF,28rem 68.125rem #FFF,55.625rem 83.25rem #FFF,52.25rem 54.1875rem #FFF,116.6875rem 75.8125rem #FFF,117.125rem 98.375rem #FFF,46.875rem 66.4375rem #FFF,81.0625rem 123.1875rem #FFF,79.625rem 63.4375rem #FFF,101.75rem 58.3125rem #FFF,19.3125rem 86.625rem #FFF,18.6875rem 101.3125rem #FFF,123.3125rem 32.875rem #FFF,12.25rem 88.5rem #FFF,48.625rem 44.6875rem #FFF,124.5625rem 80.875rem #FFF,23.8125rem 27.1875rem #FFF,87.8125rem 42.5625rem #FFF,109.9375rem 67.3125rem #FFF,110.25rem 109.25rem #FFF,10.5rem 29.375rem #FFF,61.125rem 48.8125rem #FFF,6.875rem 104.125rem #FFF,52.1875rem 46.6875rem #FFF,7rem 5.9375rem #FFF,37.75rem 44.5rem #FFF,70.0625rem 109.5rem #FFF,24.5625rem 111.375rem #FFF,116.8125rem 51.875rem #FFF,81.4375rem 21.75rem #FFF,26.6875rem 96.625rem #FFF,47.5625rem 44.875rem #FFF,59.125rem 42.125rem #FFF,52rem 60.25rem #FFF,100.4375rem 125rem #FFF,101.5rem 81rem #FFF,68.3125rem 45.9375rem #FFF,116.5625rem 38rem #FFF,58.3125rem 79.875rem #FFF,87.625rem 34.1875rem #FFF,116.5625rem 75.6875rem #FFF,6.8125rem 4.5rem #FFF,15.5625rem 92.625rem #FFF,36.625rem 120.8125rem #FFF,56.9375rem 83.5rem #FFF,43.5625rem 53.3125rem #FFF,61.6875rem 112.3125rem #FFF,85.6875rem 58.3125rem #FFF,30.75rem 118.5rem #FFF,62.375rem 116.625rem #FFF,32.375rem 1.9375rem #FFF,117.0625rem 23.25rem #FFF,64.0625rem 81.75rem #FFF,92.375rem 60.3125rem #FFF,120.875rem 58.375rem #FFF,65.5rem 78.875rem #FFF,114.9375rem 2.5rem #FFF,87.4375rem 45.75rem #FFF,45.9375rem 26rem #FFF,38.8125rem 24.625rem #FFF,49.25rem 112.625rem #FFF,119.875rem 19.1875rem #FFF,27rem 115.3125rem #FFF,38.5rem 30.0625rem #FFF,57.5625rem 49.875rem #FFF,22.125rem 37.3125rem #FFF,101.375rem 13.375rem #FFF,84.3125rem 123.9375rem #FFF,64.5625rem 101.375rem #FFF,74.875rem 25.4375rem #FFF,77.4375rem 90.5625rem #FFF,79.875rem 123.625rem #FFF,26.625rem 79rem #FFF,31.6875rem 83.8125rem #FFF,122.25rem 51.125rem #FFF,65.0625rem 17.3125rem #FFF,85.6875rem 39.9375rem #FFF,76.5rem 26.1875rem #FFF,13.1875rem 69.125rem #FFF,52.9375rem 41rem #FFF,33.375rem 118.1875rem #FFF,80.5625rem 51.4375rem #FFF,56.625rem 30.125rem #FFF,21.6875rem 114.8125rem #FFF,77.875rem 91.375rem #FFF,57.1875rem 116.125rem #FFF,34.9375rem 82.5rem #FFF,4.8125rem 97.1875rem #FFF,52.8125rem 108.9375rem #FFF,19.5625rem 88.375rem #FFF,11.75rem 15.75rem #FFF,31.8125rem 39.8125rem #FFF,23.375rem 8.875rem #FFF,87.3125rem 29.625rem #FFF,28.625rem 74.8125rem #FFF,18.25rem 38.6875rem #FFF,109.3125rem .875rem #FFF,102.375rem 1.5rem #FFF,35.1875rem 109.5rem #FFF,121.25rem 66.5625rem #FFF,71.5625rem 64.375rem #FFF,55.875rem 91.875rem #FFF,27.75rem 2rem #FFF,83.8125rem 71rem #FFF,121.3125rem 25.75rem #FFF,83rem 49.0625rem #FFF,10.0625rem 108.75rem #FFF,59.25rem 51.8125rem #FFF,58.3125rem 51.4375rem #FFF,106.8125rem 31.6875rem #FFF,85.375rem 113.8125rem #FFF,45rem 45.6875rem #FFF,10.125rem 42.625rem #FFF,105.25rem 55.125rem #FFF,8.375rem 31.0625rem #FFF,103.6875rem 106.3125rem #FFF,74.125rem 27.875rem #FFF,56.9375rem 89.6875rem #FFF,113.375rem 64.25rem #FFF,77.125rem 95rem #FFF,74.125rem 1.4375rem #FFF,19.875rem 5.4375rem #FFF,73.6875rem 52.3125rem #FFF,66.9375rem 2.875rem #FFF,70.3125rem 116.375rem #FFF,5.875rem 16.3125rem #FFF,98.375rem 17.625rem #FFF,64.9375rem 50.9375rem #FFF,111rem 92rem #FFF,54.1875rem 29.5625rem #FFF,56.3125rem 13.4375rem #FFF,53.875rem 39.375rem #FFF,92.5rem 104.5625rem #FFF,25.6875rem 118.5rem #FFF,83.4375rem 59rem #FFF,9.25rem 77.1875rem #FFF,3.5625rem 8.75rem #FFF,27.9375rem 40.6875rem #FFF,88.375rem 103.1875rem #FFF,13.0625rem 110.625rem #FFF,112.5rem 99.375rem #FFF,81.5rem .0625rem #FFF,17.4375rem 48.1875rem #FFF,110.625rem 87.375rem #FFF,45.25rem 75.0625rem #FFF,15.3125rem 71.5625rem #FFF,10.75rem 121.9375rem #FFF,17.75rem 14.75rem #FFF,119.0625rem 81.6875rem #FFF,121.75rem 35.875rem #FFF,17.6875rem 41.8125rem #FFF,15.4375rem 24rem #FFF,14rem 38.6875rem #FFF,8rem 48.25rem #FFF,106.125rem 87.8125rem #FFF,51.875rem 31.5625rem #FFF,121.125rem 24.8125rem #FFF,110.75rem 62.5625rem #FFF,90.875rem 50.5rem #FFF,19rem 35.0625rem #FFF,82.5625rem 60.375rem #FFF,45.9375rem 85.5rem #FFF,55.875rem 21.5625rem #FFF,76.0625rem 124.8125rem #FFF,55.75rem 83.875rem #FFF,22.0625rem 23.6875rem #FFF,86.375rem 72.25rem #FFF,10.25rem 77.4375rem #FFF,79.25rem 116.1875rem #FFF,86.5625rem 107.5625rem #FFF,1rem 17.6875rem #FFF,113.6875rem 12.5rem #FFF,41.25rem 69.4375rem #FFF,104.9375rem 108rem #FFF,28.9375rem 37.25rem #FFF,13.5625rem 114.625rem #FFF,117.4375rem 33.625rem #FFF,19rem 56.625rem #FFF,82.9375rem 84.1875rem #FFF,76.625rem 98.6875rem #FFF,111.625rem 101rem #FFF,77.125rem 123.875rem #FFF,116.75rem 116.375rem #FFF,50.875rem 59.25rem #FFF,11.125rem 114.8125rem #FFF,35.6875rem 106.3125rem #FFF,6.625rem 35.375rem #FFF,16.875rem 57.8125rem #FFF,88.5625rem 15.5rem #FFF,38.0625rem 96.9375rem #FFF,62rem 114.0625rem #FFF,94.6875rem 124.9375rem #FFF,72.9375rem 57.125rem #FFF,106.125rem 30.625rem #FFF,11.8125rem 91.4375rem #FFF,58rem 38.25rem #FFF,107.125rem 50.1875rem #FFF,33.4375rem 25.125rem #FFF,62.5rem 23.6875rem #FFF,100.625rem 35.875rem #FFF,117.625rem 72.1875rem #FFF,89.0625rem 94.625rem #FFF,26.0625rem 124.1875rem #FFF,105.0625rem 66.1875rem #FFF,52.5625rem 47.625rem #FFF,117.875rem 68.625rem #FFF,111.5625rem 14.75rem #FFF,121.875rem 59.375rem #FFF,27.75rem 121.0625rem #FFF,85.25rem 33.75rem #FFF,123.1875rem 14.0625rem #FFF,101.5rem 54.25rem #FFF,54.3125rem 40rem #FFF,102.3125rem 34.9375rem #FFF,1.25rem 51.4375rem #FFF,25.5625rem 11.0625rem #FFF,112.75rem 101.625rem #FFF,24.25rem 32.9375rem #FFF,86.5625rem 108.375rem #FFF,61.75rem 81.875rem #FFF,27.6875rem 37.4375rem #FFF,111.25rem 27.125rem #FFF,40.875rem 26.1875rem #FFF,16.75rem 89rem #FFF,123.1875rem 2.5rem #FFF,22.5rem 114.625rem #FFF,54.6875rem 120.625rem #FFF,116.625rem 117.8125rem #FFF,28.3125rem 104.375rem #FFF,106rem 83.5625rem #FFF,37.75rem 117.9375rem #FFF,87.8125rem 48.0625rem #FFF,96.625rem 56.0625rem #FFF,37.1875rem 123.4375rem #FFF,2rem 110.3125rem #FFF,56rem 71.875rem #FFF,113.625rem 5.9375rem #FFF,27.75rem 3.0625rem #FFF,36.8125rem 112.25rem #FFF,47.75rem 122.8125rem #FFF,57.5rem 112.6875rem #FFF,25.1875rem 124.8125rem #FFF,52.0625rem 80.125rem #FFF,70.4375rem 110.625rem #FFF,113.125rem 4.8125rem #FFF,75.875rem 68.875rem #FFF,22.75rem 25.0625rem #FFF,71.1875rem 74.4375rem #FFF,57.25rem 119.1875rem #FFF,54.375rem 18.125rem #FFF,43rem 42.375rem #FFF,95.1875rem 2.125rem #FFF,79.0625rem 67.625rem #FFF,87.125rem 67.5rem #FFF,111.6875rem 108.625rem #FFF,105.125rem 47.1875rem #FFF,122.1875rem 52rem #FFF,34.125rem 98.5625rem #FFF,66.375rem 97.5625rem #FFF,21.5rem 51.625rem #FFF,90.125rem 48.875rem #FFF,29.1875rem 92.3125rem #FFF,54.9375rem 89.9375rem #FFF,104.5rem 16.75rem #FFF,82.3125rem 84.6875rem #FFF,123.75rem 122.8125rem #FFF,43rem 91.5625rem #FFF,70.6875rem 54.5rem #FFF,81.3125rem 103.5rem #FFF,60.875rem 36.4375rem #FFF,100.8125rem 91.6875rem #FFF,123.5rem 124.6875rem #FFF,86.0625rem 47.5rem #FFF,85.4375rem 24.1875rem #FFF,117.5rem 11.9375rem #FFF,44.4375rem 54.75rem #FFF,33.6875rem 9.5rem #FFF,34.0625rem 113.0625rem #FFF,57.5rem 60.625rem #FFF,72.125rem 84.6875rem #FFF,123rem 5.875rem #FFF,106.4375rem 30.625rem #FFF,23.75rem 9.125rem #FFF,97.5625rem 49.0625rem #FFF,120.625rem 86.5625rem #FFF,32.4375rem 68.1875rem #FFF,16.8125rem 35.625rem #FFF,6.8125rem 82.875rem #FFF,92.25rem 60.5625rem #FFF,124.9375rem 117.8125rem #FFF,21.3125rem 77.375rem #FFF,69.0625rem 67.25rem #FFF,37.25rem 5.5rem #FFF,58.5625rem 30.75rem #FFF,83.6875rem 104.5625rem #FFF,122.9375rem 47.625rem #FFF,4.0625rem 59.5rem #FFF,6.9375rem 5.8125rem #FFF,63.1875rem 105.25rem #FFF,23.5625rem 89.375rem #FFF,63.1875rem 24.125rem #FFF,72.625rem 26.3125rem #FFF,12.25rem 38.5625rem #FFF,87.9375rem 71.3125rem #FFF,97.625rem 35.75rem #FFF,19.75rem 43.125rem #FFF,100rem 123.75rem #FFF,96.5625rem 78.375rem #FFF,42.5rem 70rem #FFF,35.9375rem 80.25rem #FFF,11.1875rem 91.875rem #FFF,93.5rem 94.125rem #FFF,61.0625rem 86rem #FFF,80.125rem 44.25rem #FFF,25.5rem 89.1875rem #FFF,73.3125rem 99.8125rem #FFF,70rem 109.6875rem #FFF,60.875rem 32.5rem #FFF,61.1875rem 24rem #FFF,38.875rem 69.75rem #FFF,81.6875rem 54.125rem #FFF,74.25rem 99.75rem #FFF,53.625rem 121.6875rem #FFF,53.8125rem 85.8125rem #FFF,53.5625rem 2.6875rem #FFF,117.375rem 31.1875rem #FFF,81.0625rem 33.4375rem #FFF,54.375rem 80.375rem #FFF,90.75rem 28rem #FFF,56.625rem 4.5rem #FFF,90.625rem 54.5rem #FFF,100.4375rem 109.6875rem #FFF,66.9375rem 122.4375rem #FFF,61rem 54.9375rem #FFF,89.6875rem 17.75rem #FFF,100.0625rem 31rem #FFF,41.9375rem 107.0625rem #FFF,22.25rem 71.75rem #FFF,52.3125rem 54.1875rem #FFF,15.375rem 53.625rem #FFF,64.4375rem 99.625rem #FFF,35.6875rem 13.375rem #FFF,63.25rem 83.0625rem #FFF,97.875rem 71.375rem #FFF,13.6875rem 86rem #FFF,98.75rem 90.875rem #FFF,43.125rem 64.8125rem #FFF,121.25rem 47.25rem #FFF,109.6875rem 53.125rem #FFF,64.8125rem 22.6875rem #FFF,1.5625rem 32.1875rem #FFF,50.375rem 98.1875rem #FFF,79.125rem 87.375rem #FFF,43.4375rem 49.4375rem #FFF,114.875rem 59.375rem #FFF,98.625rem 1.6875rem #FFF,105.75rem 98.8125rem #FFF,113.5625rem 65rem #FFF,111.3125rem 14.875rem #FFF,65.75rem 55.9375rem #FFF,24.875rem 27.5rem #FFF,102.6875rem 20.3125rem #FFF,4.9375rem 53rem #FFF,80.9375rem 20.375rem #FFF,18.3125rem 5.0625rem #FFF,75.125rem 98.75rem #FFF,90.0625rem 6.25rem #FFF,80.9375rem 91.5625rem #FFF,70.75rem 79.6875rem #FFF,48.375rem 44rem #FFF,69.3125rem 96.625rem #FFF,34.8125rem 86.875rem #FFF,78.3125rem 76.5rem #FFF,66.4375rem 101.125rem #FFF,112.0625rem 27.5rem #FFF,55.625rem 124.25rem #FFF,50.875rem 26.5rem #FFF,86.875rem 80rem #FFF,70.4375rem 56.6875rem #FFF,65.25rem 85.5rem #FFF,82.3125rem 54.75rem #FFF,47.625rem 39.875rem #FFF,60.3125rem 46.6875rem #FFF,47.1875rem 121.5625rem #FFF,44.125rem 25.875rem #FFF,115.125rem 104.5625rem #FFF,72.375rem 83.5rem #FFF,61.8125rem 122.1875rem #FFF,116.0625rem 5.5625rem #FFF,103.6875rem 21.4375rem #FFF,31.8125rem 86.5625rem #FFF,101.25rem 47.375rem #FFF,122.375rem 66.5rem #FFF,11.125rem 21.3125rem #FFF,93.75rem 50.5rem #FFF,1.25rem 102.875rem #FFF,98.25rem 54.375rem #FFF,113.8125rem 86.0625rem #FFF,20.5rem 122.8125rem #FFF,56.4375rem 38.5rem #FFF,108.1875rem 99.9375rem #FFF,16.6875rem 53.5rem #FFF
 }
 
 #stars2 {
-    width: 2px;
-    height: 2px;
+    width: .125rem;
+    height: .125rem;
     background: transparent;
-    box-shadow: 921px 1554px #FFF,1944px 550px #FFF,1696px 1632px #FFF,16px 1899px #FFF,1894px 130px #FFF,77px 262px #FFF,22px 1159px #FFF,933px 1206px #FFF,1660px 482px #FFF,1067px 1154px #FFF,468px 625px #FFF,1408px 1687px #FFF,153px 1200px #FFF,887px 1966px #FFF,1260px 514px #FFF,1167px 1158px #FFF,790px 553px #FFF,1103px 758px #FFF,226px 1028px #FFF,1340px 1760px #FFF,1712px 528px #FFF,114px 1693px #FFF,185px 572px #FFF,1566px 1793px #FFF,317px 1501px #FFF,846px 530px #FFF,1585px 1437px #FFF,1335px 1009px #FFF,1768px 436px #FFF,1131px 666px #FFF,27px 1543px #FFF,1778px 1861px #FFF,1496px 30px #FFF,1359px 1226px #FFF,416px 135px #FFF,1675px 673px #FFF,296px 524px #FFF,432px 1822px #FFF,1995px 416px #FFF,1206px 1846px #FFF,542px 603px #FFF,1811px 1083px #FFF,1125px 1900px #FFF,4px 1410px #FFF,665px 1674px #FFF,982px 365px #FFF,809px 534px #FFF,116px 1381px #FFF,727px 439px #FFF,1674px 1407px #FFF,976px 1762px #FFF,1585px 28px #FFF,1916px 624px #FFF,1716px 1118px #FFF,1022px 177px #FFF,807px 619px #FFF,1657px 338px #FFF,1608px 1259px #FFF,405px 1890px #FFF,433px 1978px #FFF,1457px 1495px #FFF,175px 989px #FFF,850px 1044px #FFF,170px 444px #FFF,1623px 71px #FFF,977px 1319px #FFF,440px 464px #FFF,51px 1209px #FFF,783px 1274px #FFF,1296px 244px #FFF,1260px 94px #FFF,652px 905px #FFF,805px 1307px #FFF,947px 822px #FFF,384px 268px #FFF,1856px 1782px #FFF,459px 1844px #FFF,1679px 473px #FFF,673px 1832px #FFF,96px 345px #FFF,1268px 428px #FFF,788px 1138px #FFF,1242px 867px #FFF,652px 831px #FFF,993px 1706px #FFF,1337px 64px #FFF,1092px 624px #FFF,674px 1344px #FFF,1036px 405px #FFF,996px 1371px #FFF,1906px 1410px #FFF,1285px 1079px #FFF,1756px 583px #FFF,404px 380px #FFF,1739px 1620px #FFF,1253px 372px #FFF,520px 620px #FFF,1842px 852px #FFF,490px 387px #FFF,1251px 143px #FFF,1814px 537px #FFF,1405px 623px #FFF,1236px 1186px #FFF,1286px 896px #FFF,1626px 990px #FFF,31px 1067px #FFF,1288px 939px #FFF,763px 338px #FFF,713px 1515px #FFF,859px 1621px #FFF,1720px 1984px #FFF,796px 1743px #FFF,1439px 1587px #FFF,965px 412px #FFF,775px 1168px #FFF,1192px 956px #FFF,368px 1075px #FFF,1484px 1154px #FFF,1784px 547px #FFF,815px 675px #FFF,1387px 890px #FFF,1665px 1733px #FFF,1948px 429px #FFF,1665px 92px #FFF,1806px 919px #FFF,1712px 494px #FFF,577px 1922px #FFF,820px 1228px #FFF,678px 1745px #FFF,1421px 586px #FFF,788px 208px #FFF,380px 250px #FFF,748px 977px #FFF,1637px 337px #FFF,851px 1514px #FFF,1487px 1410px #FFF,1776px 710px #FFF,544px 453px #FFF,1707px 1932px #FFF,1121px 1642px #FFF,1227px 391px #FFF,583px 833px #FFF,658px 278px #FFF,345px 1388px #FFF,1529px 1419px #FFF,233px 1008px #FFF,892px 943px #FFF,1431px 1091px #FFF,1524px 316px #FFF,1547px 192px #FFF,976px 36px #FFF,1648px 1053px #FFF,1833px 1572px #FFF,1677px 936px #FFF,589px 1755px #FFF,978px 1875px #FFF,1508px 412px #FFF,1242px 439px #FFF,1263px 40px #FFF,1427px 1736px #FFF,639px 906px #FFF,1349px 373px #FFF,1055px 969px #FFF,602px 95px #FFF,224px 1805px #FFF,1129px 837px #FFF,1110px 1358px #FFF,1067px 1752px #FFF,391px 1389px #FFF,885px 1979px #FFF,1188px 414px #FFF,1931px 325px #FFF,1853px 1918px #FFF,636px 1313px #FFF,1236px 1913px #FFF,1801px 780px #FFF,633px 529px #FFF,1500px 33px #FFF,1387px 1045px #FFF,832px 1281px #FFF,1880px 1845px #FFF,1477px 1096px #FFF,1457px 698px #FFF,1658px 1049px #FFF,1957px 1151px #FFF,1561px 1593px #FFF,627px 250px #FFF,975px 1575px #FFF,68px 998px #FFF,951px 85px #FFF,280px 431px #FFF,1683px 1745px #FFF,322px 778px #FFF,841px 888px #FFF,1895px 1883px #FFF,700px 568px #FFF,1846px 442px #FFF,91px 1650px #FFF,970px 917px #FFF,1585px 452px #FFF;
+    box-shadow: 57.5625rem 97.125rem #FFF,121.5rem 34.375rem #FFF,106rem 102rem #FFF,1rem 118.6875rem #FFF,118.375rem 8.125rem #FFF,4.8125rem 16.375rem #FFF,1.375rem 72.4375rem #FFF,58.3125rem 75.375rem #FFF,103.75rem 30.125rem #FFF,66.6875rem 72.125rem #FFF,29.25rem 39.0625rem #FFF,88rem 105.4375rem #FFF,9.5625rem 75rem #FFF,55.4375rem 122.875rem #FFF,78.75rem 32.125rem #FFF,72.9375rem 72.375rem #FFF,49.375rem 34.5625rem #FFF,68.9375rem 47.375rem #FFF,14.125rem 64.25rem #FFF,83.75rem 110rem #FFF,107rem 33rem #FFF,7.125rem 105.8125rem #FFF,11.5625rem 35.75rem #FFF,97.875rem 112.0625rem #FFF,19.8125rem 93.8125rem #FFF,52.875rem 33.125rem #FFF,99.0625rem 89.8125rem #FFF,83.4375rem 63.0625rem #FFF,110.5rem 27.25rem #FFF,70.6875rem 41.625rem #FFF,1.6875rem 96.4375rem #FFF,111.125rem 116.3125rem #FFF,93.5rem 1.875rem #FFF,84.9375rem 76.625rem #FFF,26rem 8.4375rem #FFF,104.6875rem 42.0625rem #FFF,18.5rem 32.75rem #FFF,27rem 113.875rem #FFF,124.6875rem 26rem #FFF,75.375rem 115.375rem #FFF,33.875rem 37.6875rem #FFF,113.1875rem 67.6875rem #FFF,70.3125rem 118.75rem #FFF,.25rem 88.125rem #FFF,41.5625rem 104.625rem #FFF,61.375rem 22.8125rem #FFF,50.5625rem 33.375rem #FFF,7.25rem 86.3125rem #FFF,45.4375rem 27.4375rem #FFF,104.625rem 87.9375rem #FFF,61rem 110.125rem #FFF,99.0625rem 1.75rem #FFF,119.75rem 39rem #FFF,107.25rem 69.875rem #FFF,63.875rem 11.0625rem #FFF,50.4375rem 38.6875rem #FFF,103.5625rem 21.125rem #FFF,100.5rem 78.6875rem #FFF,25.3125rem 118.125rem #FFF,27.0625rem 123.625rem #FFF,91.0625rem 93.4375rem #FFF,10.9375rem 61.8125rem #FFF,53.125rem 65.25rem #FFF,10.625rem 27.75rem #FFF,101.4375rem 4.4375rem #FFF,61.0625rem 82.4375rem #FFF,27.5rem 29rem #FFF,3.1875rem 75.5625rem #FFF,48.9375rem 79.625rem #FFF,81rem 15.25rem #FFF,78.75rem 5.875rem #FFF,40.75rem 56.5625rem #FFF,50.3125rem 81.6875rem #FFF,59.1875rem 51.375rem #FFF,24rem 16.75rem #FFF,116rem 111.375rem #FFF,28.6875rem 115.25rem #FFF,104.9375rem 29.5625rem #FFF,42.0625rem 114.5rem #FFF,6rem 21.5625rem #FFF,79.25rem 26.75rem #FFF,49.25rem 71.125rem #FFF,77.625rem 54.1875rem #FFF,40.75rem 51.9375rem #FFF,62.0625rem 106.625rem #FFF,83.5625rem 4rem #FFF,68.25rem 39rem #FFF,42.125rem 84rem #FFF,64.75rem 25.3125rem #FFF,62.25rem 85.6875rem #FFF,119.125rem 88.125rem #FFF,80.3125rem 67.4375rem #FFF,109.75rem 36.4375rem #FFF,25.25rem 23.75rem #FFF,108.6875rem 101.25rem #FFF,78.3125rem 23.25rem #FFF,32.5rem 38.75rem #FFF,115.125rem 53.25rem #FFF,30.625rem 24.1875rem #FFF,78.1875rem 8.9375rem #FFF,113.375rem 33.5625rem #FFF,87.8125rem 38.9375rem #FFF,77.25rem 74.125rem #FFF,80.375rem 56rem #FFF,101.625rem 61.875rem #FFF,1.9375rem 66.6875rem #FFF,80.5rem 58.6875rem #FFF,47.6875rem 21.125rem #FFF,44.5625rem 94.6875rem #FFF,53.6875rem 101.3125rem #FFF,107.5rem 124rem #FFF,49.75rem 108.9375rem #FFF,89.9375rem 99.1875rem #FFF,60.3125rem 25.75rem #FFF,48.4375rem 73rem #FFF,74.5rem 59.75rem #FFF,23rem 67.1875rem #FFF,92.75rem 72.125rem #FFF,111.5rem 34.1875rem #FFF,50.9375rem 42.1875rem #FFF,86.6875rem 55.625rem #FFF,104.0625rem 108.3125rem #FFF,121.75rem 26.8125rem #FFF,104.0625rem 5.75rem #FFF,112.875rem 57.4375rem #FFF,107rem 30.875rem #FFF,36.0625rem 120.125rem #FFF,51.25rem 76.75rem #FFF,42.375rem 109.0625rem #FFF,88.8125rem 36.625rem #FFF,49.25rem 13rem #FFF,23.75rem 15.625rem #FFF,46.75rem 61.0625rem #FFF,102.3125rem 21.0625rem #FFF,53.1875rem 94.625rem #FFF,92.9375rem 88.125rem #FFF,111rem 44.375rem #FFF,34rem 28.3125rem #FFF,106.6875rem 120.75rem #FFF,70.0625rem 102.625rem #FFF,76.6875rem 24.4375rem #FFF,36.4375rem 52.0625rem #FFF,41.125rem 17.375rem #FFF,21.5625rem 86.75rem #FFF,95.5625rem 88.6875rem #FFF,14.5625rem 63rem #FFF,55.75rem 58.9375rem #FFF,89.4375rem 68.1875rem #FFF,95.25rem 19.75rem #FFF,96.6875rem 12rem #FFF,61rem 2.25rem #FFF,103rem 65.8125rem #FFF,114.5625rem 98.25rem #FFF,104.8125rem 58.5rem #FFF,36.8125rem 109.6875rem #FFF,61.125rem 117.1875rem #FFF,94.25rem 25.75rem #FFF,77.625rem 27.4375rem #FFF,78.9375rem 2.5rem #FFF,89.1875rem 108.5rem #FFF,39.9375rem 56.625rem #FFF,84.3125rem 23.3125rem #FFF,65.9375rem 60.5625rem #FFF,37.625rem 5.9375rem #FFF,14rem 112.8125rem #FFF,70.5625rem 52.3125rem #FFF,69.375rem 84.875rem #FFF,66.6875rem 109.5rem #FFF,24.4375rem 86.8125rem #FFF,55.3125rem 123.6875rem #FFF,74.25rem 25.875rem #FFF,120.6875rem 20.3125rem #FFF,115.8125rem 119.875rem #FFF,39.75rem 82.0625rem #FFF,77.25rem 119.5625rem #FFF,112.5625rem 48.75rem #FFF,39.5625rem 33.0625rem #FFF,93.75rem 2.0625rem #FFF,86.6875rem 65.3125rem #FFF,52rem 80.0625rem #FFF,117.5rem 115.3125rem #FFF,92.3125rem 68.5rem #FFF,91.0625rem 43.625rem #FFF,103.625rem 65.5625rem #FFF,122.3125rem 71.9375rem #FFF,97.5625rem 99.5625rem #FFF,39.1875rem 15.625rem #FFF,60.9375rem 98.4375rem #FFF,4.25rem 62.375rem #FFF,59.4375rem 5.3125rem #FFF,17.5rem 26.9375rem #FFF,105.1875rem 109.0625rem #FFF,20.125rem 48.625rem #FFF,52.5625rem 55.5rem #FFF,118.4375rem 117.6875rem #FFF,43.75rem 35.5rem #FFF,115.375rem 27.625rem #FFF,5.6875rem 103.125rem #FFF,60.625rem 57.3125rem #FFF,99.0625rem 28.25rem #FFF;
     animation: animStar 100s linear infinite
 }
 
 #stars2:after {
     content: " ";
     position: absolute;
-    right: 2000px;
-    width: 2px;
-    height: 2px;
+    right: 125rem;
+    width: .125rem;
+    height: .125rem;
     background: transparent;
-    box-shadow: 921px 1554px #FFF,1944px 550px #FFF,1696px 1632px #FFF,16px 1899px #FFF,1894px 130px #FFF,77px 262px #FFF,22px 1159px #FFF,933px 1206px #FFF,1660px 482px #FFF,1067px 1154px #FFF,468px 625px #FFF,1408px 1687px #FFF,153px 1200px #FFF,887px 1966px #FFF,1260px 514px #FFF,1167px 1158px #FFF,790px 553px #FFF,1103px 758px #FFF,226px 1028px #FFF,1340px 1760px #FFF,1712px 528px #FFF,114px 1693px #FFF,185px 572px #FFF,1566px 1793px #FFF,317px 1501px #FFF,846px 530px #FFF,1585px 1437px #FFF,1335px 1009px #FFF,1768px 436px #FFF,1131px 666px #FFF,27px 1543px #FFF,1778px 1861px #FFF,1496px 30px #FFF,1359px 1226px #FFF,416px 135px #FFF,1675px 673px #FFF,296px 524px #FFF,432px 1822px #FFF,1995px 416px #FFF,1206px 1846px #FFF,542px 603px #FFF,1811px 1083px #FFF,1125px 1900px #FFF,4px 1410px #FFF,665px 1674px #FFF,982px 365px #FFF,809px 534px #FFF,116px 1381px #FFF,727px 439px #FFF,1674px 1407px #FFF,976px 1762px #FFF,1585px 28px #FFF,1916px 624px #FFF,1716px 1118px #FFF,1022px 177px #FFF,807px 619px #FFF,1657px 338px #FFF,1608px 1259px #FFF,405px 1890px #FFF,433px 1978px #FFF,1457px 1495px #FFF,175px 989px #FFF,850px 1044px #FFF,170px 444px #FFF,1623px 71px #FFF,977px 1319px #FFF,440px 464px #FFF,51px 1209px #FFF,783px 1274px #FFF,1296px 244px #FFF,1260px 94px #FFF,652px 905px #FFF,805px 1307px #FFF,947px 822px #FFF,384px 268px #FFF,1856px 1782px #FFF,459px 1844px #FFF,1679px 473px #FFF,673px 1832px #FFF,96px 345px #FFF,1268px 428px #FFF,788px 1138px #FFF,1242px 867px #FFF,652px 831px #FFF,993px 1706px #FFF,1337px 64px #FFF,1092px 624px #FFF,674px 1344px #FFF,1036px 405px #FFF,996px 1371px #FFF,1906px 1410px #FFF,1285px 1079px #FFF,1756px 583px #FFF,404px 380px #FFF,1739px 1620px #FFF,1253px 372px #FFF,520px 620px #FFF,1842px 852px #FFF,490px 387px #FFF,1251px 143px #FFF,1814px 537px #FFF,1405px 623px #FFF,1236px 1186px #FFF,1286px 896px #FFF,1626px 990px #FFF,31px 1067px #FFF,1288px 939px #FFF,763px 338px #FFF,713px 1515px #FFF,859px 1621px #FFF,1720px 1984px #FFF,796px 1743px #FFF,1439px 1587px #FFF,965px 412px #FFF,775px 1168px #FFF,1192px 956px #FFF,368px 1075px #FFF,1484px 1154px #FFF,1784px 547px #FFF,815px 675px #FFF,1387px 890px #FFF,1665px 1733px #FFF,1948px 429px #FFF,1665px 92px #FFF,1806px 919px #FFF,1712px 494px #FFF,577px 1922px #FFF,820px 1228px #FFF,678px 1745px #FFF,1421px 586px #FFF,788px 208px #FFF,380px 250px #FFF,748px 977px #FFF,1637px 337px #FFF,851px 1514px #FFF,1487px 1410px #FFF,1776px 710px #FFF,544px 453px #FFF,1707px 1932px #FFF,1121px 1642px #FFF,1227px 391px #FFF,583px 833px #FFF,658px 278px #FFF,345px 1388px #FFF,1529px 1419px #FFF,233px 1008px #FFF,892px 943px #FFF,1431px 1091px #FFF,1524px 316px #FFF,1547px 192px #FFF,976px 36px #FFF,1648px 1053px #FFF,1833px 1572px #FFF,1677px 936px #FFF,589px 1755px #FFF,978px 1875px #FFF,1508px 412px #FFF,1242px 439px #FFF,1263px 40px #FFF,1427px 1736px #FFF,639px 906px #FFF,1349px 373px #FFF,1055px 969px #FFF,602px 95px #FFF,224px 1805px #FFF,1129px 837px #FFF,1110px 1358px #FFF,1067px 1752px #FFF,391px 1389px #FFF,885px 1979px #FFF,1188px 414px #FFF,1931px 325px #FFF,1853px 1918px #FFF,636px 1313px #FFF,1236px 1913px #FFF,1801px 780px #FFF,633px 529px #FFF,1500px 33px #FFF,1387px 1045px #FFF,832px 1281px #FFF,1880px 1845px #FFF,1477px 1096px #FFF,1457px 698px #FFF,1658px 1049px #FFF,1957px 1151px #FFF,1561px 1593px #FFF,627px 250px #FFF,975px 1575px #FFF,68px 998px #FFF,951px 85px #FFF,280px 431px #FFF,1683px 1745px #FFF,322px 778px #FFF,841px 888px #FFF,1895px 1883px #FFF,700px 568px #FFF,1846px 442px #FFF,91px 1650px #FFF,970px 917px #FFF,1585px 452px #FFF
+    box-shadow: 57.5625rem 97.125rem #FFF,121.5rem 34.375rem #FFF,106rem 102rem #FFF,1rem 118.6875rem #FFF,118.375rem 8.125rem #FFF,4.8125rem 16.375rem #FFF,1.375rem 72.4375rem #FFF,58.3125rem 75.375rem #FFF,103.75rem 30.125rem #FFF,66.6875rem 72.125rem #FFF,29.25rem 39.0625rem #FFF,88rem 105.4375rem #FFF,9.5625rem 75rem #FFF,55.4375rem 122.875rem #FFF,78.75rem 32.125rem #FFF,72.9375rem 72.375rem #FFF,49.375rem 34.5625rem #FFF,68.9375rem 47.375rem #FFF,14.125rem 64.25rem #FFF,83.75rem 110rem #FFF,107rem 33rem #FFF,7.125rem 105.8125rem #FFF,11.5625rem 35.75rem #FFF,97.875rem 112.0625rem #FFF,19.8125rem 93.8125rem #FFF,52.875rem 33.125rem #FFF,99.0625rem 89.8125rem #FFF,83.4375rem 63.0625rem #FFF,110.5rem 27.25rem #FFF,70.6875rem 41.625rem #FFF,1.6875rem 96.4375rem #FFF,111.125rem 116.3125rem #FFF,93.5rem 1.875rem #FFF,84.9375rem 76.625rem #FFF,26rem 8.4375rem #FFF,104.6875rem 42.0625rem #FFF,18.5rem 32.75rem #FFF,27rem 113.875rem #FFF,124.6875rem 26rem #FFF,75.375rem 115.375rem #FFF,33.875rem 37.6875rem #FFF,113.1875rem 67.6875rem #FFF,70.3125rem 118.75rem #FFF,.25rem 88.125rem #FFF,41.5625rem 104.625rem #FFF,61.375rem 22.8125rem #FFF,50.5625rem 33.375rem #FFF,7.25rem 86.3125rem #FFF,45.4375rem 27.4375rem #FFF,104.625rem 87.9375rem #FFF,61rem 110.125rem #FFF,99.0625rem 1.75rem #FFF,119.75rem 39rem #FFF,107.25rem 69.875rem #FFF,63.875rem 11.0625rem #FFF,50.4375rem 38.6875rem #FFF,103.5625rem 21.125rem #FFF,100.5rem 78.6875rem #FFF,25.3125rem 118.125rem #FFF,27.0625rem 123.625rem #FFF,91.0625rem 93.4375rem #FFF,10.9375rem 61.8125rem #FFF,53.125rem 65.25rem #FFF,10.625rem 27.75rem #FFF,101.4375rem 4.4375rem #FFF,61.0625rem 82.4375rem #FFF,27.5rem 29rem #FFF,3.1875rem 75.5625rem #FFF,48.9375rem 79.625rem #FFF,81rem 15.25rem #FFF,78.75rem 5.875rem #FFF,40.75rem 56.5625rem #FFF,50.3125rem 81.6875rem #FFF,59.1875rem 51.375rem #FFF,24rem 16.75rem #FFF,116rem 111.375rem #FFF,28.6875rem 115.25rem #FFF,104.9375rem 29.5625rem #FFF,42.0625rem 114.5rem #FFF,6rem 21.5625rem #FFF,79.25rem 26.75rem #FFF,49.25rem 71.125rem #FFF,77.625rem 54.1875rem #FFF,40.75rem 51.9375rem #FFF,62.0625rem 106.625rem #FFF,83.5625rem 4rem #FFF,68.25rem 39rem #FFF,42.125rem 84rem #FFF,64.75rem 25.3125rem #FFF,62.25rem 85.6875rem #FFF,119.125rem 88.125rem #FFF,80.3125rem 67.4375rem #FFF,109.75rem 36.4375rem #FFF,25.25rem 23.75rem #FFF,108.6875rem 101.25rem #FFF,78.3125rem 23.25rem #FFF,32.5rem 38.75rem #FFF,115.125rem 53.25rem #FFF,30.625rem 24.1875rem #FFF,78.1875rem 8.9375rem #FFF,113.375rem 33.5625rem #FFF,87.8125rem 38.9375rem #FFF,77.25rem 74.125rem #FFF,80.375rem 56rem #FFF,101.625rem 61.875rem #FFF,1.9375rem 66.6875rem #FFF,80.5rem 58.6875rem #FFF,47.6875rem 21.125rem #FFF,44.5625rem 94.6875rem #FFF,53.6875rem 101.3125rem #FFF,107.5rem 124rem #FFF,49.75rem 108.9375rem #FFF,89.9375rem 99.1875rem #FFF,60.3125rem 25.75rem #FFF,48.4375rem 73rem #FFF,74.5rem 59.75rem #FFF,23rem 67.1875rem #FFF,92.75rem 72.125rem #FFF,111.5rem 34.1875rem #FFF,50.9375rem 42.1875rem #FFF,86.6875rem 55.625rem #FFF,104.0625rem 108.3125rem #FFF,121.75rem 26.8125rem #FFF,104.0625rem 5.75rem #FFF,112.875rem 57.4375rem #FFF,107rem 30.875rem #FFF,36.0625rem 120.125rem #FFF,51.25rem 76.75rem #FFF,42.375rem 109.0625rem #FFF,88.8125rem 36.625rem #FFF,49.25rem 13rem #FFF,23.75rem 15.625rem #FFF,46.75rem 61.0625rem #FFF,102.3125rem 21.0625rem #FFF,53.1875rem 94.625rem #FFF,92.9375rem 88.125rem #FFF,111rem 44.375rem #FFF,34rem 28.3125rem #FFF,106.6875rem 120.75rem #FFF,70.0625rem 102.625rem #FFF,76.6875rem 24.4375rem #FFF,36.4375rem 52.0625rem #FFF,41.125rem 17.375rem #FFF,21.5625rem 86.75rem #FFF,95.5625rem 88.6875rem #FFF,14.5625rem 63rem #FFF,55.75rem 58.9375rem #FFF,89.4375rem 68.1875rem #FFF,95.25rem 19.75rem #FFF,96.6875rem 12rem #FFF,61rem 2.25rem #FFF,103rem 65.8125rem #FFF,114.5625rem 98.25rem #FFF,104.8125rem 58.5rem #FFF,36.8125rem 109.6875rem #FFF,61.125rem 117.1875rem #FFF,94.25rem 25.75rem #FFF,77.625rem 27.4375rem #FFF,78.9375rem 2.5rem #FFF,89.1875rem 108.5rem #FFF,39.9375rem 56.625rem #FFF,84.3125rem 23.3125rem #FFF,65.9375rem 60.5625rem #FFF,37.625rem 5.9375rem #FFF,14rem 112.8125rem #FFF,70.5625rem 52.3125rem #FFF,69.375rem 84.875rem #FFF,66.6875rem 109.5rem #FFF,24.4375rem 86.8125rem #FFF,55.3125rem 123.6875rem #FFF,74.25rem 25.875rem #FFF,120.6875rem 20.3125rem #FFF,115.8125rem 119.875rem #FFF,39.75rem 82.0625rem #FFF,77.25rem 119.5625rem #FFF,112.5625rem 48.75rem #FFF,39.5625rem 33.0625rem #FFF,93.75rem 2.0625rem #FFF,86.6875rem 65.3125rem #FFF,52rem 80.0625rem #FFF,117.5rem 115.3125rem #FFF,92.3125rem 68.5rem #FFF,91.0625rem 43.625rem #FFF,103.625rem 65.5625rem #FFF,122.3125rem 71.9375rem #FFF,97.5625rem 99.5625rem #FFF,39.1875rem 15.625rem #FFF,60.9375rem 98.4375rem #FFF,4.25rem 62.375rem #FFF,59.4375rem 5.3125rem #FFF,17.5rem 26.9375rem #FFF,105.1875rem 109.0625rem #FFF,20.125rem 48.625rem #FFF,52.5625rem 55.5rem #FFF,118.4375rem 117.6875rem #FFF,43.75rem 35.5rem #FFF,115.375rem 27.625rem #FFF,5.6875rem 103.125rem #FFF,60.625rem 57.3125rem #FFF,99.0625rem 28.25rem #FFF
 }
 
 #stars3 {
-    width: 3px;
-    height: 3px;
+    width: .1875rem;
+    height: .1875rem;
     background: transparent;
-    box-shadow: 1679px 1408px #FFF,1970px 1504px #FFF,1789px 965px #FFF,698px 234px #FFF,1733px 1854px #FFF,1060px 271px #FFF,719px 1744px #FFF,1707px 1847px #FFF,1710px 432px #FFF,1325px 1585px #FFF,92px 577px #FFF,163px 1938px #FFF,1885px 123px #FFF,1566px 1753px #FFF,1288px 21px #FFF,1396px 1908px #FFF,675px 1466px #FFF,734px 1557px #FFF,941px 1885px #FFF,1692px 6px #FFF,115px 1183px #FFF,639px 1044px #FFF,1171px 1982px #FFF,1801px 1078px #FFF,648px 820px #FFF,1885px 1984px #FFF,268px 1729px #FFF,1388px 181px #FFF,1741px 1280px #FFF,1719px 1080px #FFF,12px 932px #FFF,489px 157px #FFF,1910px 790px #FFF,115px 44px #FFF,1748px 1458px #FFF,282px 109px #FFF,1100px 1528px #FFF,543px 598px #FFF,1320px 1188px #FFF,1124px 839px #FFF,1406px 1289px #FFF,472px 1376px #FFF,852px 286px #FFF,510px 860px #FFF,700px 306px #FFF,1822px 1302px #FFF,15px 19px #FFF,1360px 420px #FFF,1483px 42px #FFF,1287px 1867px #FFF,1105px 1322px #FFF,745px 161px #FFF,431px 1722px #FFF,855px 1254px #FFF,860px 1784px #FFF,1578px 1955px #FFF,1085px 461px #FFF,472px 690px #FFF,23px 1152px #FFF,1625px 601px #FFF,1177px 1692px #FFF,397px 1984px #FFF,10px 1164px #FFF,1132px 1557px #FFF,438px 817px #FFF,1590px 1236px #FFF,1037px 1616px #FFF,533px 941px #FFF,1163px 1992px #FFF,1451px 1081px #FFF,1335px 1578px #FFF,503px 1556px #FFF,197px 1725px #FFF,511px 1397px #FFF,1514px 1164px #FFF,1249px 148px #FFF,947px 1849px #FFF,1258px 1426px #FFF,255px 1937px #FFF,23px 529px #FFF,578px 230px #FFF,925px 767px #FFF,903px 365px #FFF,1861px 451px #FFF,1813px 912px #FFF,1597px 637px #FFF,195px 626px #FFF,130px 404px #FFF,725px 408px #FFF,1916px 843px #FFF,1336px 239px #FFF,1568px 1390px #FFF,139px 126px #FFF,1287px 1271px #FFF,731px 465px #FFF,1959px 1465px #FFF,909px 169px #FFF,838px 1332px #FFF,464px 1037px #FFF,1893px 233px #FFF;
+    box-shadow: 104.9375rem 88rem #FFF,123.125rem 94rem #FFF,111.8125rem 60.3125rem #FFF,43.625rem 14.625rem #FFF,108.3125rem 115.875rem #FFF,66.25rem 16.9375rem #FFF,44.9375rem 109rem #FFF,106.6875rem 115.4375rem #FFF,106.875rem 27rem #FFF,82.8125rem 99.0625rem #FFF,5.75rem 36.0625rem #FFF,10.1875rem 121.125rem #FFF,117.8125rem 7.6875rem #FFF,97.875rem 109.5625rem #FFF,80.5rem 1.3125rem #FFF,87.25rem 119.25rem #FFF,42.1875rem 91.625rem #FFF,45.875rem 97.3125rem #FFF,58.8125rem 117.8125rem #FFF,105.75rem .375rem #FFF,7.1875rem 73.9375rem #FFF,39.9375rem 65.25rem #FFF,73.1875rem 123.875rem #FFF,112.5625rem 67.375rem #FFF,40.5rem 51.25rem #FFF,117.8125rem 124rem #FFF,16.75rem 108.0625rem #FFF,86.75rem 11.3125rem #FFF,108.8125rem 80rem #FFF,107.4375rem 67.5rem #FFF,.75rem 58.25rem #FFF,30.5625rem 9.8125rem #FFF,119.375rem 49.375rem #FFF,7.1875rem 2.75rem #FFF,109.25rem 91.125rem #FFF,17.625rem 6.8125rem #FFF,68.75rem 95.5rem #FFF,33.9375rem 37.375rem #FFF,82.5rem 74.25rem #FFF,70.25rem 52.4375rem #FFF,87.875rem 80.5625rem #FFF,29.5rem 86rem #FFF,53.25rem 17.875rem #FFF,31.875rem 53.75rem #FFF,43.75rem 19.125rem #FFF,113.875rem 81.375rem #FFF,.9375rem 1.1875rem #FFF,85rem 26.25rem #FFF,92.6875rem 2.625rem #FFF,80.4375rem 116.6875rem #FFF,69.0625rem 82.625rem #FFF,46.5625rem 10.0625rem #FFF,26.9375rem 107.625rem #FFF,53.4375rem 78.375rem #FFF,53.75rem 111.5rem #FFF,98.625rem 122.1875rem #FFF,67.8125rem 28.8125rem #FFF,29.5rem 43.125rem #FFF,1.4375rem 72rem #FFF,101.5625rem 37.5625rem #FFF,73.5625rem 105.75rem #FFF,24.8125rem 124rem #FFF,.625rem 72.75rem #FFF,70.75rem 97.3125rem #FFF,27.375rem 51.0625rem #FFF,99.375rem 77.25rem #FFF,64.8125rem 101rem #FFF,33.3125rem 58.8125rem #FFF,72.6875rem 124.5rem #FFF,90.6875rem 67.5625rem #FFF,83.4375rem 98.625rem #FFF,31.4375rem 97.25rem #FFF,12.3125rem 107.8125rem #FFF,31.9375rem 87.3125rem #FFF,94.625rem 72.75rem #FFF,78.0625rem 9.25rem #FFF,59.1875rem 115.5625rem #FFF,78.625rem 89.125rem #FFF,15.9375rem 121.0625rem #FFF,1.4375rem 33.0625rem #FFF,36.125rem 14.375rem #FFF,57.8125rem 47.9375rem #FFF,56.4375rem 22.8125rem #FFF,116.3125rem 28.1875rem #FFF,113.3125rem 57rem #FFF,99.8125rem 39.8125rem #FFF,12.1875rem 39.125rem #FFF,8.125rem 25.25rem #FFF,45.3125rem 25.5rem #FFF,119.75rem 52.6875rem #FFF,83.5rem 14.9375rem #FFF,98rem 86.875rem #FFF,8.6875rem 7.875rem #FFF,80.4375rem 79.4375rem #FFF,45.6875rem 29.0625rem #FFF,122.4375rem 91.5625rem #FFF,56.8125rem 10.5625rem #FFF,52.375rem 83.25rem #FFF,29rem 64.8125rem #FFF,118.3125rem 14.5625rem #FFF;
     animation: animStar 150s linear infinite
 }
 
 #stars3:after {
     content: " ";
     position: absolute;
-    right: 2000px;
-    width: 3px;
-    height: 3px;
+    right: 125rem;
+    width: .1875rem;
+    height: .1875rem;
     background: transparent;
-    box-shadow: 1679px 1408px #FFF,1970px 1504px #FFF,1789px 965px #FFF,698px 234px #FFF,1733px 1854px #FFF,1060px 271px #FFF,719px 1744px #FFF,1707px 1847px #FFF,1710px 432px #FFF,1325px 1585px #FFF,92px 577px #FFF,163px 1938px #FFF,1885px 123px #FFF,1566px 1753px #FFF,1288px 21px #FFF,1396px 1908px #FFF,675px 1466px #FFF,734px 1557px #FFF,941px 1885px #FFF,1692px 6px #FFF,115px 1183px #FFF,639px 1044px #FFF,1171px 1982px #FFF,1801px 1078px #FFF,648px 820px #FFF,1885px 1984px #FFF,268px 1729px #FFF,1388px 181px #FFF,1741px 1280px #FFF,1719px 1080px #FFF,12px 932px #FFF,489px 157px #FFF,1910px 790px #FFF,115px 44px #FFF,1748px 1458px #FFF,282px 109px #FFF,1100px 1528px #FFF,543px 598px #FFF,1320px 1188px #FFF,1124px 839px #FFF,1406px 1289px #FFF,472px 1376px #FFF,852px 286px #FFF,510px 860px #FFF,700px 306px #FFF,1822px 1302px #FFF,15px 19px #FFF,1360px 420px #FFF,1483px 42px #FFF,1287px 1867px #FFF,1105px 1322px #FFF,745px 161px #FFF,431px 1722px #FFF,855px 1254px #FFF,860px 1784px #FFF,1578px 1955px #FFF,1085px 461px #FFF,472px 690px #FFF,23px 1152px #FFF,1625px 601px #FFF,1177px 1692px #FFF,397px 1984px #FFF,10px 1164px #FFF,1132px 1557px #FFF,438px 817px #FFF,1590px 1236px #FFF,1037px 1616px #FFF,533px 941px #FFF,1163px 1992px #FFF,1451px 1081px #FFF,1335px 1578px #FFF,503px 1556px #FFF,197px 1725px #FFF,511px 1397px #FFF,1514px 1164px #FFF,1249px 148px #FFF,947px 1849px #FFF,1258px 1426px #FFF,255px 1937px #FFF,23px 529px #FFF,578px 230px #FFF,925px 767px #FFF,903px 365px #FFF,1861px 451px #FFF,1813px 912px #FFF,1597px 637px #FFF,195px 626px #FFF,130px 404px #FFF,725px 408px #FFF,1916px 843px #FFF,1336px 239px #FFF,1568px 1390px #FFF,139px 126px #FFF,1287px 1271px #FFF,731px 465px #FFF,1959px 1465px #FFF,909px 169px #FFF,838px 1332px #FFF,464px 1037px #FFF,1893px 233px #FFF
+    box-shadow: 104.9375rem 88rem #FFF,123.125rem 94rem #FFF,111.8125rem 60.3125rem #FFF,43.625rem 14.625rem #FFF,108.3125rem 115.875rem #FFF,66.25rem 16.9375rem #FFF,44.9375rem 109rem #FFF,106.6875rem 115.4375rem #FFF,106.875rem 27rem #FFF,82.8125rem 99.0625rem #FFF,5.75rem 36.0625rem #FFF,10.1875rem 121.125rem #FFF,117.8125rem 7.6875rem #FFF,97.875rem 109.5625rem #FFF,80.5rem 1.3125rem #FFF,87.25rem 119.25rem #FFF,42.1875rem 91.625rem #FFF,45.875rem 97.3125rem #FFF,58.8125rem 117.8125rem #FFF,105.75rem .375rem #FFF,7.1875rem 73.9375rem #FFF,39.9375rem 65.25rem #FFF,73.1875rem 123.875rem #FFF,112.5625rem 67.375rem #FFF,40.5rem 51.25rem #FFF,117.8125rem 124rem #FFF,16.75rem 108.0625rem #FFF,86.75rem 11.3125rem #FFF,108.8125rem 80rem #FFF,107.4375rem 67.5rem #FFF,.75rem 58.25rem #FFF,30.5625rem 9.8125rem #FFF,119.375rem 49.375rem #FFF,7.1875rem 2.75rem #FFF,109.25rem 91.125rem #FFF,17.625rem 6.8125rem #FFF,68.75rem 95.5rem #FFF,33.9375rem 37.375rem #FFF,82.5rem 74.25rem #FFF,70.25rem 52.4375rem #FFF,87.875rem 80.5625rem #FFF,29.5rem 86rem #FFF,53.25rem 17.875rem #FFF,31.875rem 53.75rem #FFF,43.75rem 19.125rem #FFF,113.875rem 81.375rem #FFF,.9375rem 1.1875rem #FFF,85rem 26.25rem #FFF,92.6875rem 2.625rem #FFF,80.4375rem 116.6875rem #FFF,69.0625rem 82.625rem #FFF,46.5625rem 10.0625rem #FFF,26.9375rem 107.625rem #FFF,53.4375rem 78.375rem #FFF,53.75rem 111.5rem #FFF,98.625rem 122.1875rem #FFF,67.8125rem 28.8125rem #FFF,29.5rem 43.125rem #FFF,1.4375rem 72rem #FFF,101.5625rem 37.5625rem #FFF,73.5625rem 105.75rem #FFF,24.8125rem 124rem #FFF,.625rem 72.75rem #FFF,70.75rem 97.3125rem #FFF,27.375rem 51.0625rem #FFF,99.375rem 77.25rem #FFF,64.8125rem 101rem #FFF,33.3125rem 58.8125rem #FFF,72.6875rem 124.5rem #FFF,90.6875rem 67.5625rem #FFF,83.4375rem 98.625rem #FFF,31.4375rem 97.25rem #FFF,12.3125rem 107.8125rem #FFF,31.9375rem 87.3125rem #FFF,94.625rem 72.75rem #FFF,78.0625rem 9.25rem #FFF,59.1875rem 115.5625rem #FFF,78.625rem 89.125rem #FFF,15.9375rem 121.0625rem #FFF,1.4375rem 33.0625rem #FFF,36.125rem 14.375rem #FFF,57.8125rem 47.9375rem #FFF,56.4375rem 22.8125rem #FFF,116.3125rem 28.1875rem #FFF,113.3125rem 57rem #FFF,99.8125rem 39.8125rem #FFF,12.1875rem 39.125rem #FFF,8.125rem 25.25rem #FFF,45.3125rem 25.5rem #FFF,119.75rem 52.6875rem #FFF,83.5rem 14.9375rem #FFF,98rem 86.875rem #FFF,8.6875rem 7.875rem #FFF,80.4375rem 79.4375rem #FFF,45.6875rem 29.0625rem #FFF,122.4375rem 91.5625rem #FFF,56.8125rem 10.5625rem #FFF,52.375rem 83.25rem #FFF,29rem 64.8125rem #FFF,118.3125rem 14.5625rem #FFF
 }
 
 @keyframes animStar {
     from {
-        transform: translateX(0px)
+        transform: translateX(0rem)
     }
 
     to {
-        transform: translateX(2000px)
+        transform: translateX(125rem)
     }
 }
