@@ -9,6 +9,7 @@ app.component("artifact-show",{
             <div class="mainEntryValue">{{ mainEntryValue }}</div>
             <div class="aImg">
                 <img :src="'img/A-'+showdetail.part+'.png'" :alt="showdetail.part">
+                <img src="img/genshin-symbol.png" alt="genshin-symbol">
             </div>
             <div class="levelStar">
                 <span v-for="i in 5" style="margin-right: 3px;">

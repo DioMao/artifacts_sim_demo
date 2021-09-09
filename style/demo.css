@@ -3,10 +3,6 @@
     src: url(genshin_mini_artifact.ttf);
 }
 
-html{
-    font-size: 16px;
-}
-
 /* 仿原神按键 */
 .btn-genshin{
     position: relative;
@@ -427,6 +423,7 @@ footer{
 .ArtifactShow .aHead{
     position: relative;
     color: #fff;
+    overflow: hidden;
     font-size: .8125rem;
     height: 8.4375rem;
     padding: .5625rem 1.125rem;
@@ -434,29 +431,44 @@ footer{
 }
 .ArtifactShow .aHead .mainEntry{
     position: absolute;
+    z-index: 2;
     top: 3.4375rem;
     left: 1.125rem;
     color: rgb(191,173,166);
 }
 .ArtifactShow .aHead .mainEntryValue{
     position: absolute;
+    z-index: 2;
     font-size: 1.5rem;
     top: 4.375rem;
     left: 1.125rem;
 }
 .ArtifactShow .aHead .aImg{
     position: absolute;
+    z-index: 2;
     right: 1.125rem;
     top: .3125rem;
     width: 7.8125rem;
     height: 7.8125rem;
 }
-.ArtifactShow .aHead .aImg img{
+.ArtifactShow .aHead .aImg img:first-child{
+    position: relative;
+    z-index: 2;
     width: inherit;
     height: inherit;
 }
+.ArtifactShow .aHead .aImg img:last-child{
+    position: absolute;
+    opacity: 0.1;
+    z-index: 1;
+    width: 12.5rem;
+    height: 12.5rem;
+    top: -2.1875rem;
+    right: -2.1875rem;
+}
 .ArtifactShow .aHead .levelStar{
     position: absolute;
+    z-index: 2;
     left: 1.125rem;
     bottom: .5625rem;
 }
