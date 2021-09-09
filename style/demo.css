@@ -593,6 +593,29 @@ footer{
     border-left: 0.4rem solid #ffffff90;
     border-bottom: 0.3rem solid transparent;
 }
+.upgradeArrowUp{
+    position: absolute;
+    top: 1rem;
+    left: 90%;
+    margin-left: 3.5rem;
+    display: inline-block;
+    width: 7px;
+    height: 5px;
+    margin-bottom: 0px;
+    background-image: -webkit-linear-gradient(180deg,rgb(144,232,0.9),#00000030);
+    transform: rotate(270deg);
+}
+.upgradeArrowUp::after{
+    content: "";
+    position: absolute;
+    top: -0.15rem;
+    right: -0.4rem;
+    width: 0;
+    height: 0;
+    border-top: 0.3rem solid transparent;
+    border-left: 0.4rem solid rgb(144,232,0.9);
+    border-bottom: 0.3rem solid transparent;
+}
 .centerEntry{
     position: absolute;
     width: 1.875rem;
@@ -732,6 +755,10 @@ footer{
 }
 .myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry .upgradeArrow{
     top: 0.55rem;
+}
+.myMask .upgradeAlert .UpAlertBody .UpAlertEntry .upEntry .upgradeArrowUp{
+    top: 0.75rem;
+    margin-left: 60px;
 }
 
 /* 动画效果 */

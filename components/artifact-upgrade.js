@@ -57,6 +57,7 @@ app.component("artifact-upgrade",{
                             <span class="centerEntry"> {{ mainEntryValue(Artifact.mainEntry,mainValueBefore) }} </span>
                             <span class="upgradeArrow"></span>
                             <span class="float-end upColor"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span>
+                            <span class="upgradeArrowUp"></span>
                         </div>
                         <div class="entryList mb-1">
                             <div class="upEntry">
@@ -64,6 +65,7 @@ app.component("artifact-upgrade",{
                                 <span class="centerEntry" v-show="!isNew"> {{ showEntryList(newEntry,oldEntryValue) }} </span>
                                 <span class="upgradeArrow" v-show="!isNew"></span>
                                 <span class="float-end upColor">{{ showEntryList(newEntry,newEntryValue) }}</span>
+                                <span class="upgradeArrowUp"></span>
                             </div>
                         </div>
                     </div>
