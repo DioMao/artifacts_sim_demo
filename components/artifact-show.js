@@ -83,16 +83,7 @@ app.component("artifact-show",{
             this.$emit("del",this.index);
         },
         toChinese(word,type){
-            if(type == "entry"){
-                return entryListCh[entryList.indexOf(word)]
-            }else if(type == "parts"){
-                return partsCh[parts.indexOf(word)];
-            }else if(type == "mainEntry"){
-                return mainEntryListCh[mainEntryList.indexOf(word)];
-            }else if(type == "score"){
-                return scoreListCH[scoreList.indexOf(word)];
-            }
-            return "";
+            return ArtifactsSim.toChinese(word,type);
         },
         showEntryList(entry,value){
             let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],

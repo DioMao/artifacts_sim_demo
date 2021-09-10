@@ -81,7 +81,7 @@ app.component("artifact-box",{
             </div>
         </div>   
         <footer>
-            <div class="gap-2 d-md-flex justify-content-end buttonBox">
+            <div class="gap-2 d-md-flex justify-content-end buttonBox clearfix">
                 <button id="filter" class="btn me-auto" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
                         <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
@@ -288,7 +288,7 @@ app.component("artifact-box",{
                     arrRule: [],
                 },
                 highScore: 35,              // 高分圣遗物标准
-                listBriefMode: false,       // 圣遗物列表模式（details/brief）
+                listBriefMode: true,        // 圣遗物列表模式（details/brief）
                 filterMain: "default"       // 主词条筛选
             },
             userSetting: {                  // 用户设置
@@ -298,7 +298,7 @@ app.component("artifact-box",{
                     arrRule: [],
                 },
                 highScore: 35,
-                listBriefMode: false,
+                listBriefMode: true,
                 filterMain: "default"
             },
             alertFunc: {
@@ -312,16 +312,22 @@ app.component("artifact-box",{
         }
     },
     created(){
-        this.parts = parts;
-        this.mainEntryList = mainEntryList;
-        this.entryList = entryList;
-        this.cusEntryList = cusEntryList;
-        this.entryValue = entryValue;
-        this.scoreList = scoreList;
+        this.parts = artiConst.val.parts;
+        this.mainEntryList = artiConst.val.mainEntryList;
+        this.entryList = artiConst.val.entryList;
+        this.cusEntryList = {
+            feather: artiConst.val.feather,
+            flower: artiConst.val.flower,
+            hourglass: artiConst.val.hourglass,
+            hat: artiConst.val.hat,
+            cup: artiConst.val.cup
+        };
+        this.entryValue = artiConst.val.entryValue;
+        this.scoreList = artiConst.val.scoreList;
         this.version = ArtifactsSimVersion;
         // 初始化自选副词条为最大值
-        for(let i in entryValue){
-            this.cusEntryRate[i] = entryValue[i][entryValue[i].length-1];
+        for(let i in artiConst.val.entryValue){
+            this.cusEntryRate[i] = artiConst.val.entryValue[i][artiConst.val.entryValue[i].length-1];
         }
     },
     mounted(){
@@ -526,13 +532,13 @@ app.component("artifact-box",{
                 radar: {
                     splitNumber: 7,
                     indicator: [
-                        { name: '攻击力', max: entryValue['ATKPer'][entryValue['ATKPer'].length-1]*6, min: -5.8, color: "#262626"},
-                        { name: '暴击', max: entryValue['critRate'][entryValue['critRate'].length-1]*6, min: -3.9, color: "#262626"},
-                        { name: '暴伤' , max: entryValue['critDMG'][entryValue['critDMG'].length-1]*6, min: -7.8, color: "#262626"},
-                        { name: '充能效率', max: entryValue['energyRecharge'][entryValue['energyRecharge'].length-1]*6, min: -6.5, color: "#262626"},
-                        { name: '元素精通', max: entryValue['elementMastery'][entryValue['elementMastery'].length-1]*6, min: -23, color: "#262626"},
-                        { name: '生命值', max: entryValue['HPPer'][entryValue['HPPer'].length-1]*6, min: -5.8, color: "#262626"},
-                        { name: '防御力', max: entryValue['defPer'][entryValue['defPer'].length-1]*6, min: -7.3, color: "#262626"}
+                        { name: '攻击力', max: this.entryValue['ATKPer'][this.entryValue['ATKPer'].length-1]*6, min: -5.8, color: "#262626"},
+                        { name: '暴击', max: this.entryValue['critRate'][this.entryValue['critRate'].length-1]*6, min: -3.9, color: "#262626"},
+                        { name: '暴伤' , max: this.entryValue['critDMG'][this.entryValue['critDMG'].length-1]*6, min: -7.8, color: "#262626"},
+                        { name: '充能效率', max: this.entryValue['energyRecharge'][this.entryValue['energyRecharge'].length-1]*6, min: -6.5, color: "#262626"},
+                        { name: '元素精通', max: this.entryValue['elementMastery'][this.entryValue['elementMastery'].length-1]*6, min: -23, color: "#262626"},
+                        { name: '生命值', max: this.entryValue['HPPer'][this.entryValue['HPPer'].length-1]*6, min: -5.8, color: "#262626"},
+                        { name: '防御力', max: this.entryValue['defPer'][this.entryValue['defPer'].length-1]*6, min: -7.3, color: "#262626"}
                     ]
                 },
                 series: [{
@@ -568,16 +574,7 @@ app.component("artifact-box",{
         },
         // 转换为中文
         toChinese(word,type){
-            if(type == "entry"){
-                return entryListCh[entryList.indexOf(word)]
-            }else if(type == "parts"){
-                return partsCh[parts.indexOf(word)];
-            }else if(type == "mainEntry"){
-                return mainEntryListCh[mainEntryList.indexOf(word)];
-            }else if(type == "score"){
-                return scoreListCH[scoreList.indexOf(word)];
-            }
-            return "";
+            return ArtifactsSim.toChinese(word,type);
         },
         // 展示界面副词条文字处理
         formatEntry(entry,value){

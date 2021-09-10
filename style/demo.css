@@ -537,10 +537,12 @@ footer{
     position: absolute;
     width: 12.5rem;
     z-index: 2;
-    bottom: 4.375rem;
-    right: 3.125rem;
+    bottom: 2rem;
+    right: 4rem;
     color: #fff;
     font-size: 0.9rem;
+    text-align: center;
+    line-height: 4;
 }
 .containerUp{
     position: absolute;
@@ -583,7 +585,7 @@ footer{
     background: -webkit-linear-gradient(180deg, #ffffff00,#00000030,#fff00000);
     font-size: 0.9rem;
 }
-.upgrade-button-lg{
+.upgrade-button-box{
     position: absolute;
     z-index: 2;
     bottom: 1.875rem;
@@ -897,6 +899,15 @@ footer{
     .upArtifactBox{
         left: 50%;
         margin-left: -6.25rem;
+    }
+    .upgrade-button-box{
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .upgradeMax{
+        bottom: 1rem;
+        right: 1rem;
     }
 }
 @media screen and (min-width:51.25rem){

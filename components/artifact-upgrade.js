@@ -28,8 +28,11 @@ app.component("artifact-upgrade",{
             <div class="flashingCircle ani-rotate1"></div>
             <div class="flashingCircle flashingCircle2 ani-rotate2"></div>
         </div>
-        <button @click="upgrade" class="btn btn-genshin upgrade-button-lg" v-show="Artifact.level<20"><span class="circleinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强化&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-        <div class="upgradeMax" v-show="Artifact.level>=20">已达到当前等级上限</div>
+        <div class="upgrade-button-box">
+            <button @click="upgrade('max')" class="btn btn-genshin me-3" v-show="Artifact.level<20"><span class="squareinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;升到满级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            <button @click="upgrade" class="btn btn-genshin" v-show="Artifact.level<20"><span class="circleinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强化&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </div>
+        <div class="upgradeMax" v-show="Artifact.level>=20">已达到当前等级上限<br><button class="btn btn-genshin-dark" @click="initArtifact"><span class="circleinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></div>
         <div class="myMask" v-show="showUpdate">
             <div class="upgradeAlert ani-AlertBoxUp">
                 <div class="UpAlertHead">
@@ -60,12 +63,12 @@ app.component("artifact-upgrade",{
                             <span class="float-end upColor"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span>
                             <span class="upgradeArrowUp"></span>
                         </div>
-                        <div class="entryList mb-1">
+                        <div class="entryList mb-1" v-for="(entry,index) in newEntry">
                             <div class="upEntry">
-                                <span class="iconBox">•</span> {{ toChinese(newEntry,"entry") }}
-                                <span class="centerEntry" v-show="!isNew"> {{ showEntryList(newEntry,oldEntryValue) }} </span>
-                                <span class="upgradeArrow" v-show="!isNew"></span>
-                                <span class="float-end upColor">{{ showEntryList(newEntry,newEntryValue) }}</span>
+                                <span class="iconBox">•</span> {{ toChinese(entry,"entry") }}
+                                <span class="centerEntry" v-show="(!isNew)||index!=newEntry.length-1"> {{ showEntryList(entry,oldEntryValue[index]) }} </span>
+                                <span class="upgradeArrow" v-show="(!isNew)||index!=newEntry.length-1"></span>
+                                <span class="float-end upColor">{{ showEntryList(entry,newEntryValue[index]) }}</span>
                                 <span class="upgradeArrowUp"></span>
                             </div>
                         </div>
@@ -95,9 +98,9 @@ app.component("artifact-upgrade",{
             },
             mainValueBefore: 0,                 // 升级前的主属性
             isNew: false,                       // 是否是新词条
-            newEntry: "HP",                   
-            newEntryValue: 0,
-            oldEntryValue: 0,                   // 旧词条数值
+            newEntry: ["none"],                   
+            newEntryValue: [0],
+            oldEntryValue: [0],                 // 旧词条数值
             upgradeLv: -1,
             upEntry: String,
             alertFunc: {
@@ -133,33 +136,61 @@ app.component("artifact-upgrade",{
     },
     methods: {
         // 升级圣遗物
-        upgrade(){
+        upgrade(type = "default"){
             let ArtiEntry = this.Artifact.entry;
             // 升级前的数据
             let oldEntryList = JSON.parse(JSON.stringify(ArtiEntry));
+            let res;
             this.mainValueBefore = this.Artifact.mainEntryValue;
-            let res = ArtifactsSim.upgrade(this.index,this.upEntry,this.upgradeLv);
+            // 是否升到满级
+            if(type == "max"){
+                while(this.Artifact.level<20){
+                    res = ArtifactsSim.upgrade(this.index,this.upEntry,this.upgradeLv);
+                }
+            }else{
+                res = ArtifactsSim.upgrade(this.index,this.upEntry,this.upgradeLv);
+            }
             this.ArtifactsList = [...ArtifactsSim.result];
             this.localRecord(this.ArtifactsList);
+            // 清空数据
+            this.newEntry = JSON.parse("[\"none\"]");
+            this.newEntryValue = JSON.parse("[0]");
+            this.oldEntryValue = JSON.parse("[0]");
             if(res == true){
+                // 写入新旧词条的数据
+                let newIndex = 0;
+                for(let i = 0; i < oldEntryList.length; i++) {
+                    if(oldEntryList[i][1] != ArtiEntry[i][1]){
+                        this.newEntry[newIndex] = ArtiEntry[i][0];
+                        this.newEntryValue[newIndex] = ArtiEntry[i][1];
+                        this.oldEntryValue[newIndex] = oldEntryList[i][1];
+                        newIndex++;
+                    }
+                }
+                // 判断是否有新词条
                 if(oldEntryList.length < ArtiEntry.length){
                     this.isNew = true;
-                    this.newEntry = ArtiEntry[ArtiEntry.length-1][0];
-                    this.newEntryValue = ArtiEntry[ArtiEntry.length-1][1];
+                    if(this.newEntry[0] != "none"){
+                        this.newEntry.push(ArtiEntry[ArtiEntry.length-1][0]);
+                        this.newEntryValue.push(ArtiEntry[ArtiEntry.length-1][1]);
+                    }else{
+                        this.newEntry[0] = ArtiEntry[ArtiEntry.length-1][0];
+                        this.newEntryValue[0] = ArtiEntry[ArtiEntry.length-1][1];
+                    }
                 }else{
                     this.isNew = false;
-                    for(let i = 0;i < oldEntryList.length; i++){
-                        if(oldEntryList[i][1] != ArtiEntry[i][1]){
-                            this.newEntry = ArtiEntry[i][0];
-                            this.newEntryValue = ArtiEntry[i][1];
-                            this.oldEntryValue = oldEntryList[i][1];
-                        }
-                    }
                 }
                 this.showUpdate = true;
             }else{
                 this.alertControl("当前圣遗物已满级~",1500,"warning");
             }
+        },
+        // 初始化圣遗物
+        initArtifact(){
+            ArtifactsSim.reset(this.index);
+            this.ArtifactsList = [...ArtifactsSim.result];
+            this.localRecord(this.ArtifactsList);
+            this.alertControl("重置圣遗物成功~再试试手气吧",1500);
         },
         // 主词条展示优化
         mainEntryValue(mainEntry,val){
@@ -167,11 +198,10 @@ app.component("artifact-upgrade",{
         },
         // 词条优化
         showEntryList(entry,value){
+            if(typeof(value) != "number") value = Number.parseFloat(value);
             let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
-            // resEntry = this.toChinese(entry,"entry"),
             resValue = value;
             if(percentEntry.indexOf(entry) != -1){
-                // resEntry = resEntry.replace("%","");
                 resValue = resValue.toFixed(1) + "%";
             }else{
                 resValue = value.toFixed(0);
@@ -188,16 +218,7 @@ app.component("artifact-upgrade",{
             }
         },
         toChinese(word,type){
-            if(type == "entry"){
-                return entryListCh[entryList.indexOf(word)].replace("%","");
-            }else if(type == "parts"){
-                return partsCh[parts.indexOf(word)];
-            }else if(type == "mainEntry"){
-                return mainEntryListCh[mainEntryList.indexOf(word)];
-            }else if(type == "score"){
-                return scoreListCH[scoreList.indexOf(word)];
-            }
-            return "";
+            return ArtifactsSim.toChinese(word,type);
         },
         // 提示框
         alertControl(msg,time = 2000,state = "success"){
