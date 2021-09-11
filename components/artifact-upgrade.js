@@ -28,6 +28,7 @@ app.component("artifact-upgrade",{
             <div class="flashingCircle ani-rotate1"></div>
             <div class="flashingCircle flashingCircle2 ani-rotate2"></div>
         </div>
+        <div class="upFloodlight"></div>
         <div class="upgrade-button-box">
             <button @click="upgrade('max')" class="btn btn-genshin me-3" v-show="Artifact.level<20"><span class="squareinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;升到满级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
             <button @click="upgrade" class="btn btn-genshin" v-show="Artifact.level<20"><span class="circleinbox"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强化&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>

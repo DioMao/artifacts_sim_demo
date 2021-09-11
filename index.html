@@ -16,10 +16,11 @@
     <meta name="applicable-device" content="pc,mobile">
     <title>原神圣遗物强化模拟器 | Genshin Artifacts Upgrade Simulator</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style/demo.css">
+    <link rel="stylesheet" href="style/common.min.css">
+    <link rel="stylesheet" href="style/stars.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/combine/npm/vue@3.2.4/dist/vue.global.prod.min.js,npm/vue-router@4.0.11,npm/echarts@5.1.2,npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/ArtifactsUpradeSim@0.1.7.js"></script>
+    <script src="js/ArtifactsUpradeSim@0.1.7.min.js"></script>
 </head>
 
 <body>
@@ -51,15 +52,17 @@
                     <p>本模拟器采用本地存储，脱机可用，不上传任何数据。</p>
                     <p>遇到bug就清理一下缓存，或者看看git上更新没有。<del>都不行就只能辱骂作者了。</del>><a href="https://github.com/DioMao" target="_blank">DioMao</a></p>
                     <p style="color: red;">1. 自选圣遗物说明</p>
-                    <p>自选圣遗物在随机生成的下拉按钮里。</p>
-                    <p>自选圣遗物时，不足3条的情况会随机选择符合条件的副词条补至3条，且不会生成第四副词条。</p>
+                    <p>自选圣遗物时，依次选择位置、主词条和副词条。未选择的属性会随机生成。</p>
+                    <p>自选圣遗物时，副词条可以留空，这种情况会生成主属性符合且随机副词条的圣遗物。自选了副词条但不足3条时，模拟器会随机选择符合条件的副词条补至3条，且不会生成第四副词条。</p>
                     <p style="color: red;">2. 圣遗物评分说明</p>
                     <p>1) 预设模式</p>
-                    <p>预设模式是根据已有的设定来进行分数估算。<del>目前还没有完善，实际是选什么算什么。</del></p>
+                    <p>预设模式是根据已有的设定来进行分数估算。<del>目前还没有完善，实际是选什么算什么。</del>得分35以上的会在圣遗物列表中用红色字体标注。</p>
                     <p>2) 自选模式</p>
                     <p>顾名思义，选中哪几个就算哪几个的总分。</p>
                     <p style="color: red;">3. 删除和清空列表</p>
                     <p>单独删除圣遗物是可以撤销的。清空列表比较大力，生效了就不能找回了。</p>
+                    <p style="color: red;">4. 列表模式</p>
+                    <p>为了新功能的设计，现在圣遗物列表的默认模式改成了简洁模式。如果需要详细列表的话，可以去设置里关掉简洁模式。</p>
                 </div>
             </div>
         </div>

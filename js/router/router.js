@@ -1,7 +1,12 @@
-const routes = [{
+const routes = [
+    {
         path: '/',
-        name: 'home',
-        component: app.component('artifact-box')
+        redirect: '/artifact-box'
+    },
+    {
+        path: '/artifact-box',
+        name: 'artifact-box',
+        component: app.component('artifact-box'),
     },
     {
         path: '/artifact-:index',
