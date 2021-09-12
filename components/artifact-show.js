@@ -31,7 +31,7 @@ app.component("artifact-show",{
             <button class="btn btn-genshin btn-sm" @click="init" v-show="showdetail.level>0"> 重置 </button>
             <button class="btn btn-genshin btn-sm float-end del" @click="del"> 删除 </button>
         </div>
-        <router-link :to="{path:'/artifact-'+index}" class="btn btn-genshin-dark mt-1 float-end"><span class="circleinbox"></span>强化界面</router-link>
+        <router-link :to="{path:'/artifact-'+index}" class="btn btn-toupgrade"><span class="circleinbox"></span>强化界面</router-link>
     </div>
     `,
     data(){
@@ -69,7 +69,7 @@ app.component("artifact-show",{
             return this.name[this.showdetail.part];
         },
         mainEntryValue(){
-            return fomatMainEntryValue(this.showdetail.mainEntry, this.showdetail.mainEntryValue);
+            return ArtifactsSim.entryValFormat(this.showdetail.mainEntry, this.showdetail.mainEntryValue,"main")
         }
     },
     methods:{
@@ -86,15 +86,8 @@ app.component("artifact-show",{
             return ArtifactsSim.toChinese(word,type);
         },
         showEntryList(entry,value){
-            let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
-            resEntry = this.toChinese(entry,"entry"),
-            resValue = value;
-            if(percentEntry.indexOf(entry) != -1){
-                resEntry = resEntry.replace("%","");
-                resValue = resValue.toFixed(1) + "%";
-            }else{
-                resValue = resValue = value.toFixed(0);
-            }
+            let resEntry = this.toChinese(entry,"entry"),
+            resValue = ArtifactsSim.entryValFormat(entry,value);
             return resEntry + "+" + resValue;
         }
     }

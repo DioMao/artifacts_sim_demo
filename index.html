@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="style/common.min.css">
     <link rel="stylesheet" href="style/stars.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/combine/npm/vue@3.2.4/dist/vue.global.prod.min.js,npm/vue-router@4.0.11,npm/echarts@5.1.2,npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/vue@3.2.4/dist/vue.global.prod.min.js,npm/vue-router@4.0.11,npm/echarts@5.1.2,npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js,npm/axios@0.21.4"></script>
     <script src="js/ArtifactsUpradeSim@0.1.7.min.js"></script>
 </head>
 
@@ -27,8 +27,8 @@
     <div id="vueApp">
         <!-- loading -->
         <div id="loading" :class="isLoad?'hide':''">
-            <div class="spinner-border loading-box" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div class="loading-box">
+                <div class="loading-progress" :style="{width:loadProgress+'%'}"></div>
             </div>
         </div>
         <!-- /loading -->
@@ -44,13 +44,15 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanMenu" aria-labelledby="offcanvasMenu">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title">模拟器说明</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div>
                     <p style="color: red;">——仅供娱乐，请勿作为实际游戏参考——</p>
                     <p>本模拟器采用本地存储，脱机可用，不上传任何数据。</p>
-                    <p>遇到bug就清理一下缓存，或者看看git上更新没有。<del>都不行就只能辱骂作者了。</del>><a href="https://github.com/DioMao" target="_blank">DioMao</a></p>
+                    <p>遇到bug就清理一下缓存，或者看看git上更新没有。<del>都不行就只能辱骂作者了。</del>><a href="https://github.com/DioMao"
+                            target="_blank">DioMao</a></p>
                     <p style="color: red;">1. 自选圣遗物说明</p>
                     <p>自选圣遗物时，依次选择位置、主词条和副词条。未选择的属性会随机生成。</p>
                     <p>自选圣遗物时，副词条可以留空，这种情况会生成主属性符合且随机副词条的圣遗物。自选了副词条但不足3条时，模拟器会随机选择符合条件的副词条补至3条，且不会生成第四副词条。</p>
@@ -71,15 +73,64 @@
 
     <script>
         const app = Vue.createApp({
-        data() {
-            return {
-                isLoad: false,                  // 加载界面显示（isLoad表示页面加载是否完成）
-            }
-        },
-        mounted(){
-            this.$nextTick(function(){
-                this.isLoad = true;
-                })
+            data() {
+                return {
+                    loadProgress: 0,
+                    isLoad: false, // 加载界面显示（isLoad表示页面加载是否完成）
+                }
+            },
+            mounted() {
+                // 预加载图片(同时控制进度条)
+                let that = this;
+                axios.all([this.preLoadImg(), this.preLoadImg2()])
+                    .then(axios.spread((res, res2) => {
+
+                    })).catch((err => {
+                        console.log(err);
+                    }))
+                // that.$nextTick(function(){
+                //        this.isLoad = true;
+                //     });
+            },
+            watch: {
+                loadProgress(val) {
+                    let that = this;
+                    if (val == 90) {
+                        setTimeout(function () {
+                            that.loadProgress = 100;
+                            that.isLoad = true;
+                        }, 500)
+                    }
+                }
+            },
+            methods: {
+                preLoadImg() {
+                    const that = this;
+                    for (let part of artiConst.val.parts) {
+                        let name = "A-" + part + ".png"
+                        errtime = 0;
+                        let request = axios.get("/img/" + name).
+                        then((res) => {
+                            that.loadProgress += 15;
+                        }).catch((err) => {
+                            console.log(err);
+                            (errtime < 3) ? (request, errtime++) : (that.loadProgress += 15);
+                        })
+                    }
+                    return true;
+                },
+                preLoadImg2() {
+                    const that = this;
+                    let errtime = 0,
+                        request = axios.get("/img/genshin-symbol.png")
+                        .then((res) => {
+                            that.loadProgress += 15;
+                            return true;
+                        }).catch(err => {
+                            console.log(err);
+                            (errtime < 3) ? (request, errtime++) : (that.loadProgress += 15);
+                        })
+                }
             }
         })
     </script>

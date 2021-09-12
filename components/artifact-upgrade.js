@@ -37,6 +37,7 @@ app.component("artifact-upgrade",{
         <div class="myMask" v-show="showUpdate">
             <div class="upgradeAlert ani-AlertBoxUp">
                 <div class="UpAlertHead">
+                    <div class="upgradeSuccess ani-upSuccess">强化完成</div>
                     <div class="upgradeImgBox ani-ArtifactShow">
                         <div class="upgradeImg">
                             <img :src="'img/A-'+Artifact.part+'.png'" :alt="Artifact.part">
@@ -195,19 +196,11 @@ app.component("artifact-upgrade",{
         },
         // 主词条展示优化
         mainEntryValue(mainEntry,val){
-            return fomatMainEntryValue(mainEntry,val);
+            return ArtifactsSim.entryValFormat(mainEntry,val,"main");
         },
         // 词条优化
         showEntryList(entry,value){
-            if(typeof(value) != "number") value = Number.parseFloat(value);
-            let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
-            resValue = value;
-            if(percentEntry.indexOf(entry) != -1){
-                resValue = resValue.toFixed(1) + "%";
-            }else{
-                resValue = value.toFixed(0);
-            }
-            return resValue;
+            return ArtifactsSim.entryValFormat(entry,value);
         },
         // 结果保存到localstorage
         localRecord(record){

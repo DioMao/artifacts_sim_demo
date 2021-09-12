@@ -344,7 +344,7 @@ app.component("artifact-box",{
                 localStorage.localRecord = [];
             }else if(localStorage.localRecord != '' && localStorage.localRecord != "[]" && this.ArtifactsList.length == 0){
                 ArtifactsSim.result = JSON.parse(localStorage.getItem("localRecord"));
-                this.ArtifactsList = JSON.parse(localStorage.getItem("localRecord"));
+                this.ArtifactsList = [...ArtifactsSim.result];
             };
             if(localStorage.userSetting == undefined){
                 localStorage.userSetting = JSON.stringify(this.defaultSetting);
@@ -566,7 +566,7 @@ app.component("artifact-box",{
         },
         // 主词条属性
         mainEntryValue(mainEntry,val){
-            return fomatMainEntryValue(mainEntry,val);
+            return ArtifactsSim.entryValFormat(mainEntry,val,"main");
         },
         // 
         mainEntryfilter(val){
@@ -578,15 +578,8 @@ app.component("artifact-box",{
         },
         // 展示界面副词条文字处理
         formatEntry(entry,value){
-            let percentEntry = ["critRate","critDMG","ATKPer","defPer","HPPer","energyRecharge"],
-            resEntry = this.toChinese(entry,"entry"),
-            resValue = value;
-            if(percentEntry.indexOf(entry) != -1){
-                resEntry = resEntry.replace("%","");
-                resValue = resValue.toFixed(1) + "%";
-            }else{
-                resValue = resValue = value.toFixed(0);
-            }
+            let resEntry = this.toChinese(entry,"entry"),
+            resValue = ArtifactsSim.entryValFormat(entry,value);
             return resEntry + "+" + resValue;
         }
     }
