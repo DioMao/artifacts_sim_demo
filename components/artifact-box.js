@@ -8,9 +8,9 @@ app.component("artifact-box",{
                 <option :value="part" v-for="part in parts">{{ toChinese(part,"parts") }}</option>
             </select>
         </div>
-        <div class="container-fluid demo-container">
+        <div class="container-fluid demo-container" ref="scrollListener">
             <div v-for="(Artifacts,index) in ArtifactsList" :id="'artifact-'+index" :class="'ArtifactsBox card rounded '+ (index==showIndex?'shadow':'shadow-sm')" v-show="(selected=='default' || selected == Artifacts.part) && (userSetting.filterMain == 'default' || userSetting.filterMain == Artifacts.mainEntry)" @click="showIndex=index">
-                <div class="card-body">
+                <div class="card-body ArtifactsTitle" :style="{backgroundImage:'url(./img/A-'+ Artifacts.part + '.png)'}">
                     <div :class="'card-text fs-6 '+(ArtifactRate(index)>=userSetting.highScore?'highscore':'')">{{ toChinese(Artifacts.part,"parts") }}</div>
                     <div class="levelStar">
                         <span v-for="i in 5" style="margin-right: 2px;">
@@ -357,6 +357,14 @@ app.component("artifact-box",{
                 }
             };
         }
+        // 监听滚动条并记录位置，返回界面时回到记录位置
+        setTimeout(()=>{
+            that.$refs.scrollListener.scrollTop = boxScroll;
+        },1)
+        this.$refs.scrollListener.addEventListener("scroll",e=>{
+            boxScroll = this.$refs.scrollListener.scrollTop;
+            // console.log('相对距离', boxScroll);
+        })
     },
     computed:{
         ArtifactScore(){

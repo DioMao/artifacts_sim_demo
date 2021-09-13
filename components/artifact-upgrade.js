@@ -14,7 +14,7 @@ app.component("artifact-upgrade",{
             返回
         </button>
         <div class="entryBox">
-            <div class="mb-3 ps-2">+{{ Artifact.level }}</div>
+            <div class="mb-3 ps-2">+{{ Artifact.level }}<span class="maxBadge ani-badgeFlash" v-show="Artifact.level==20">MAX</span></div>
             <div class="mb-1 mainEntry"><span class="iconBox">✦</span> {{ toChinese(Artifact.mainEntry,"mainEntry") }} <span class="float-end"> {{ mainEntryValue(Artifact.mainEntry,Artifact.mainEntryValue) }} </span></div>
             <div class="entryLine"></div>
             <div class="entryList mb-1" v-for="entry in Artifact.entry">

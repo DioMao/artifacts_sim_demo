@@ -72,6 +72,7 @@
     </div>
 
     <script>
+        var boxScroll = 0;    
         const app = Vue.createApp({
             data() {
                 return {
@@ -88,9 +89,6 @@
                     })).catch((err => {
                         console.log(err);
                     }))
-                // that.$nextTick(function(){
-                //        this.isLoad = true;
-                //     });
             },
             watch: {
                 loadProgress(val) {
