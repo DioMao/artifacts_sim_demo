@@ -16,11 +16,11 @@
     <meta name="applicable-device" content="pc,mobile">
     <title>原神圣遗物强化模拟器 | Genshin Artifacts Upgrade Simulator</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style/common.min.css">
+    <link rel="stylesheet" href="style/common.min.css?date=20210915">
     <link rel="stylesheet" href="style/stars.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/combine/npm/vue@3.2.4/dist/vue.global.prod.min.js,npm/vue-router@4.0.11,npm/echarts@5.1.2,npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js,npm/axios@0.21.4"></script>
-    <script src="js/ArtifactsUpradeSim@0.1.7.min.js"></script>
+    <script src="js/ArtifactsUpradeSim@0.1.8.min.js?date=20210915"></script>
 </head>
 
 <body>
@@ -72,7 +72,8 @@
     </div>
 
     <script>
-        var boxScroll = 0;    
+        var boxScroll = 0,
+            selectHistory = -1;
         const app = Vue.createApp({
             data() {
                 return {
@@ -145,7 +146,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ4Y49LFZ3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'G-WQ4Y49LFZ3');

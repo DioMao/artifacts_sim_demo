@@ -1,6 +1,7 @@
 app.component("artifact-upgrade",{
     template: `
     <div class="containerUp">
+        <div class="fog ani-fogMove"></div>
         <demo-alert :state="alertFunc.alertState" :show="alertFunc.alertShow">{{ alertFunc.alertMsg }}</demo-alert>
         <div class="starBox">
             <div id="stars"></div>
@@ -8,8 +9,8 @@ app.component("artifact-upgrade",{
             <div id="stars3"></div>
         </div>
         <button @click="$router.go(-1)" class="btn btn-genshin btn-back">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+            <svg t="1631673905462" class="icon" viewBox="0 0 1024 1024" version="1.1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" p-id="633" width="16" height="16">
+                <path d="M482.7 249.9V106.1c0-37.4-45.3-56.2-71.7-29.7L140.3 347c-16.4 16.4-16.4 43 0 59.4L410.9 677c26.5 26.5 71.7 7.7 71.7-29.7v-155c96.1-0.3 271.5-10.7 271.5 227.7 0 118.1-92.8 216.8-216 239.6 198.1-24.4 326-236 326-361.9 0.1-292.6-309.4-346.3-381.4-347.8z" fill="" p-id="634"></path>
             </svg>
             返回
         </button>
@@ -103,8 +104,6 @@ app.component("artifact-upgrade",{
             newEntry: ["none"],                   
             newEntryValue: [0],
             oldEntryValue: [0],                 // 旧词条数值
-            upgradeLv: -1,
-            upEntry: String,
             alertFunc: {
                 alertShow: false,               // 是否显示提示框
                 alertMsg: String,               // 提示框内容
@@ -115,25 +114,14 @@ app.component("artifact-upgrade",{
     },
     mounted(){
         // 初始化时列表数据保持一致
-        if(this.ArtifactsList.length == 0 && ArtifactsSim.result.length != 0){
-            this.ArtifactsList = [...ArtifactsSim.result];
-        }
-        if(!window.localStorage){
-            alert("浏览器不支持localstorage");
-            return false;
-        }else{
-            if(localStorage.localRecord == undefined){
-                localStorage.localRecord = [];
-            }else if(localStorage.localRecord != '' && localStorage.localRecord != "[]" && this.ArtifactsList.length == 0){
-                ArtifactsSim.result = JSON.parse(localStorage.getItem("localRecord"));
-                this.ArtifactsList = JSON.parse(localStorage.getItem("localRecord"));
-            }
+        if(this.ArtifactsList.length == 0 && ArtifactsSim.AUSList.length != 0){
+            this.ArtifactsList = [...ArtifactsSim.AUSList];
         }
         // 验证圣遗物是否存在，否则跳转回列表（防止url直接访问出错）
-        if(ArtifactsSim.result.length < (parseInt(this.index) + 1)){
+        if(ArtifactsSim.AUSList.length < (parseInt(this.index) + 1)){
             this.$router.replace("/");
         }else{
-            this.Artifact = ArtifactsSim.result[this.index];
+            this.Artifact = ArtifactsSim.AUSList[this.index];
         }
     },
     methods: {
@@ -152,8 +140,7 @@ app.component("artifact-upgrade",{
             }else{
                 res = ArtifactsSim.upgrade(this.index,this.upEntry,this.upgradeLv);
             }
-            this.ArtifactsList = [...ArtifactsSim.result];
-            this.localRecord(this.ArtifactsList);
+            this.ArtifactsList = [...ArtifactsSim.AUSList];
             // 清空数据
             this.newEntry = JSON.parse("[\"none\"]");
             this.newEntryValue = JSON.parse("[0]");
@@ -190,8 +177,7 @@ app.component("artifact-upgrade",{
         // 初始化圣遗物
         initArtifact(){
             ArtifactsSim.reset(this.index);
-            this.ArtifactsList = [...ArtifactsSim.result];
-            this.localRecord(this.ArtifactsList);
+            this.ArtifactsList = [...ArtifactsSim.AUSList];
             this.alertControl("重置圣遗物成功~再试试手气吧",1500);
         },
         // 主词条展示优化
@@ -201,15 +187,6 @@ app.component("artifact-upgrade",{
         // 词条优化
         showEntryList(entry,value){
             return ArtifactsSim.entryValFormat(entry,value);
-        },
-        // 结果保存到localstorage
-        localRecord(record){
-            if(!window.localStorage){
-                alert("浏览器不支持localstorage");
-                return false;
-            }else{
-                localStorage.localRecord = JSON.stringify(record);
-            }
         },
         toChinese(word,type){
             return ArtifactsSim.toChinese(word,type);
