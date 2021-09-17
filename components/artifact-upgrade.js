@@ -176,9 +176,12 @@ app.component("artifact-upgrade",{
         },
         // 初始化圣遗物
         initArtifact(){
-            ArtifactsSim.reset(this.index);
-            this.ArtifactsList = [...ArtifactsSim.AUSList];
-            this.alertControl("重置圣遗物成功~再试试手气吧",1500);
+            let res = ArtifactsSim.reset(this.index);
+            if (res) {
+                this.alertControl("重置圣遗物成功~再试试手气吧", 1500);
+            } else {
+                this.alertControl("该圣遗物已锁定！", 1500, "warning");
+            }
         },
         // 主词条展示优化
         mainEntryValue(mainEntry,val){
