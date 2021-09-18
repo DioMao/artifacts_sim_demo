@@ -366,6 +366,7 @@ app.component("artifact-box", {
                 localStorage.userSetting = this.defaultSetting;
             } else if (localStorage.userSetting !== '') {
                 let settingObj = JSON.parse(localStorage.getItem("userSetting"));
+                // 给设定分配值（读取本地设置）
                 Object.assign(this.userSetting, settingObj);
             };
         }
@@ -383,6 +384,10 @@ app.component("artifact-box", {
         // 监听窗口大小
         window.addEventListener("resize", this.getFillCount);
         this.getFillCount();
+    },
+    beforeUnmount() {
+        // 移除监听器
+        window.removeEventListener("resize", this.getFillCount);
     },
     computed: {
         ArtifactScore() {
@@ -417,7 +422,8 @@ app.component("artifact-box", {
             handler(val) {
                 if (this.showIndex >= 0 && val.filterPart !== "default" && this.ArtifactsList[this.showIndex].part !== val.filterPart) this.showSymbol = "";
                 if (this.showIndex >= 0 && val.filterMain !== "default" && this.ArtifactsList[this.showIndex].mainEntry !== val.filterMain) this.symbol = "";
-                this.changeSetting()
+                this.changeSetting();
+                this.getFillCount();
             },
             deep: true
         }
@@ -675,15 +681,25 @@ app.component("artifact-box", {
                 // 计算圣遗物组件宽度
                 itemWidth = 11.25 * Number.parseFloat(htmlStyle),
                 // 计算每行能容纳的最大圣遗物数量
-                itemMax = Math.floor(containerWidth / itemWidth);
+                itemMax = Math.floor(containerWidth / itemWidth),
+                count = 0;
                 // 移动端只能放两个（移动端item宽度不一致，直接计算会有bug）
                 if(containerWidth < 540){
                     itemMax = 2;
                 }
             // 计算需要填充的数量（flex布局-center，需要把组件挤到左边）
-            this.fillCount = itemMax - (ArtifactsSim.AUSList.length % itemMax);
+            // 计算出筛选出来的列表数量
+            ArtifactsSim.AUSList.forEach(val => {
+                if(this.userSetting.filterMain !== "default") {
+                    val.mainEntry === this.userSetting.filterMain ? count++ : null;
+                }else if(this.userSetting.filterPart !== "default") {
+                    val.part === this.userSetting.part ? count++ : null;
+                }else{
+                    count++;
+                }
+            })
+            this.fillCount = itemMax - (count % itemMax);
             if (this.fillCount === itemMax) this.fillCount = 0;
-            // console.log(containerWidth + " " + itemMax + " ");
         }
     }
 })
