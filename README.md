@@ -3,4 +3,4 @@
 
 源项目：
 
-https://github.com/DioMao/genshin_ArtifactsUpgradeSim_js
+https://github.com/DioMao/genshin_ArtifactsUpgradeSim_vue
