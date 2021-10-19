@@ -1,4 +1,3 @@
 User-agent: *
 Disallow: 
 Disallow: /bin/
-Sitemap: http://domain.com/sitemap.xml
